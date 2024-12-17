@@ -1,0 +1,200 @@
+@font-face {
+	font-family: "Sceageus";
+	src: url("fonts/Sceageus.otf");
+	src: url("fonts/Sceageus.otf") format("truetype");
+}
+
+@font-face {
+	font-family: "BaronNeue";
+	src: url("fonts/Baron\ Neue.otf");
+	src: url("fonts/Baron\ Neue.otf") format("truetype");
+}
+
+@font-face {
+	font-family: "Kollektif";
+	src: url("fonts/Kollektif.ttf");
+}
+
+body {
+	background-color: #FFFDF9;
+}
+h1 {
+	color: #F7941D;
+	font-size: 65;
+	font-size: 4vw;
+}
+h2{
+	color: #F7941D;
+	font-size: 65;
+	font-size: 2vw;
+	font-family: "BaronNeue";
+	font-weight: normal	;
+	font-style: normal;
+}
+p {
+	font-size: 45;
+}
+a:link {
+	color:#F7941D;
+	text-decoration: none;
+}
+a:hover {
+	color:#F7941D;
+}
+a:visited {
+	color:#F7941D;
+}
+a:active {
+	color: #F7941D;
+}
+body {
+	background-color: white
+}
+td {
+	font-size: 25
+}
+.food_items {
+	div {
+		opacity: 1;
+	}
+	p {
+		color:grey;
+		font-size: 15;
+		font-size: 1.5vw;
+		font-family: "Kollektif";
+	}
+	h1 {
+		color: black;
+		font-size: 45;
+		font-size: 3vw;
+		font-family: "BaronNeue";
+	}
+	h3 {
+		color: black;
+		font-size: 45;
+		font-size: 3vw;
+		font-family: "Kollektif";
+		margin-bottom: 0%;
+	}
+	td {
+		min-width: 11vw;
+		max-width: 25vw;
+		height: fit-content;
+		max-height: fit-content;
+		text-align: center;
+	}
+	img {
+		display: none;
+		width: 11vw;
+	}
+}
+.drink_items {
+	display: inline;
+	div {
+		opacity: 1;
+	}
+	p {
+		color:grey;
+		font-size: 15;
+		font-size: 1.5vw;
+		font-family: "Kollektif";
+	}
+	h1 {
+		color: black;
+		font-size: 45;
+		font-size: 3vw;
+		font-family: "BaronNeue";
+	}
+	h3 {
+		color: black;
+		font-size: 45;
+		font-size: 3vw;
+		font-family: "Kollektif";
+		margin-bottom: 0%;
+	}
+	td {
+		min-width: 11vw;
+		max-width: 25vw;
+		height: fit-content;
+		max-height: fit-content;
+		text-align: center;
+	}
+	img {
+		display: none;
+		width: 11vw;
+	}
+}
+.current_menu {
+	div {
+		opacity: 1;
+	}
+	p {
+		color:grey;
+		font-size: 15;
+		font-size: 1.5vw;
+		font-family: "Kollektif";
+	}
+	h1 {
+		color: black;
+		font-size: 45;
+		font-size: 3vw;
+		font-family: "BaronNeue";
+	}
+	h3 {
+		color: black;
+		font-size: 45;
+		font-size: 3vw;
+		font-family: "Kollektif";
+		margin-bottom: 0%;
+	}
+	td {
+		min-width: 11vw;
+		max-width: 25vw;
+		height: fit-content;
+		max-height: fit-content;
+	}
+	img {
+		width: 11vw;
+	}
+}
+.main_insta {
+	/* style="background-image: url('https://placehold.co/1920x1080'); width:100%;" */
+	table {
+		background-size: 100%;
+		width: 100%;
+		margin-top: 5%;
+	}
+}
+
+.hidden_elements {
+	display:none;
+}
+
+.button_hover {
+	button {
+		color: black;
+		font-size: 65;
+		font-size: 3vw;
+		font-family: "BaronNeue";
+		background-color: white;
+		border: 0;
+		transition-duration: .4s;
+	}
+	button:hover {
+		color: #F7941D !important;
+	}
+}
+
+.selected_button {
+	button {
+		color: #F7941D !important;
+		font-size: 65;
+		font-size: 4vw;
+		background-color: white;
+		border: 0;
+		transition-duration: .4s;
+	}
+	button:hover {
+		color: #F7941D !important;
+	}
+}
