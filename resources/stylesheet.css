@@ -84,7 +84,7 @@ td {
 		text-align: center;
 	}
 	img {
-		display: none;
+		/* display: none; */
 		width: 11vw;
 	}
 }
@@ -120,7 +120,7 @@ td {
 		text-align: center;
 	}
 	img {
-		display: none;
+		/* display: none; */
 		width: 11vw;
 	}
 }

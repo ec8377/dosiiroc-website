@@ -26,6 +26,9 @@
                 drinks_div.style.opacity = "1";
                 isFood = false;
             }
+            if (!isFood) {
+                switchTo("Coffee");
+            }
         }
         async function switchToFood() {
             if (!isFood) {
@@ -41,6 +44,9 @@
                 drinks_div.className = "hidden_elements";
                 drinks_div.style.opacity = "0.1"
                 isFood = true;
+            }
+            if (isFood) {
+                switchTo("Appetizers");
             }
         }
         async function switchTo(text) {
@@ -317,7 +323,7 @@
                     </td>
                     <td>
                         <h3>Kim Mari</h3>
-                        <p>$5.95</p>
+                        <p>$6.95</p>
                         <p>(5 pc) Deep fried crispy vegetable fritters.</p>
                     </td>
                 </center>
@@ -330,7 +336,7 @@
                     <td>
                         <h3>Fried Mandu</h3>
                         <p>$6.95</p>
-                        <p>(6 pc) Deep fried pork and beef dumplings served with dipping sauce.</p>
+                        <p>(5 pc) Deep fried pork and beef dumplings served with dipping sauce.</p>
                     </td>
                     <td>
                         <img src="https://placehold.co/100x100" alt="PLCAEHOLDER IMAGE">
@@ -338,7 +344,7 @@
                     <td>
                         <h3>Shumai</h3>
                         <p>$6.95</p>
-                        <p>(6 pc) Steamed shrimp dumplings</p>
+                        <p>(6 pc) Steamed shrimp dumplings.</p>
                     </td>
                 </center>
             </tr>
@@ -350,7 +356,7 @@
                     <td>
                         <h3>Fried shrimp</h3>
                         <p>$6.95</p>
-                        <p>(4 pc) Deep fried pork and beef dumplings served with dipping sauce.</p>
+                        <p>(4 pc) Fried jumbo shrimp served with dipping sauce.</p>
                     </td>
                 </center>
             </tr>
@@ -364,17 +370,17 @@
                         <img src="https://placehold.co/100x100" alt="PLCAEHOLDER IMAGE">
                     </td>
                     <td>
-                        <h3>Fried Mandu</h3>
-                        <p>$6.95</p>
-                        <p>(6 pc) Deep fried pork and beef dumplings served with dipping sauce.</p>
+                        <h3>Beef Bulgogi</h3>
+                        <p>$21.95</p>
+                        <p>Thinly sliced beef ribeye grilled in a korean BBQ marinade.</p>
                     </td>
                     <td>
                         <img src="https://placehold.co/100x100" alt="PLCAEHOLDER IMAGE">
                     </td>
                     <td>
-                        <h3>Shumai</h3>
-                        <p>$6.95</p>
-                        <p>(6 pc) Steamed shrimp dumplings</p>
+                        <h3>Spicy Pork Bulgogi</h3>
+                        <p>$19.95</p>
+                        <p>Thinly sliced pork grilled in a spicy gochujang marinade.</p>
                     </td>
                 </center>
             </tr>
@@ -384,9 +390,9 @@
                         <img src="https://placehold.co/100x100" alt="PLCAEHOLDER IMAGE">
                     </td>
                     <td>
-                        <h3>Fried shrimp</h3>
-                        <p>$6.95</p>
-                        <p>(4 pc) Deep fried pork and beef dumplings served with dipping sauce.</p>
+                        <h3>Chicken Bulgogi</h3>
+                        <p>$19.95</p>
+                        <p>Grilled chicken thighs glazed with savory korean BBQ sauce.</p>
                     </td>
                 </center>
             </tr>
@@ -400,33 +406,23 @@
                         <img src="https://placehold.co/100x100" alt="PLCAEHOLDER IMAGE">
                     </td>
                     <td>
-                        <h3>Fried Mandu</h3>
-                        <p>$6.95</p>
-                        <p>(6 pc) Deep fried pork and beef dumplings served with dipping sauce.</p>
+                        <h3>Donkatsu (pork)</h3>
+                        <p>$18.95</p>
+                        <p>Deep fried pork cutlet topped with home made roux sauce and served with a 
+                            side of cabbage slaw and mac salad.</p>
                     </td>
                     <td>
                         <img src="https://placehold.co/100x100" alt="PLCAEHOLDER IMAGE">
                     </td>
                     <td>
-                        <h3>Shumai</h3>
-                        <p>$6.95</p>
-                        <p>(6 pc) Steamed shrimp dumplings</p>
+                        <h3>Chicken Katsu</h3>
+                        <p>$18.95</p>
+                        <p>Deep fried chicken cutlet topped with home made roux sauce and served with a
+                            side of cabbage slaw and mac salad.</p>
                     </td>
                 </center>
             </tr>
-            <tr>
-                <center>
-                    <td>
-                        <img src="https://placehold.co/100x100" alt="PLCAEHOLDER IMAGE">
-                    </td>
-                    <td>
-                        <h3>Fried shrimp</h3>
-                        <p>$6.95</p>
-                        <p>(4 pc) Deep fried pork and beef dumplings served with dipping sauce.</p>
-                    </td>
-                </center>
-            </tr>
-            </table>
+        </table>
         </div>
         <div id="Noodles" class="hidden_elements">
         <table style="width:100%">
@@ -436,29 +432,19 @@
                         <img src="https://placehold.co/100x100" alt="PLCAEHOLDER IMAGE">
                     </td>
                     <td>
-                        <h3>Fried Mandu</h3>
-                        <p>$6.95</p>
-                        <p>(6 pc) Deep fried pork and beef dumplings served with dipping sauce.</p>
+                        <h3>Bibim Naengmyeon</h3>
+                        <p>$17.95</p>
+                        <p>Chewy buckwheat noddles served cold with a spicy sauce, garnished with 
+                            sliced brisket cucumber and egg.</p>
                     </td>
                     <td>
                         <img src="https://placehold.co/100x100" alt="PLCAEHOLDER IMAGE">
                     </td>
                     <td>
-                        <h3>Shumai</h3>
-                        <p>$6.95</p>
-                        <p>(6 pc) Steamed shrimp dumplings</p>
-                    </td>
-                </center>
-            </tr>
-            <tr>
-                <center>
-                    <td>
-                        <img src="https://placehold.co/100x100" alt="PLCAEHOLDER IMAGE">
-                    </td>
-                    <td>
-                        <h3>Fried shrimp</h3>
-                        <p>$6.95</p>
-                        <p>(4 pc) Deep fried pork and beef dumplings served with dipping sauce.</p>
+                        <h3>Kimchi Carbonara Udon</h3>
+                        <p>$18.95</p>
+                        <p>Udon noddles and bacon in a creamy and spicy sauce infused with kimchi, 
+                            topped with fried shrimp.</p>
                     </td>
                 </center>
             </tr>
@@ -472,17 +458,17 @@
                         <img src="https://placehold.co/100x100" alt="PLCAEHOLDER IMAGE">
                     </td>
                     <td>
-                        <h3>Fried Mandu</h3>
-                        <p>$6.95</p>
-                        <p>(6 pc) Deep fried pork and beef dumplings served with dipping sauce.</p>
+                        <h3>Yachae Jeon</h3>
+                        <p>$11.95</p>
+                        <p>Pan fried savory korean pancake with a variety of vegetables.</p>
                     </td>
                     <td>
                         <img src="https://placehold.co/100x100" alt="PLCAEHOLDER IMAGE">
                     </td>
                     <td>
-                        <h3>Shumai</h3>
-                        <p>$6.95</p>
-                        <p>(6 pc) Steamed shrimp dumplings</p>
+                        <h3>Kimchi Jeon</h3>
+                        <p>$12.95</p>
+                        <p>Pan fried pancake with house made kimchi.</p>
                     </td>
                 </center>
             </tr>
@@ -492,9 +478,9 @@
                         <img src="https://placehold.co/100x100" alt="PLCAEHOLDER IMAGE">
                     </td>
                     <td>
-                        <h3>Fried shrimp</h3>
-                        <p>$6.95</p>
-                        <p>(4 pc) Deep fried pork and beef dumplings served with dipping sauce.</p>
+                        <h3>Haemul Jeon (seafood)</h3>
+                        <p>$15.95</p>
+                        <p>Pan fried savory korean pancake with squid, shrimp, and green onion.</p>
                     </td>
                 </center>
             </tr>
@@ -508,17 +494,18 @@
                         <img src="resources/images/rice_dishes/appa_fried_rice.jpg" alt="Appa's fried rice">
                     </td>
                     <td>
-                        <h3>Appa's fried rice</h3>
-                        <p>$6.95</p>
-                        <p>(6 pc) Deep fried pork and beef dumplings  with dipping sauce.</p>
+                        <h3>Dolsot Bibimbap</h3>
+                        <p>$15.95</p>
+                        <p>Rice with seasoned veggies and your choice of beef/spicy pork/tofu served 
+                            in a hot stone pot with a bottle of house chojang sauce.</p>
                     </td>
                     <td>
                         <img src="https://placehold.co/100x100" alt="PLCAEHOLDER IMAGE">
                     </td>
                     <td>
-                        <h3>Shumai</h3>
-                        <p>$6.95</p>
-                        <p>(6 pc) Steamed shrimp dumplings</p>
+                        <h3>Kimchi fried rice</h3>
+                        <p>$15.95</p>
+                        <p>White rice stir fried with kimchi and pork belly, topped with a fried egg (runny yolk).</p>
                     </td>
                 </center>
             </tr>
@@ -528,9 +515,17 @@
                         <img src="https://placehold.co/100x100" alt="PLCAEHOLDER IMAGE">
                     </td>
                     <td>
-                        <h3>Fried shrimp</h3>
-                        <p>$6.95</p>
-                        <p>(4 pc) Deep fried pork and beef dumplings served with dipping sauce.</p>
+                        <h3>Appa's fried rice</h3>
+                        <p>$14.95</p>
+                        <p>Dad's recipe of hawaiian style fried rice with spam, egg, and veggies.</p>
+                    </td>
+                    <td>
+                        <img src="https://placehold.co/100x100" alt="PLCAEHOLDER IMAGE">
+                    </td>
+                    <td>
+                        <h3>Shrimp fried rice</h3>
+                        <p>$17.95</p>
+                        <p>White rice stir fried with shrimp, eggs, and veggies.</p>
                     </td>
                 </center>
             </tr>
@@ -544,17 +539,19 @@
                         <img src="https://placehold.co/100x100" alt="PLCAEHOLDER IMAGE">
                     </td>
                     <td>
-                        <h3>Stew1</h3>
-                        <p>$6.95</p>
-                        <p>(6 pc) Deep fried pork and beef dumplings served with dipping sauce.</p>
+                        <h3>Kimchi Jjigae</h3>
+                        <p>$16.95</p>
+                        <p>Kimchi and tofu simmered into a spicy stew, served in a stone pot with your choice
+                            of pork or tuna.</p>
                     </td>
                     <td>
                         <img src="https://placehold.co/100x100" alt="PLCAEHOLDER IMAGE">
                     </td>
                     <td>
-                        <h3>Shumai</h3>
-                        <p>$6.95</p>
-                        <p>(6 pc) Steamed shrimp dumplings</p>
+                        <h3>Dwenjang Jjigae</h3>
+                        <p>$16.95</p>
+                        <p>Umami flavor of korean fermented bean paste with veggies and tofu, served in a stone pot
+                            with your choice of veggie or beef.</p>
                     </td>
                 </center>
             </tr>
@@ -564,9 +561,50 @@
                         <img src="https://placehold.co/100x100" alt="PLCAEHOLDER IMAGE">
                     </td>
                     <td>
-                        <h3>Fried shrimp</h3>
-                        <p>$6.95</p>
-                        <p>(4 pc) Deep fried pork and beef dumplings served with dipping sauce.</p>
+                        <h3>Soondubu Jjigae</h3>
+                        <p>$15.95</p>
+                        <p>Spicy stew using korean chili flakes and silken tofu, served in a stone pot with your choice 
+                            of veggie, pork (+$1.50), or seafood (+$2).</p>
+                    </td>
+                    <td>
+                        <img src="https://placehold.co/100x100" alt="PLCAEHOLDER IMAGE">
+                    </td>
+                    <td>
+                        <h3>Yukgaejang</h3>
+                        <p>$18.95</p>
+                        <p>Spicy stew with shredded beef.</p>
+                    </td>
+                </center>
+            </tr>
+            <tr>
+                <center>
+                    <td>
+                        <img src="https://placehold.co/100x100" alt="PLCAEHOLDER IMAGE">
+                    </td>
+                    <td>
+                        <h3>Tteok Guk</h3>
+                        <p>$15.95</p>
+                        <p>Sliced rice cakes in hearty mild broth, garnished with egg, dried seaweed, and beef.</p>
+                    </td>
+                    <td>
+                        <img src="https://placehold.co/100x100" alt="PLCAEHOLDER IMAGE">
+                    </td>
+                    <td>
+                        <h3>Mandu Guk</h3>
+                        <p>$18.95</p>
+                        <p>Pork and beef dumplings in a hearty mild broth, garnished with egg, dried seaweed, and beef.</p>
+                    </td>
+                </center>
+            </tr>
+            <tr>
+                <center>
+                    <td>
+                        <img src="https://placehold.co/100x100" alt="PLCAEHOLDER IMAGE">
+                    </td>
+                    <td>
+                        <h3>Tteok Mandu Guk</h3>
+                        <p>$18.95</p>
+                        <p>Sliced rice cakes with pork and beef dumplings in a heart mild broth, garnished with egg, dried seaweed, and beef.</p>
                     </td>
                 </center>
             </tr>
