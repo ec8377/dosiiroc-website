@@ -53,6 +53,17 @@ body {
 td {
 	font-size: 25
 }
+li {
+	display: inline;
+	padding: 8px;
+	float:left;
+}
+ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+  }
 .food_items {
 	div {
 		opacity: 1;
