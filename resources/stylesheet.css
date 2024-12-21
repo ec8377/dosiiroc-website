@@ -124,6 +124,22 @@ ul {
 		font-family: "Kollektif";
 		margin-bottom: 0%;
 	}
+	li {
+		float:none;
+	}
+	li h3 {
+		color: black;
+		font-size: 45;
+		font-size: 5vw;
+		font-family: "Kollektif";
+		margin-bottom: 0%;
+	}
+	li p {
+		color:grey;
+		font-size: 15;
+		font-size: 3.5vw;
+		font-family: "Kollektif";
+	}
 	td {
 		min-width: 11vw;
 		max-width: 25vw;
@@ -137,7 +153,6 @@ ul {
 	}
 }
 .drink_items {
-	display: inline;
 	div {
 		opacity: 1;
 	}
@@ -159,6 +174,22 @@ ul {
 		font-size: 3vw;
 		font-family: "Kollektif";
 		margin-bottom: 0%;
+	}
+	li {
+		float:none;
+	}
+	li h3 {
+		color: black;
+		font-size: 45;
+		font-size: 5vw;
+		font-family: "Kollektif";
+		margin-bottom: 0%;
+	}
+	li p {
+		color:grey;
+		font-size: 15;
+		font-size: 3.5vw;
+		font-family: "Kollektif";
 	}
 	td {
 		min-width: 11vw;
