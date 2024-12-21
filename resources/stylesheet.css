@@ -75,6 +75,14 @@ ul {
 	padding: 0;
 	overflow: hidden;
   }
+.hours_list {
+	li {
+		display: inline;
+		padding: 0px;
+		float: none;
+	}
+}
+
 .food_items {
 	div {
 		opacity: 1;
