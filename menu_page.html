@@ -122,13 +122,13 @@
         </table>
     <hr>
     </center>
-    <table style="margin-left:25%; width:75%;" class="button_hover">
-        <tr>
-            <td style="width:5%;"><button type="button" id="drink_button" onclick="switchToDrinks()" style="font-family: 'BaronNeue';">Drinks</button></td>
+    <table style="margin:0;margin-left:25%; width:75%; padding-bottom:0;" class="button_hover">
+        <tr style="padding-bottom:0">
+            <td style="width:5%;"><button type="button" id="drink_button" onclick="switchToDrinks()" style="font-family: 'BaronNeue';padding-bottom:0;">Drinks</button></td>
             <td style="width:5%;"><button type="button" id="food_button" onclick="switchToFood()" style="font-family: 'BaronNeue'; color:#F7941D;">Food</button></td>
         </tr>
     </table>
-    <br><br>
+    <hr>
     <div id="drink_items_div" class="hidden_elements">
         <div id="drink_buttons_div" class="button_hover" style="position:sticky; top:0; overflow:hidden; background-color: #FFFDF9; border-bottom: 1px solid black; padding-top:1%">
         <center>
@@ -285,9 +285,9 @@
         </div>
     </div>
     <div id="food_items_div" class="food_items">
-        <div id="food_buttons_div" class="button_hover" style="position:sticky; top:0; overflow:hidden; background-color: #FFFDF9;">
+        <div id="food_buttons_div" class="button_hover" style="padding-top:0;position:sticky; top:0; overflow:hidden; background-color: #FFFDF9;">
         <center>
-        <button id="Fried Dishes_button" type="button" style="color: black; padding-top:1%" onclick="switchTo(event.target.innerText)">Fried Dishes</button>
+        <button id="Fried Dishes_button" type="button" style="color: black; padding-top:1%;" onclick="switchTo(event.target.innerText)">Fried Dishes</button>
         <table style="width: 100%; border: 1px solid black; border-top: 0px solid black;">
             <tr style="height: 5vw;">
                 <td>
@@ -571,7 +571,7 @@
         <ul>
             <div class="about_button">
                 <li align="center">
-                    <a href="about_page.html"><h2 style="font-size:calc(6px + 3vw)">About us</a></h2>
+                    <h2 style="font-size:calc(6px + 3vw)">Socials</h2>
                     <img src="resources/images/dosiiroc_insta.png" style="width:10vw;">
                 </li>
             </div>
