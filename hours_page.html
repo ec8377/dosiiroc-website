@@ -1,0 +1,76 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<title>Dosiiroc Cafe</title>
+<link rel="stylesheet" href="resources/stylesheet.css">
+<body style="background-color: #FFFDF9; margin:0px; padding:0px">
+    <script async src="https://www.instagram.com/embed.js"></script>
+    <center>
+    <ul border="0">
+        <li style="width:25vw; padding-left:5%; padding-right:10%"><a href="index.html"><img src="resources/images/logo FINAL-colored.png" style="width:calc(50px + 100%);"></a></li>
+        <li style="width:25%; padding-top:5%" align="center"><a href="menu_page.html"><h2 style="font-size:calc(6px + 3vw)">Menu</a></h2></li>
+        <li style="width:25%; padding-top:5%" align="center"><a href="https://maps.app.goo.gl/CjyDhjXLf2g43XrD7"><h2 style="font-size:calc(6px + 3vw)">Review us!</a></h2></li>
+    </ul>
+    <hr>
+    <table>
+        <!-- hours and are we open? -->
+        <tr>
+            <td align="center"><h3 id="open_sign"></h3></td>
+        </tr>
+        <!-- Simple script to see if we're open -->
+        <script>
+            var date = new Date();
+            var isClosed = true;
+            var isLunchtime = false;
+            if (date.getDay() == 0) {
+                isClosed = true;
+            }
+            else if (date.getDay() == 1 && (date.getHours >= 16 && date.getHours < 20)) {
+                isClosed = false;
+            }
+            else if ((date.getHours() >= 11 && date.getHours() < 14) || (date.getHours() >= 16 && date.getHours() < 20)) {
+                isClosed = false;
+            }
+            else if(date.getHours() >= 14 && date.getHours() < 16) {
+                isLunchtime = true;
+            }
+
+            if (isClosed && isLunchtime) {
+                document.getElementById("open_sign").textContent = "We're closed for lunch, come at 4 pm!"
+            }
+            else if (isClosed) {
+                document.getElementById("open_sign").textContent = "Sorry, we're closed"
+            }
+            else {
+                document.getElementById("open_sign").textContent = "We're open!"
+            }
+        </script>
+        <tr>
+            <td align="center"><h3>Hours</h3></td>
+        </tr>
+        <tr>
+            <td>
+                <ul><div class="hours_list"> 
+                    <li><p>Sunday : Closed</p></li>
+                    <li><p>Monday : 4 pm - 8:30 pm</p></li>
+                    <li><p>Tuesday : 11 am - 2 pm, 4 pm - 8:30 pm</p></li>
+                    <li><p>Wednesday : 11 am - 2 pm, 4 pm - 8:30 pm</p></li>
+                    <li><p>Thursday : 11 am - 2 pm, 4 pm - 8:30 pm</p></li>
+                    <li><p>Friday : 11 am - 2 pm, 4 pm - 8:30 pm</p></li>
+                    <li><p>Saturday : 11 am - 2 pm, 4 pm - 8:30 pm</p></li>
+                    <li><p>*Our kitchen will close at 8pm, Dining room stays open until 8:30</p></li>
+                </ul></div>
+            </td>
+        </tr>
+    </table>
+    <div class="bottom_nav_bar">
+    <ul style="background-color:#844f07; margin:0px; padding:0px; position:sticky; bottom: 0;">
+        <li style="width:33%; padding:0px; margin:0px" align="center"><a href="hours_page.html"><h2 style="font-size:calc(6px + 3vw)">Hours</a></h2></li>
+        <li style="width:33%; padding:0px; margin:0px" align="center"><a href="about_page.html"><h2 style="font-size:calc(6px + 3vw)">About us</a></h2></li>
+        <li style="width:33%; padding:0px; margin:0px" align="center"><a href=""><h2 style="font-size:calc(6px + 3vw)">Directions</a></h2></li>
+    </ul>
+    </div>
+    </center>
+</body>

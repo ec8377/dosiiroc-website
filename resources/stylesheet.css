@@ -17,6 +17,8 @@
 
 body {
 	background-color: #FFFDF9;
+	padding:0;
+	margin:0;
 }
 h1 {
 	color: #F7941D;
@@ -74,7 +76,19 @@ ul {
 	margin: 0;
 	padding: 0;
 	overflow: hidden;
-  }
+}
+.bottom_nav_bar {
+	ul {
+		background-color:#844f07; 
+		margin:0px; 
+		padding:0px;
+	}
+	li {
+		width:33%; 
+		padding:0px; 
+		margin:0px
+	}
+}
 .hours_list {
 	li {
 		display: inline;
