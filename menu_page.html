@@ -82,7 +82,7 @@
         </ul>
     <hr>
     </center>
-    <table style="margin-left:25%; width:75%" class="button_hover">
+    <table style="margin-left:25%; width:75%;" class="button_hover">
         <tr>
             <td style="width:5%;"><button type="button" onclick="switchToDrinks()" style="font-family: 'BaronNeue'">Drinks</button></td>
             <td style="width:5%;"><button type="button" onclick="switchToFood()" style="font-family: 'BaronNeue'">Food</button></td>
@@ -90,7 +90,7 @@
     </table>
     <br><br>
     <div id="drink_items_div" class="hidden_elements">
-        <div id="drink_buttons_div" class="button_hover">
+        <div id="drink_buttons_div" class="button_hover" style="position:sticky; top:0; overflow:hidden; background-color: #FFFDF9;">
         <center>
         <table style="width: 80%;"> 
             <td>
@@ -255,9 +255,9 @@
         </div>
     </div>
     <div id="food_items_div" class="food_items">
-        <div id="food_buttons_div" class="button_hover">
+        <div id="food_buttons_div" class="button_hover" style="position:sticky; top:0; overflow:hidden; background-color: #FFFDF9;">
         <center>
-        <table style="width: 100%;">
+        <table>
             <tr style="height: 5vw;">
                 <td>
                     <button id="Appetizers_button" type="button" class="selected_button" style="color: #F7941D" onclick="switchTo(event.target.innerText)">Appetizers</button>
@@ -282,9 +282,9 @@
                 <td>
                     <button id="Katsu Cutlets_button" type="button" onclick="switchTo(event.target.innerText)">Katsu Cutlets</button>
                 </td>
-        </div>
             </tr>
         </table>
+        </div>
         <script>            
             buttons_array.push(document.getElementById("Appetizers_button"));
             buttons_array.push(document.getElementById("BBQ Meats_button"));
