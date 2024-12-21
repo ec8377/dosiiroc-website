@@ -7,14 +7,45 @@
 <link rel="stylesheet" href="resources/stylesheet.css">
 <body style="background-color: #FFFDF9; margin:0px; padding:0px">
     <script async src="https://www.instagram.com/embed.js"></script>
+    <script>
+        /* When the user clicks on the button,
+        toggle between hiding and showing the dropdown content */
+        function dropdown_func() {
+            document.getElementById("myDropdown").classList.toggle("show");
+        }
+        
+        // Close the dropdown menu if the user clicks outside of it
+        window.onclick = function(event) {
+            if (!event.target.matches('.dropbtn')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                var i;
+                for (i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        } 
+    </script>
     <center>
-    <ul border="0">
-        <li style="width:25vw; padding-left:5%; padding-right:10%"><a href="index.html"><img src="resources/images/logo FINAL-colored.png" style="width:calc(50px + 100%);"></a></li>
-        <li style="width:25%; padding-top:5%" align="center"><a href="menu_page.html"><h2 style="font-size:calc(6px + 3vw)">Menu</a></h2></li>
-        <li style="width:25%; padding-top:5%" align="center"><a href="https://maps.app.goo.gl/CjyDhjXLf2g43XrD7"><h2 style="font-size:calc(6px + 3vw)">Review us!</a></h2></li>
-    </ul>
+    <table style="width: 100%;">
+        <tr>
+            <td style="width:50%; padding-left:5%; padding-right:10%"><a href="index.html"><img src="resources/images/logo FINAL-colored.png" style="width:calc(50px + 100%);"></a></td>
+            <td align="right" style="width:50%; padding-right:10%">
+                <div class="dropdown">
+                    <button onclick="dropdown_func()" class="dropbtn">=</button>
+                    <div id="myDropdown" class="dropdown-content">
+                    <a href="menu_page.html">Our Menu</a>
+                    <a href="about_page.html">About Us</a>
+                    <a href="https://maps.app.goo.gl/CjyDhjXLf2g43XrD7">Review Us!</a>
+                    </div>
+                </div> 
+            </td>   
+        </tr> 
+    </table>
     <hr>
-    <table>
+    <table style="position: relative; z-index:-9;">
         <tr>
             <td><h2 style="font-size:3.5vw" align="center">🎄Happy Holidays from the family!🎄</h2></td>
         </tr>
@@ -31,7 +62,7 @@
         <ul>
             <div class="about_button">
                 <li align="center">
-                    <a href="about_page.html"><h2 style="font-size:calc(6px + 3vw)">About us</a></h2>
+                    <h2 style="font-size:calc(6px + 3vw)">Socials</h2>
                     <img src="resources/images/dosiiroc_insta.png" style="width:10vw;">
                 </li>
             </div>
