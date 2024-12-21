@@ -187,6 +187,7 @@ ul {
 	}
 	li {
 		float:none;
+		padding: 0;
 	}
 	li h3 {
 		color: black;
