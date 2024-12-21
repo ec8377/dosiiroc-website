@@ -48,17 +48,13 @@ p {
 	font-family: "Kollektif";
 }
 a:link {
-	color:#F7941D;
 	text-decoration: none;
-}
-a:hover {
-	color:#F7941D;
 }
 a:visited {
 	color:#F7941D;
 }
-a:active {
-	color: #F7941D;
+a:hover {
+	color:black;
 }
 body {
 	background-color: white
@@ -294,4 +290,11 @@ ul {
 	button:hover {
 		color: #F7941D !important;
 	}
+}
+
+.about_button {
+	a:hover {
+		color: black;
+	}
+	
 }

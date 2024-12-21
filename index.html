@@ -16,7 +16,7 @@
     <hr>
     <table>
         <tr>
-            <td><h2 style="font-size:3.5vw" align="center">🎄Happy Holidays!🎄</h2></td>
+            <td><h2 style="font-size:3.5vw" align="center">🎄Happy Holidays from the family!🎄</h2></td>
         </tr>
         <tr>
             <div class="main_insta">
@@ -30,7 +30,9 @@
     
     <div class="bottom_nav_bar">
         <ul>
-            <li align="center"><a href="about_page.html"><h2 style="font-size:calc(6px + 3vw)">About us</a></h2></li>
+            <div class="about_button">
+                <li align="center"><a href="about_page.html"><h2 style="font-size:calc(6px + 3vw)">About us</a></h2></li>
+            </div>
             <li align="left">
                 <h2 style="font-size:calc(6px + 3vw)">Hours</h2>
                 <p id="open_sign"></p>
@@ -69,7 +71,7 @@
             document.getElementById("open_sign").textContent = "We're closed for lunch, come at 4 pm!"
         }
         else if (isClosed) {
-            document.getElementById("open_sign").textContent = "Sorry, we're closed"
+            document.getElementById("open_sign").textContent = "Sorry, we're currently closed"
         }
         else {
             document.getElementById("open_sign").textContent = "We're open!"
