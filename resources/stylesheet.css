@@ -47,14 +47,15 @@ p {
 	font-size: 2.5vw;
 	font-family: "Kollektif";
 }
+a:hover {
+	color:black !important;
+}
 a:link {
+	color:#F7941D;
 	text-decoration: none;
 }
 a:visited {
 	color:#F7941D;
-}
-a:hover {
-	color:black;
 }
 body {
 	background-color: white
