@@ -81,7 +81,11 @@ ul {
 	ul {
 		background-color:#844f07; 
 		margin:0px; 
+		margin-top: 15%;
 		padding:0px;
+		position:sticky;
+		bottom:0;
+		overflow:hidden;
 	}
 	li {
 		width:33%; 
