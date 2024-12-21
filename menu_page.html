@@ -557,31 +557,38 @@
             </li>
         </ul>
     </div>
-        <script>
-            var date = new Date();
-            var isClosed = true;
-            var isLunchtime = false;
-            if (date.getDay() == 0) {
-                isClosed = true;
-            }
-            else if (date.getDay() == 1 && (date.getHours >= 16 && date.getHours < 20)) {
-                isClosed = false;
-            }
-            else if ((date.getHours() >= 11 && date.getHours() < 14) || (date.getHours() >= 16 && date.getHours() < 20)) {
-                isClosed = false;
-            }
-            else if(date.getHours() >= 14 && date.getHours() < 16) {
-                isLunchtime = true;
-            }
-    
-            if (isClosed && isLunchtime) {
-                document.getElementById("open_sign").textContent = "We're closed for lunch, come at 4 pm!"
-            }
-            else if (isClosed) {
-                document.getElementById("open_sign").textContent = "Sorry, we're currently closed"
-            }
-            else {
-                document.getElementById("open_sign").textContent = "We're open!"
-            }
-        </script>
+    <script>
+        var date = new Date();
+        var isClosed = true;
+        var isLunchtime = false;
+        if (date.getDay() == 0) {
+            isClosed = true;
+        }
+        else if (date.getDay() == 1 && (date.getHours >= 16 && date.getHours < 20)) {
+            isClosed = false;
+        }
+        else if ((date.getHours() >= 11 && date.getHours() < 14) || (date.getHours() >= 16 && date.getHours() < 20)) {
+            isClosed = false;
+        }
+        else if(date.getHours() >= 14 && date.getHours() < 16) {
+            isLunchtime = true;
+        }
+
+
+        if (isClosed && isLunchtime) {
+            document.getElementById("open_sign").textContent = "We're closed for lunch, come at 4 pm!"
+        }
+        else if (isClosed && date.getHours() > 0 && date.getHours() < 10) {
+            document.getElementById("open_sign").textContent = "We'll be open in " + (11 - date.getHours()-1) + " hour(s) and " + (60 - date.getMinutes()) + " minutes."
+        }
+        else if (isClosed && date.getHours() > 0 && date.getHours() == 10) {
+            document.getElementById("open_sign").textContent = "We'll be open in " + (60 - date.getMinutes()) + " minutes."
+        }
+        else if (isClosed) {
+            document.getElementById("open_sign").textContent = "Sorry, we're currently closed";
+        }
+        else {
+            document.getElementById("open_sign").textContent = "We're open!"
+        }
+    </script>
 </body>

@@ -25,7 +25,7 @@
             <div class="about_button">
                 <li align="center"><a href="about_page.html"><h2 style="font-size:calc(6px + 3vw)">About us</a></h2></li>
             </div>
-            <li align="left">
+            <li align="left" style="padding-right: 1%;">
                 <h2 style="font-size:calc(6px + 3vw)">Hours</h2>
                 <p id="open_sign"></p>
                 <p>Sunday: Closed</p>
@@ -59,11 +59,18 @@
             isLunchtime = true;
         }
 
+
         if (isClosed && isLunchtime) {
             document.getElementById("open_sign").textContent = "We're closed for lunch, come at 4 pm!"
         }
+        else if (isClosed && date.getHours() > 0 && date.getHours() < 10) {
+            document.getElementById("open_sign").textContent = "We'll be open in " + (11 - date.getHours()-1) + " hour(s) and " + (60 - date.getMinutes()) + " minutes."
+        }
+        else if (isClosed && date.getHours() > 0 && date.getHours() == 10) {
+            document.getElementById("open_sign").textContent = "We'll be open in " + (60 - date.getMinutes()) + " minutes."
+        }
         else if (isClosed) {
-            document.getElementById("open_sign").textContent = "Sorry, we're currently closed"
+            document.getElementById("open_sign").textContent = "Sorry, we're currently closed";
         }
         else {
             document.getElementById("open_sign").textContent = "We're open!"
