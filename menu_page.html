@@ -75,10 +75,10 @@
                 newMenu.style.display = "inline";
                 newMenu.style.opacity = ".1";
                 document.getElementById(text + "_button").style.color = "#F7941D";
-                while (window.getComputedStyle(newMenu).getPropertyValue("opacity") < .9) {
-                    newMenu.style.opacity = String(window.getComputedStyle(newMenu).getPropertyValue("opacity")*1.1);
-                    await sleep(10);
-                }
+                //while (window.getComputedStyle(newMenu).getPropertyValue("opacity") < .9) {
+                //    newMenu.style.opacity = String(window.getComputedStyle(newMenu).getPropertyValue("opacity")*1.1);
+                //    await sleep(10);
+                //}
                 newMenu.style.opacity = "1";  
             }
         }
