@@ -19,7 +19,6 @@
                 var drink_button  = document.getElementById("drink_button");
                 food_button.style.color = "black";
                 drink_button.style.color = "#F7941D";
-                switchTo("Coffee");
                 while (window.getComputedStyle(food_div).getPropertyValue("opacity") > .1) {
                     food_div.style.opacity = String(window.getComputedStyle(food_div).getPropertyValue("opacity")/1.1);
                     await sleep(10);
@@ -29,6 +28,7 @@
                 drinks_div.className = "drink_items";
                 drinks_div.style.opacity = "1";
                 isFood = false;
+                switchTo("Coffee");
             }
             if (!isFood) {
                 switchTo("Coffee");
@@ -42,7 +42,6 @@
                 var drink_button  = document.getElementById("drink_button");
                 food_button.style.color = "#F7941D";
                 drink_button.style.color = "black";
-                switchTo("Appetizers");
                 while (window.getComputedStyle(drinks_div).getPropertyValue("opacity") > .1) {
                     drinks_div.style.opacity = String(window.getComputedStyle(drinks_div).getPropertyValue("opacity")/1.1);
                     await sleep(10);
@@ -52,6 +51,7 @@
                 drinks_div.className = "hidden_elements";
                 drinks_div.style.opacity = "0.1";
                 isFood = true;
+                switchTo("Appetizers");
             }
             if (isFood) {
                 switchTo("Appetizers");
@@ -61,26 +61,26 @@
             window.scrollTo(0, 0);
             var oldMenu = document.getElementsByClassName("current_menu");
             var newMenu = document.getElementById(text);
-            //if (oldMenu[0] != newMenu && window.getComputedStyle(oldMenu[0]).getPropertyValue("opacity") == 1) {
-                //for(let i = 0; i < oldMenu.length; i++) {
+            if (oldMenu[0] != newMenu && window.getComputedStyle(oldMenu[0]).getPropertyValue("opacity") == 1) {
+                for(let i = 0; i < oldMenu.length; i++) {
                     while (window.getComputedStyle(oldMenu[0]).getPropertyValue("opacity") > .1) {
                         oldMenu[0].style.opacity = String(window.getComputedStyle(oldMenu[0]).getPropertyValue("opacity")/1.1);
                         await sleep(10);
                     }
                     oldMenu[0].style.display = "none";
                     oldMenu[0].className = "hidden_elements";
-                //}
+                }
                 buttons_array.forEach((element) => element.style.color = "black");
                 newMenu.className = "current_menu";
                 newMenu.style.display = "inline";
                 newMenu.style.opacity = ".1";
                 document.getElementById(text + "_button").style.color = "#F7941D";
-                //while (window.getComputedStyle(newMenu).getPropertyValue("opacity") < .9) {
-                //    newMenu.style.opacity = String(window.getComputedStyle(newMenu).getPropertyValue("opacity")*1.1);
-                //    await sleep(10);
-                //}
+                while (window.getComputedStyle(newMenu).getPropertyValue("opacity") < .9) {
+                    newMenu.style.opacity = String(window.getComputedStyle(newMenu).getPropertyValue("opacity")*1.1);
+                    await sleep(10);
+                }
                 newMenu.style.opacity = "1";  
-            //}
+            }
         }
     </script>
     <script>
