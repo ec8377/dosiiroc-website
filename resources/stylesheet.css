@@ -77,6 +77,16 @@ ul {
 	padding: 0;
 	overflow: hidden;
 }
+.black_button {
+	button {
+		color: black;
+	}
+}
+.orange_button {
+	button {
+		color:#F7941D;
+	}
+}
 .bottom_nav_bar {
 	ul {
 		background-color:#844f07; 

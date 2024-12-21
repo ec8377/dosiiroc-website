@@ -15,6 +15,10 @@
             if (isFood) {
                 var drinks_div = document.getElementById("drink_items_div");
                 var food_div = document.getElementById("food_items_div");
+                var food_button  = document.getElementById("food_button");
+                var drink_button  = document.getElementById("drink_button");
+                food_button.style.color = "black";
+                drink_button.style.color = "#F7941D";
                 switchTo("Coffee");
                 while (window.getComputedStyle(food_div).getPropertyValue("opacity") > .1) {
                     food_div.style.opacity = String(window.getComputedStyle(food_div).getPropertyValue("opacity")/1.1);
@@ -34,6 +38,10 @@
             if (!isFood) {
                 var drinks_div = document.getElementById("drink_items_div");
                 var food_div = document.getElementById("food_items_div");
+                var food_button  = document.getElementById("food_button");
+                var drink_button  = document.getElementById("drink_button");
+                food_button.style.color = "#F7941D";
+                drink_button.style.color = "black";
                 switchTo("Appetizers");
                 while (window.getComputedStyle(drinks_div).getPropertyValue("opacity") > .1) {
                     drinks_div.style.opacity = String(window.getComputedStyle(drinks_div).getPropertyValue("opacity")/1.1);
@@ -85,8 +93,8 @@
     </center>
     <table style="margin-left:25%; width:75%;" class="button_hover">
         <tr>
-            <td style="width:5%;"><button type="button" onclick="switchToDrinks()" style="font-family: 'BaronNeue'">Drinks</button></td>
-            <td style="width:5%;"><button type="button" onclick="switchToFood()" style="font-family: 'BaronNeue'">Food</button></td>
+            <td style="width:5%;"><button type="button" id="drink_button" onclick="switchToDrinks()" style="font-family: 'BaronNeue'">Drinks</button></td>
+            <td style="width:5%;"><button type="button" id="food_button" onclick="switchToFood()" style="font-family: 'BaronNeue'; color:#F7941D;">Food</button></td>
         </tr>
     </table>
     <br><br>
@@ -542,9 +550,11 @@
             <li align="left">
                 <h2 style="font-size:calc(6px + 3vw)">Location</h2>
                 <p>1225 Jefferson Road Suite A11, Rochester, New York 14623</p>
+                <h2>Contact Info</h2>
+                <p>(585) 319-4635</p>
             </li>
         </ul>
-        </div>
+    </div>
         <script>
             var date = new Date();
             var isClosed = true;
