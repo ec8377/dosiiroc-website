@@ -62,14 +62,14 @@
             var oldMenu = document.getElementsByClassName("current_menu");
             var newMenu = document.getElementById(text);
             if (oldMenu[0] != newMenu && window.getComputedStyle(oldMenu[0]).getPropertyValue("opacity") == 1) {
-                for(let i = 0; i < oldMenu.length; i++) {
-                    while (window.getComputedStyle(oldMenu[i]).getPropertyValue("opacity") > .1) {
-                        oldMenu[i].style.opacity = String(window.getComputedStyle(oldMenu[i]).getPropertyValue("opacity")/1.1);
+                //for(let i = 0; i < oldMenu.length; i++) {
+                    while (window.getComputedStyle(oldMenu[0]).getPropertyValue("opacity") > .1) {
+                        oldMenu[0].style.opacity = String(window.getComputedStyle(oldMenu[0]).getPropertyValue("opacity")/1.1);
                         await sleep(10);
                     }
-                    oldMenu[i].style.display = "none";
-                    oldMenu[i].className = "hidden_elements";
-                }
+                    oldMenu[0].style.display = "none";
+                    oldMenu[0].className = "hidden_elements";
+                //}
                 buttons_array.forEach((element) => element.style.color = "black");
                 newMenu.className = "current_menu";
                 newMenu.style.display = "inline";
