@@ -83,14 +83,17 @@ ul {
 		margin:0px; 
 		margin-top: 15%;
 		padding:0px;
-		position:sticky;
-		bottom:0;
-		overflow:hidden;
 	}
 	li {
 		width:33%; 
 		padding:0px; 
 		margin:0px
+	}
+	li p {
+		font-size: 2vw;
+	}
+	li h2 {
+		font-size: 4vw;
 	}
 }
 .hours_list {
