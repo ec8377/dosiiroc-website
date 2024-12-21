@@ -50,7 +50,7 @@
                 food_div.className = "food_items";
                 food_div.style.opacity = "1";
                 drinks_div.className = "hidden_elements";
-                drinks_div.style.opacity = "0.1"
+                drinks_div.style.opacity = "0.1";
                 isFood = true;
             }
             if (isFood) {
@@ -62,7 +62,6 @@
             var oldMenu = document.getElementsByClassName("current_menu");
             var newMenu = document.getElementById(text);
             if (oldMenu[0] != newMenu && window.getComputedStyle(oldMenu[0]).getPropertyValue("opacity") == 1) {
-                buttons_array.forEach((element) => element.style.color = "black")   
                 for(let i = 0; i < oldMenu.length; i++) {
                     while (window.getComputedStyle(oldMenu[i]).getPropertyValue("opacity") > .1) {
                         oldMenu[i].style.opacity = String(window.getComputedStyle(oldMenu[i]).getPropertyValue("opacity")/1.1);
@@ -71,6 +70,7 @@
                     oldMenu[i].style.display = "none";
                     oldMenu[i].className = "hidden_elements";
                 }
+                buttons_array.forEach((element) => element.style.color = "black");
                 newMenu.className = "current_menu";
                 newMenu.style.display = "inline";
                 newMenu.style.opacity = ".1";
