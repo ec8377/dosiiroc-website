@@ -50,6 +50,7 @@
             }
         }
         async function switchTo(text) {
+            window.scrollTo(0, 0);
             var oldMenu = document.getElementsByClassName("current_menu");
             var newMenu = document.getElementById(text);
             if (oldMenu[0] != newMenu && window.getComputedStyle(oldMenu[0]).getPropertyValue("opacity") == 1) {
@@ -90,7 +91,7 @@
     </table>
     <br><br>
     <div id="drink_items_div" class="hidden_elements">
-        <div id="drink_buttons_div" class="button_hover" style="position:sticky; top:0; overflow:hidden; background-color: #FFFDF9;">
+        <div id="drink_buttons_div" class="button_hover" style="position:sticky; top:0; overflow:hidden; background-color: #FFFDF9; border-bottom: 1px solid black; padding-top:1%">
         <center>
         <table style="width: 80%;"> 
             <td>
@@ -115,7 +116,6 @@
             buttons_array.push(document.getElementById("Soft Drinks_button"));
         </script>
         </center>   
-        <hr>
         <div id="Coffee" class="hidden_elements">
             <center>
                 <ul style="text-align: center; display:inline-block">
