@@ -55,8 +55,9 @@
         <ul>
             <div class="about_button">
                 <li align="center">
-                    <h2 style="font-size:calc(6px + 3vw)">Socials</h2>
-                    <img src="resources/images/dosiiroc_insta.png" style="width:10vw;">
+                    <h2 style="font-size:calc(6px + 3vw)">Links</h2>
+                    <a href=https://www.instagram.com/dosiiroccafe/?utm_source=ig_embed&ig_rid=676fea6d-ba69-4fad-ab10-ae74d11c5842"><img src="resources/images/dosiiroc_insta.png" style="width:5vw;"></a>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfr4gpbMgaLDBHJM5OTaYs5i7J9dlGKjitaEpNJX3mmCRty1A/viewform"><p>Job Application</p></a>
                 </li>
             </div>
             <li align="left">
@@ -76,7 +77,6 @@
             </li>
         </ul>
     </div>
-    </center>
     <script>
         var date = new Date();
         var isClosed = true;
@@ -106,6 +106,9 @@
         }
         else if (isClosed) {
             document.getElementById("open_sign").textContent = "Sorry, we're currently closed";
+        }
+        else if (!isClosed && date.getHours() == 19 && date.getMinutes() > 30) {
+            document.getElementById("open_sign").textContent = "The kitchen is closing soon!";
         }
         else {
             document.getElementById("open_sign").textContent = "We're open!"
