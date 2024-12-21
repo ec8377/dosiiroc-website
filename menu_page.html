@@ -93,7 +93,7 @@
     <div id="drink_items_div" class="hidden_elements">
         <div id="drink_buttons_div" class="button_hover" style="position:sticky; top:0; overflow:hidden; background-color: #FFFDF9; border-bottom: 1px solid black; padding-top:1%">
         <center>
-        <table style="width: 80%;"> 
+        <table style="width: 90%;"> 
             <td>
                 <button id="Coffee_button" type="button" onclick="switchTo(event.target.innerText)">Coffee</button>
             </td>
@@ -106,6 +106,9 @@
             <td>
                 <button id="Soft Drinks_button" type="button" onclick="switchTo(event.target.innerText)">Soft Drinks</button>
             </td>
+            <td>
+                <button id="Korean Ade_button" type="button" onclick="switchTo(event.target.innerText)">Korean Ade</button>
+            </td>
         </table>
         </div> 
         <script>
@@ -114,6 +117,7 @@
             buttons_array.push(document.getElementById("Tea_button"));
             buttons_array.push(document.getElementById("Specialties_button"));
             buttons_array.push(document.getElementById("Soft Drinks_button"));
+            buttons_array.push(document.getElementById("Korean Ade_button"));
         </script>
         </center>   
         <div id="Coffee" class="hidden_elements">
@@ -221,6 +225,21 @@
                         <h3>Korean caned drinks</h3>
                         <p>$2.50</p>
                         <p>Includes Milkis, Watermelon soda, Calamansi soda, 2%, Yogurt jelly, Sikhye sweet rice punch, Hallabong soda.</p>
+                    </li>
+                </ul>
+            </center>
+        </div>
+        <div id="Korean Ade" class="hidden_elements">
+            <center>
+                <ul style="text-align: center; display:inline-block">
+                    <li>
+                        <h3>Korean Ade</h3>
+                        <p>$5.50</p>
+                        <p>Homemade fruit cheong (korean style fruit preserves) with sparkling water. The flavor(s) rotates regularly.</p>
+                    </li>
+                    <li>
+                        <h3>CURRENT FLAVOR(S)</h3>
+                        <p>Cranberry lime</p>
                     </li>
                 </ul>
             </center>
