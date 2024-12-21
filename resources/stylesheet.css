@@ -139,6 +139,8 @@ ul {
 		font-size: 15;
 		font-size: 3.5vw;
 		font-family: "Kollektif";
+		padding-left: 5%;
+		padding-right: 5%;
 	}
 	td {
 		min-width: 11vw;
@@ -190,6 +192,8 @@ ul {
 		font-size: 15;
 		font-size: 3.5vw;
 		font-family: "Kollektif";
+		padding-left: 5%;
+		padding-right: 5%;
 	}
 	td {
 		min-width: 11vw;
@@ -258,6 +262,7 @@ ul {
 		background-color: white;
 		border: 0;
 		transition-duration: .4s;
+		padding-left: 5%;
 	}
 	button:hover {
 		color: #F7941D !important;
