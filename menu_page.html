@@ -61,7 +61,7 @@
             window.scrollTo(0, 0);
             var oldMenu = document.getElementsByClassName("current_menu");
             var newMenu = document.getElementById(text);
-            if (oldMenu[0] != newMenu && window.getComputedStyle(oldMenu[0]).getPropertyValue("opacity") == 1) {
+            //if (oldMenu[0] != newMenu && window.getComputedStyle(oldMenu[0]).getPropertyValue("opacity") == 1) {
                 //for(let i = 0; i < oldMenu.length; i++) {
                     while (window.getComputedStyle(oldMenu[0]).getPropertyValue("opacity") > .1) {
                         oldMenu[0].style.opacity = String(window.getComputedStyle(oldMenu[0]).getPropertyValue("opacity")/1.1);
@@ -80,7 +80,7 @@
                 //    await sleep(10);
                 //}
                 newMenu.style.opacity = "1";  
-            }
+            //}
         }
     </script>
     <script>
