@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-<title>Dosiiroc Cafe</title>
+<title>Page Not Found</title>
 <link rel="stylesheet" href="resources/stylesheet.css">
 <body style="background-color: #FFFDF9; margin:0px; padding:0px">
     <script async src="https://www.instagram.com/embed.js"></script>
@@ -12,7 +12,7 @@
     <div class="top_bar" style="text-align: center;">
         <table>
             <tr>
-                <td style="padding-left:5%"><a href="index"><img style="max-width: 330px; width:33vw;"src="resources/images/logo FINAL-colored.png"></a></td>
+                <td style="padding-left:5%"><a href="https://dosiiroccafe.com"><img style="max-width: 330px; width:33vw;"src="resources/images/logo FINAL-colored.png"></a></td>
             </tr> 
         </table>
     </div>
@@ -24,7 +24,7 @@
             <h2 align="center">🚧 This site is currently under construction 🚧</h2>
         </li>
         <li align="center" style="text-align:center; float:none">
-            <p align="center" style="font-size:min(30px, 2.75vw)">The full site will be available soon!</p>
+            <p align="center" style="font-size:min(30px, 2.75vw)">404 Error, that page doesn't exist!</p>
         </li>
     </ul>
     <div class="bottom_nav_bar">

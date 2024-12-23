@@ -33,7 +33,7 @@
         <div class="top_bar">
             <table>
                 <tr>
-                    <td style="padding-left:5%"><a href="index"><img style="max-width: 330px; width:33vw;"src="resources/images/logo FINAL-colored.png"></a></td>
+                    <td style="padding-left:5%"><a href="https://dosiiroccafe.com"><img style="max-width: 330px; width:33vw;"src="resources/images/logo FINAL-colored.png"></a></td>
                     <td align="right" style="max-width:90px;">
                         <div class="dropdown">
                             <button onclick="dropdown_func()" class="dropbtn" style="font-size:200%">=</button>
