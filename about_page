@@ -47,13 +47,16 @@
                 </tr> 
             </table>
         </div>
+    </center>
     <hr>
+    <center>
     <div class="hours_list">
         <ul style="text-align:center; display:inline-block">
             <li><h3>Our story...</h3></li>
             <li><p>Hello!</p></li>
         </ul>
     </div>
+    </center>
     <div class="bottom_nav_bar">
         <ul>
             <div class="about_button">
