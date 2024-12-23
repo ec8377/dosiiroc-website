@@ -38,7 +38,7 @@
                         <div class="dropdown">
                             <button onclick="dropdown_func()" class="dropbtn" style="font-size:200%;">=</button>
                             <div id="myDropdown" class="dropdown-content">
-                            <a href="menu_page.html">Our Menu</a>
+                            <a href="menu_page">Our Menu</a>
                             <a href="about_page.html">About Us</a>
                             <a href="https://maps.app.goo.gl/CjyDhjXLf2g43XrD7">Review Us!</a>
                             </div>
