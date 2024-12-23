@@ -89,7 +89,7 @@ ul {
 	li {
 		width:33%; 
 		padding:0px; 
-		margin:0px
+		margin:0px;
 	}
 	li p {
 		font-size: min(25px, 2.25vw);
