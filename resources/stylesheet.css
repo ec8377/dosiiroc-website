@@ -209,6 +209,9 @@ ul {
 		/* display: none; */
 		width: 11vw;
 	}
+	button {
+		font-size: min(38px, 2.75vw);
+	}
 }
 .current_menu {
 	div {
@@ -261,7 +264,7 @@ ul {
 		width: 11vw;
 	}
 	button {
-		font-size: 5px;
+		font-size: min(38px, 2.75vw);
 	}
 }
 .main_insta {
@@ -316,10 +319,9 @@ ul {
 	padding: 16px;
 	font-size: 16px;
 	min-width: 90px;
-	width: 10vw;
+	width: 5vw;
 	max-width: 90px;
-	height: 10vw;
-	max-height: 90px;
+	height: 5vh;
 	min-height: 90px;
 	border: none;
 	cursor: pointer;
@@ -338,10 +340,13 @@ ul {
   
   /* Dropdown Content (Hidden by Default) */
   .dropdown-content {
+	float:left;
 	display: none;
 	position: absolute;
 	background-color: #f1f1f1;
-	min-width: calc(160px + 5vw);
+	width: 13vw;
+	min-width: 180px;
+	max-width: 230px;
 	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 	right: 0;
 	z-index: 99;
@@ -350,7 +355,9 @@ ul {
   /* Links inside the dropdown */
   .dropdown-content a {
 	float:left;
+	text-align: center;
 	font-family: Kollektif; 
+	font-size: max(20px, 1.5vw);
 	color: black;
 	padding: 12px 16px;
 	text-decoration: none;
@@ -362,3 +369,17 @@ ul {
   
   /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
   .show {display:block;} 
+
+  .top_bar {
+	img {
+		max-width:350px; 
+		width: 33vw;
+	}
+	td {
+		width:50%; 
+		padding-right:10%;
+	}
+	table {
+		width: 100%;
+	}
+  }
