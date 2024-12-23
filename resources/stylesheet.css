@@ -27,8 +27,7 @@ h1 {
 }
 h2{
 	color: #F7941D;
-	font-size: 65;
-	font-size: 2vw;
+	font-size: min(40px, 5vw);
 	font-family: "BaronNeue";
 	font-weight: normal	;
 	font-style: normal;
@@ -93,10 +92,10 @@ ul {
 		margin:0px
 	}
 	li p {
-		font-size: 2vw;
+		font-size: min(25px, 2.25vw);
 	}
 	li h2 {
-		font-size: 4vw;
+		font-size: min(43px, 4vw);
 	}
 }
 .hours_list {
@@ -106,7 +105,6 @@ ul {
 		float: none;
 	}
 }
-
 .food_items {
 	div {
 		opacity: 1;
@@ -119,14 +117,12 @@ ul {
 	}
 	h1 {
 		color: black;
-		font-size: 45;
-		font-size: 3vw;
+		font-size: min(40px, 3vw);
 		font-family: "BaronNeue";
 	}
 	h3 {
 		color: black;
-		font-size: 45;
-		font-size: 3vw;
+		font-size: min(40px, 3vw);
 		font-family: "Kollektif";
 		margin-bottom: 0%;
 	}
@@ -136,15 +132,14 @@ ul {
 	}
 	li h3 {
 		color: black;
-		font-size: 45;
-		font-size: 5vw;
+		font-size: min(45px,5vw);
 		font-family: "Kollektif";
 		margin-bottom: 0%;
 	}
 	li p {
 		color:grey;
 		font-size: 15;
-		font-size: 3.5vw;
+		font-size: min(30px,3.5vw);
 		font-family: "Kollektif";
 		padding-left: 5%;
 		padding-right: 5%;
@@ -160,6 +155,9 @@ ul {
 		/* display: none; */
 		width: 11vw;
 	}
+	button {
+		font-size: min(38px, 2.75vw);
+	}
 }
 .drink_items {
 	div {
@@ -173,14 +171,12 @@ ul {
 	}
 	h1 {
 		color: black;
-		font-size: 45;
-		font-size: 3vw;
+		font-size: min(40px, 3vw);
 		font-family: "BaronNeue";
 	}
 	h3 {
 		color: black;
-		font-size: 45;
-		font-size: 3vw;
+		font-size: min(40px, 3vw);
 		font-family: "Kollektif";
 		margin-bottom: 0%;
 	}
@@ -190,15 +186,14 @@ ul {
 	}
 	li h3 {
 		color: black;
-		font-size: 45;
-		font-size: 5vw;
+		font-size: min(45px,5vw);
 		font-family: "Kollektif";
 		margin-bottom: 0%;
 	}
 	li p {
 		color:grey;
 		font-size: 15;
-		font-size: 3.5vw;
+		font-size: min(30px,3.5vw);
 		font-family: "Kollektif";
 		padding-left: 5%;
 		padding-right: 5%;
@@ -227,25 +222,46 @@ ul {
 	}
 	h1 {
 		color: black;
-		font-size: 45;
-		font-size: 3vw;
+		font-size: min(40px, 3vw);
 		font-family: "BaronNeue";
 	}
 	h3 {
 		color: black;
-		font-size: 45;
-		font-size: 3vw;
+		font-size: min(40px, 3vw);
 		font-family: "Kollektif";
 		margin-bottom: 0%;
+	}
+	li {
+		float:none;
+		padding: 0;
+	}
+	li h3 {
+		color: black;
+		font-size: min(45px,5vw);
+		font-family: "Kollektif";
+		margin-bottom: 0%;
+	}
+	li p {
+		color:grey;
+		font-size: 15;
+		font-size: min(30px,3.5vw);
+		font-family: "Kollektif";
+		padding-left: 5%;
+		padding-right: 5%;
 	}
 	td {
 		min-width: 11vw;
 		max-width: 25vw;
 		height: fit-content;
 		max-height: fit-content;
+		text-align: center;
 	}
 	img {
+		/* display: none; */
 		width: 11vw;
+	}
+	button {
+		font-size: 5px;
 	}
 }
 .main_insta {
@@ -264,8 +280,6 @@ ul {
 .button_hover {
 	button {
 		color: black;
-		font-size: 65;
-		font-size: 3vw;
 		font-family: "BaronNeue";
 		background-color: white;
 		border: 0;
@@ -280,8 +294,6 @@ ul {
 .selected_button {
 	button {
 		color: #F7941D !important;
-		font-size: 65;
-		font-size: 4vw;
 		background-color: white;
 		border: 0;
 		transition-duration: .4s;
@@ -303,10 +315,12 @@ ul {
 	color: white;
 	padding: 16px;
 	font-size: 16px;
+	min-width: 90px;
 	width: 10vw;
 	max-width: 90px;
 	height: 10vw;
 	max-height: 90px;
+	min-height: 90px;
 	border: none;
 	cursor: pointer;
   }
