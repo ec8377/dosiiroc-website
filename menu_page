@@ -248,6 +248,11 @@
                         <p>Espresso + milk + sweet and rich condensed milk (iced).</p>
                     </li>
                     <li>
+                        <h3>White choco latte</h3>
+                        <p>$5.25</p>
+                        <p>Ghirardelli white chocolate powder + espresso + milk (hot/iced)</p>
+                    </li>
+                    <li>
                         <h3>Chestnut latte</h3>
                         <p>$5.25</p>
                         <p>Espresso + milk + sweet korean chestnuts (hot).</p>
@@ -428,12 +433,12 @@
                 <ul style="text-align: center; display:inline-block">
                     <li>
                         <h3>Yachae Jeon</h3>
-                        <p>$11.95</p>
+                        <p>$12.95</p>
                         <p>Pan fried savory korean pancake with a variety of vegetables.</p>
                     </li>
                     <li>
                         <h3>Kimchi Jeon &#127798</h3>
-                        <p>$12.95</p>
+                        <p>$13.95</p>
                         <p>Pan fried pancake with house made kimchi.</p>
                     </li>
                     <li>
