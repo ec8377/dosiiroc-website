@@ -321,12 +321,12 @@ ul {
 	/* color: #f7941d; */
 	padding: 16px;
 	font-size: 16px;
-	min-width: 110px;
-	max-width: 110px;
+	min-width: 95px;
+	max-width: 95px;
 	width: 9vw;
 	height: 5vh;
-	min-height: 80px;
-	max-height: 80px;
+	min-height: 68px;
+	max-height: 68px;
 	border: none;
 	cursor: pointer;
 	background-size: 100% 100%;
@@ -339,10 +339,10 @@ ul {
 
   .rice_bowl {
 	font-size: 16px;
-	min-width: 110px;
-	max-width: 110px;
-	min-height: 85px;
-	max-height: 85px;
+	min-width: 95px;
+	max-width: 95px;
+	min-height: 77px;
+	max-height: 77px;
 	width: 9.5vw;
 	margin-top: 35%;
 	border: none;
