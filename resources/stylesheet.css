@@ -317,22 +317,47 @@ ul {
 
  /* Dropdown Button */
  .dropbtn {
-	background-color: #F7941D;
-	color: white;
+	/* background-color: #f7941d; */
+	/* color: #f7941d; */
 	padding: 16px;
 	font-size: 16px;
-	min-width: 90px;
-	width: 5vw;
-	max-width: 90px;
+	min-width: 110px;
+	max-width: 110px;
+	width: 9vw;
 	height: 5vh;
-	min-height: 90px;
+	min-height: 80px;
+	max-height: 80px;
 	border: none;
 	cursor: pointer;
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	background-color: transparent;
+	transform: rotate(-25deg);
+	transition-duration: 300ms;
+	margin-bottom: 25px;
+  }
+
+  .rice_bowl {
+	font-size: 16px;
+	min-width: 110px;
+	max-width: 110px;
+	min-height: 85px;
+	max-height: 85px;
+	width: 9.5vw;
+	margin-top: 35%;
+	border: none;
+	cursor: pointer;
+	background-size: 100% 100%;
+	/* background-position: 1.5vw 35%; */
+	background-repeat: no-repeat;
+	background-color: transparent;
+	transition-duration: 300ms;
+	z-index: 4;
   }
   
   /* Dropdown button on hover & focus */
   .dropbtn:hover, .dropbtn:focus {
-	background-color: black;
+	/* background-color: #ba6e11; */
   }
   
   /* The container <div> - needed to position the dropdown content */
@@ -343,26 +368,32 @@ ul {
   
   /* Dropdown Content (Hidden by Default) */
   .dropdown-content {
-	float:left;
+	float:right;
 	display: none;
 	position: absolute;
 	background-color: #f1f1f1;
-	width: 13vw;
-	min-width: 180px;
-	max-width: 230px;
+	width: 8.5vw;
+	min-width: 130px;
+	max-width: 260px;
 	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 	right: 0;
 	z-index: 99;
+	margin-top: 30px;
   }
   
   /* Links inside the dropdown */
   .dropdown-content a {
-	float:left;
-	text-align: center;
+	float:right;
+	text-align: right;
 	font-family: Kollektif; 
-	font-size: max(20px, 1.5vw);
+	font-size: max(23px, 1.5vw);
 	color: black;
-	padding: 12px 16px;
+	padding-top: 16px;
+	padding-bottom: 16px;
+	padding-right: 8px;
+	width: 8.5vw;
+	min-width: 130px;
+	max-width: 260px;
 	text-decoration: none;
 	display: block;
   }
@@ -386,3 +417,15 @@ ul {
 		width: 100%;
 	}
   }
+
+.arrow_down {
+	transition-duration: 300ms;
+}
+
+.rotate_arrow {
+	transform: rotate(180deg)
+}
+
+.rotate_chopsticks {
+	transform: rotate(60deg) translateY(-60px) translateX(8px);
+}
