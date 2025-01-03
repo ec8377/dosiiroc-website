@@ -52,8 +52,8 @@
                     <td align="right" style="max-width:110px">
                         <div class="dropdown">
                             <button onclick="dropdown_func()" style="background-image: url(resources/images/rice_bowl.png); position:absolute;" class="rice_bowl">
-                                <p tabindex="1" style="margin-top:43px; font-weight: 900; color:black" class="arrow_down">v</p>
-                            </button>
+                                <p style="margin-top:43px; font-weight: 900; color:black; font-size: 23px" class="arrow_down">v</p>
+                            </button> 
                             <button onclick="dropdown_func()" class="dropbtn" style="background-image: url(resources/images/rice_chopstick.png); margin-left: 10px; margin-top: 6px;"></button>
                             <div id="myDropdown" class="dropdown-content">
                                 <a href="menu_page">Our Menu</a>
