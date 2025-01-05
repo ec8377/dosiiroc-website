@@ -343,8 +343,8 @@ ul {
 	max-width: 95px;
 	width: 9.5vw;
 	margin-top: 35%;
-	border: none;
 	cursor: pointer;
+	border:none;
 	background-size: 100% 100%;
 	/* background-position: 1.5vw 35%; */
 	background-repeat: no-repeat;
@@ -405,11 +405,12 @@ ul {
   .top_bar {
 	img {
 		max-width:350px; 
-		width: 55vw;
+		margin: 15px;
+		width: 100%;
 	}
 	td {
 		width:50%; 
-		padding-right: 10%;
+		/* padding-right: 10%; */
 	}
 	table {
 		width: 100%;
