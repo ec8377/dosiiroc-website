@@ -341,8 +341,6 @@ ul {
 	font-size: 16px;
 	min-width: 95px;
 	max-width: 95px;
-	min-height: 77px;
-	max-height: 77px;
 	width: 9.5vw;
 	margin-top: 35%;
 	border: none;
@@ -407,7 +405,7 @@ ul {
   .top_bar {
 	img {
 		max-width:350px; 
-		width: 33vw;
+		width: 55vw;
 	}
 	td {
 		width:50%; 
