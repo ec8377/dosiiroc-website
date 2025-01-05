@@ -409,10 +409,11 @@ ul {
 	}
 	td {
 		width:50%; 
-		padding-right:10%;
+		padding-right: 10%;
 	}
 	table {
 		width: 100%;
+		margin-right: 10%;
 	}
   }
 
