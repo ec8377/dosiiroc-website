@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const fs = require("fs");
+const http = require("http");
 const hash = require("bcryptjs");
 
 app.use(express.static("."));
@@ -82,3 +83,14 @@ app.get("/menu_changer", (req, res) => {
     console.log("HELOO");
     res.redirect("/");
 });
+
+app.use(app.router);
+
+app.use((req, res) => {
+    res.status(404);
+
+    res.send("/404.html");
+});
+
+// var httpserver = http.createServer(app);
+// httpserver.listen(800000);
