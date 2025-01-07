@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dosiiroc Cafe</title>
+    <link rel="preload" href="resources/stylesheet.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <style>
+        li {float:none; display:list-item}
+    </style>
+</head>
+<body style="background-color: #FFFDF9; margin:0px; padding:0px">
+    <script>
+        function signin() {
+            event = new Event("erm", {bubbles:true});
+            dispatchEvent(event)
+        }
+    </script>
+    <center>
+        <div class="top_bar">
+            <table style="width:100%">
+                <tr>
+                    <td style="width:100%" align="center"><a href="https://dosiiroccafe.com"><img src="resources/images/logo FINAL-colored.png"></a></td>
+                </tr> 
+            </table>
+        </div>
+    </center>
+    <hr>
+
+    <center>
+
+    <form method="POST">
+        <ul>
+            <li>
+                <label for="user">USERNAME</label>
+            </li>
+            <li>
+                <input name="user"/>
+            </li>
+            <li>
+                <label for="pass">PASSWORD</label>
+            </li>
+            <li>
+                <input name="pass"/>
+            </li>
+            <button>Enter</button>
+        </ul>
+    </form>
+
+
+    <!-- <ul style="display:inline-block; text-align:center;" align="center">
+        <li style="text-align:center; display:inline-block;">
+            <p>Username</p>
+        </li>
+        <li>
+            <input id="username">
+        </li>
+        <li>
+            <p>Password</p>
+        </li>
+        <li>
+            <input id="password" type="password">
+        </li>
+        <li>
+            <button id="enter_button" onclick="signin()">Enter</button>
+        </li>
+    </ul> -->
+    </center>
+</body>
