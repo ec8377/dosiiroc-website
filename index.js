@@ -84,13 +84,15 @@ app.get("/menu_changer", (req, res) => {
     res.redirect("/");
 });
 
-app.use(app.router);
+app.get("*", (req, res) => {
+    fs.readFile(process.cwd() + "/404.html", "utf-8", (err, html) => {
+        if (err) {
+            return;
+        }
 
-app.use((req, res) => {
-    res.status(404);
+        res.send(html);
+    });
+})
 
-    res.send("/404.html");
-});
-
-// var httpserver = http.createServer(app);
-// httpserver.listen(800000);
+var httpserver = http.createServer(app);
+httpserver.listen(80);
