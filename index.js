@@ -1,8 +1,10 @@
 const express = require("express");
 const app = express();
 const fs = require("fs");
+const fspromise = require("fs").promises
 const http = require("http");
 const hash = require("bcryptjs");
+const { json } = require("stream/consumers");
 
 app.use(express.static("."));
 app.use(express.urlencoded({
@@ -10,7 +12,7 @@ app.use(express.urlencoded({
 }))
 
 app.get("/", (request, response) => {
-    fs.readFile(process.cwd() + "/wip.html", "utf-8", (err, html) => {
+    fs.readFile(process.cwd() + "/main_page.html", "utf-8", (err, html) => {
         if (err) {
             return;
         }
@@ -21,16 +23,6 @@ app.get("/", (request, response) => {
 
 app.get("/menu_page", (request, response) => {
     fs.readFile(process.cwd() + "/menu_page.html", "utf-8", (err, html) => {
-        if (err) {
-            return;
-        }
-
-        response.send(html);
-    });
-});
-
-app.get("/main_page", (request, response) => {
-    fs.readFile(process.cwd() + "/main_page.html", "utf-8", (err, html) => {
         if (err) {
             return;
         }
@@ -69,20 +61,20 @@ app.listen(process.env.PORT, () =>{
     console.log("ON PORT 3000");
 });
 
-app.post("/admin_login", (request, response) => {
-    console.log(request.body);
-    if (request.body.user === process.env.USERNAME && request.body.pass === process.env.PASSWORD) {
-        response.redirect("/menu_changer");
+app.post("/admin_login", async (req, res) => {
+    var new_html;
+    if (req.body.user === process.env.USERNAME && req.body.pass === process.env.PASSWORD) {
+        var html =  await fspromise.readFile(process.cwd() + "/menu_changer.html","utf-8")
+        var json_data = await fspromise.readFile(process.cwd() + "/resources/menu/menu.json", "utf-8")
+        res.send(html.replaceAll("REPLACE_JSON_STRING", json_data.replaceAll("\n","")));
+        console.log(html.replaceAll("REPLACE_JSON_STRING", json_data.replaceAll("\n","")));
     }
     else {
-        response.redirect("/admin_login")
+        res.redirect("/admin_login")
     }
 });
 
-app.get("/menu_changer", (req, res) => {
-    console.log("HELOO");
-    res.redirect("/");
-});
+// don't touch beyond this bruh
 
 app.get("*", (req, res) => {
     fs.readFile(process.cwd() + "/404.html", "utf-8", (err, html) => {
@@ -92,7 +84,7 @@ app.get("*", (req, res) => {
 
         res.send(html);
     });
-})
+});
 
-var httpserver = http.createServer(app);
-httpserver.listen(80);
+// var httpserver = http.createServer(app);
+// httpserver.listen(80);

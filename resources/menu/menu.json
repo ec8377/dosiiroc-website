@@ -1,0 +1,93 @@
+{
+    "categories": [
+        {
+            "name":"Coffee",
+            "items": [
+                {
+                    "name": "Americano",
+                    "cost": 2.50,
+                    "description": ""
+                }
+            ]
+        },
+        {
+            "name": "Tea",
+            "items": [
+
+            ]
+        },
+        
+        {
+            "name": "Specialties",
+            "items": [
+
+            ]
+        },
+        {
+            "name": "Soft Drinks",
+            "items": [
+
+            ]
+        },
+        {
+            "name": "Korean Ade",
+            "items": [
+
+            ]
+        },
+        {  
+            "name": "Fried Dishes",
+            "items": [
+                                
+            ]
+        },
+        {
+            "name": "Appetizers",
+            "items": [
+
+            ]
+        },
+        {
+            "name": "BBQ Meats",
+            "items": [
+
+            ]
+        },
+        {
+            "name": "Noodles",
+            "items": [
+
+            ]
+        },
+        {   
+            "name": "Rice Dishes",
+            "items": [
+
+            ]
+        },
+        {   
+            "name": "Korean Pancakes",
+            "items": [
+
+            ]
+        },
+        {
+            "name": "Stews", 
+            "items": [
+
+            ]
+        },
+        {
+            "name": "Katsu Cutlets",
+            "items": [
+
+            ]
+        },
+        {
+            "name": "Dosiiroc Boxes",
+            "items": [
+
+            ]   
+        }
+    ]
+}

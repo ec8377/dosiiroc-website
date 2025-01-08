@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Admin Panel</title>
+    <link rel="preload" href="resources/stylesheet.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <style>
+        li {float:none; display:list-item}
+    </style>
+</head>
+<body style="background-color: #FFFDF9; margin:0px; padding:0px">
+    <center>
+        <div class="top_bar">
+            <table style="width:100%">
+                <tr>
+                    <td style="width:100%" align="center"><a href="https://dosiiroccafe.com"><img src="resources/images/logo FINAL-colored.png"></a></td>
+                </tr> 
+            </table>
+        </div>
+    </center>
+    <hr>
+
+    <center>
+    <label id="values_list"></label>
+    <ul id="category_ul">
+        <li>
+            <p id="category_feedback">Choose a category (case sensitive)</p>
+        </li>
+        <li>
+            <input type=text id="category_input" name="category"/>
+        </li>
+        <button onclick="find_category()">Enter category</button>
+    </ul>
+    <ul id="items_ul" class="hidden_elements">
+        <li>
+            <p id="item_feedback">Choose/add an item (case sensitive)</p>
+        </li>
+        <li>
+            <input type=text id="item_input" name="item"/>
+        </li>
+        <button onclick="find_item()">Enter item</button>
+        <div id="yesorno" class="hidden_elements">
+            <button onclick="add_item()">yes</button>
+            <button onclick="reset_items()">no</button>
+        </div>
+    </ul>
+    </center>
+    <script>
+        var menu;
+        var category;
+        var category_index;
+        var item;
+        var item_index;
+        var items_list;
+        function init_data() {
+            menu = JSON.parse( 'REPLACE_JSON_STRING' );
+            menu.categories.forEach((val) => {
+                document.getElementById("values_list").textContent += val.name + " | ";
+            })
+        }
+
+        function find_category() {
+            for(let i = 0; i < menu.categories.length; i++) {
+                let val = menu.categories[i];
+                console.log(val.name)
+                console.log(document.getElementById("category_input").value)
+                if (val.name === document.getElementById("category_input").value) {
+                    document.getElementById("category_feedback").textContent = document.getElementById("category_input").value;
+                    category = document.getElementById("category_input").value;
+                    category_index = i;
+
+                    document.getElementById("category_ul").classList.toggle("hidden_elements");
+                    document.getElementById("items_ul").classList.toggle("hidden_elements");
+                    document.getElementById("values_list").textContent = "";
+
+                    val.items.forEach((item) => {
+                        document.getElementById("values_list").textContent += item.name + " | ";
+                    });
+                    
+                }
+                else {
+                    document.getElementById("category_feedback").textContent = "Not Found"
+                }
+            }
+        }
+
+        function find_item() {
+            items_list = menu.categories[category_index].items;
+            let item_input = document.getElementById("item_input").value
+            for (let i = 0; i < items_list.length; i++) {
+                let val = items_list[i].name;
+                if (item_input === val) {
+                    item = val;
+                    item_index = i;
+                    document.getElementById("item_feedback").textContent = "Item found";
+                    edit_item();
+                }
+                else {
+                    document.getElementById("item_feedback").textContent = "Would you like to add '" + item_input + "' to the menu?";
+                    document.getElementById("yesorno").classList.toggle("hidden_elements");
+                }
+            }
+        }
+
+        function reset_items() {
+            document.getElementById("yesorno").classList.toggle("hidden_elements");
+            document.getElementById("item_feedback").textContent = 'Choose/add an item (case sensitive)';
+        }
+
+        function add_item() {
+
+        }
+
+        function edit_item() {
+            items_list[item_index]
+        }
+
+        init_data();
+    </script>
+</body>
