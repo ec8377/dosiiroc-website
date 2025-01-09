@@ -59,7 +59,7 @@ app.get("/resources/stylesheet.css", (request, response) => {
 app.get("/" + process.env.RANDOM_ID, async (req, res) => {
     var html =  await fspromise.readFile(process.cwd() + "/menu_changer.html","utf-8")
     var json_data = await fspromise.readFile(process.cwd() + "/resources/menu/menu.json", "utf-8")
-    res.send(html.replaceAll("REPLACE_JSON_STRING", json_data.replaceAll("\n","")));
+    res.send(html.replaceAll("REPLACE_JSON_STRING", json_data.replaceAll("\n","").replaceAll("'", "\\'")));
 });
 
 app.listen(process.env.PORT, () =>{
@@ -70,7 +70,7 @@ app.post("/admin_login", async (req, res) => {
     if (req.body.user === process.env.USERNAME && req.body.pass === process.env.PASSWORD) {
         var html =  await fspromise.readFile(process.cwd() + "/menu_changer.html","utf-8");
         var json_data = await fspromise.readFile(process.cwd() + "/resources/menu/menu.json", "utf-8");
-        res.send(html.replaceAll("REPLACE_JSON_STRING", json_data.replaceAll("\n","")));
+        res.send(html.replaceAll("REPLACE_JSON_STRING", json_data.replaceAll("\n","").replaceAll("'", "\\'")));
     }
     else {
         res.redirect("/admin_login");
