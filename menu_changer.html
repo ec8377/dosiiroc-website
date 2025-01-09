@@ -53,7 +53,7 @@
                 <input placeholder="Name" id="name_input" name="name" type="text">
             </li>
             <li>
-                <input placeholder="Cose" id="cost_input" name="cost" type="text">
+                <input placeholder="Cost" id="cost_input" name="cost" type="text">
             </li>
         <form method="dialog">
             <li>
@@ -152,7 +152,7 @@
             
             let temp_item = JSON.parse(JSON.stringify(menu.categories[0].items[0]));
             temp_item.name = item_name;
-            temp_item.cost = 0;
+            temp_item.cost = "";
             temp_item.description = ""
 
             menu.categories[category_index].items[item_index] = temp_item;
@@ -177,7 +177,7 @@
             menu.categories[category_index].items[item_index].name = name_input.value.replaceAll("\"", "");
             menu.categories[category_index].items[item_index].cost = cost_input.value;
             menu.categories[category_index].items[item_index].description = des_input.value.replaceAll("\"", "");
-            feedback_p.textContent = JSON.stringify(menu).replaceAll("null,", "").replaceAll("null", "");
+            feedback_p.textContent = "Updating...";
 
             const form = document.createElement("form");
             const field = document.createElement("input");
@@ -201,7 +201,7 @@
             else {
                 let temp = menu.categories[category_index].items.splice(item_index, 1)
                 
-                feedback_p.textContent = JSON.stringify(menu).replaceAll("null,", "").replaceAll("null", "");
+                feedback_p.textContent = "Removing...";
     
                 const form = document.createElement("form");
                 const field = document.createElement("input");
