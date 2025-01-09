@@ -22,13 +22,13 @@ app.get("/", (request, response) => {
     });
 });
 
-app.get("/menu_page", (request, response) => {
-    fs.readFile(process.cwd() + "/menu_page.html", "utf-8", (err, html) => {
+app.get("/menu_page", async (request, response) => {
+    fs.readFile(process.cwd() + "/menu_page.html", "utf-8", async (err, html) => {
         if (err) {
             return;
         }
-
-        response.send(html);
+        var json_data = await fspromise.readFile(process.cwd() + "/resources/menu/menu.json", "utf-8")
+        response.send(html.replaceAll("REPLACE_JSON_STRING", json_data.replaceAll("\n","").replaceAll("'", "\\'")));
     });
 });
 

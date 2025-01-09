@@ -22,7 +22,7 @@
     <hr>
 
     <center>
-    <label id="values_list"></label>
+    <p id="values_list"></p>
     <p id="feedback_p">Choose a category (case sensitive)</p>
     <ul id="category_ul">
         <form method="dialog">
@@ -81,7 +81,7 @@
         let des_input = document.getElementById("description_input");
 
         function init_data() {
-            menu = JSON.parse( 'REPLACE_JSON_STRING'.replaceAll("null,", "").replaceAll("null", ""))
+            menu = JSON.parse( 'REPLACE_JSON_STRING'.replaceAll("null,", "").replaceAll("null", ""));
             //menu = JSON.parse( '{"categories":[{"name":"Coffee","items":[{"name":"adding","cost":"0","description":"TESTING"},{"name":"adding","cost":"0","description":"TESTING"},{"name":"testing","cost":"0","description":"HELLO"},{"name":"whattheflip","cost":"2.50","description":"HELLO"},{"name":"bruh","cost":"0","description":"testing hello"},{"name":"jasdf","cost":"0","description":"TESTING"}]},{"name":"Tea","items":[]},{"name":"Specialties","items":[]},{"name":"Soft Drinks","items":[]},{"name":"Korean Ade","items":[]},{"name":"Fried Dishes","items":[]},{"name":"Appetizers","items":[]},{"name":"BBQ Meats","items":[]},{"name":"Noodles","items":[]},{"name":"Rice Dishes","items":[]},{"name":"Korean Pancakes","items":[]},{"name":"Stews","items":[]},{"name":"Katsu Cutlets","items":[]},{"name":"Dosiiroc Boxes","items":[]}]}' );
             menu.categories.forEach((val) => {
                 document.getElementById("values_list").textContent += val.name + " | ";

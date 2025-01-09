@@ -148,6 +148,10 @@ ul {
 		float:none;
 		padding: 0;
 	}
+	ul {
+		text-align: center; 
+		display:inline-block;
+	}
 	li h3 {
 		color: black;
 		font-size: min(45px,5vw);
@@ -202,6 +206,10 @@ ul {
 		float:none;
 		padding: 0;
 	}
+	ul {
+		text-align: center; 
+		display:inline-block;
+	}
 	li h3 {
 		color: black;
 		font-size: min(45px,5vw);
@@ -255,6 +263,10 @@ ul {
 	li {
 		float:none;
 		padding: 0;
+	}
+	ul {
+		text-align: center; 
+		display:inline-block;
 	}
 	li h3 {
 		color: black;
