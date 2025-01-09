@@ -67,9 +67,15 @@
             <button onclick="remove_item()">Delete Item</button>
         </li>
     </ul>
+    <ul style="margin-top:15vw;">
+        <li>
+            <button onclick="back_to_category()">Back to category</button>
+        </li>
+    </ul>
     </center>
     <script>
         var menu;
+        let adding_item = false;
         var category;
         var category_index = 0;
         var item_name;
@@ -146,15 +152,17 @@
         }
 
         function add_item() {
+            adding_item = true;
             document.getElementById("yesorno").classList.toggle("hidden_elements");
-            item_index = item_index + 1;
-            menu.categories[category_index].items.length = menu.categories[category_index].items.length + 1;
+            
             
             let temp_item = JSON.parse(JSON.stringify(menu.categories[0].items[0]));
             temp_item.name = item_name;
             temp_item.cost = "";
             temp_item.description = ""
 
+            item_index = item_index + 1;
+            menu.categories[category_index].items.length = menu.categories[category_index].items.length + 1;
             menu.categories[category_index].items[item_index] = temp_item;
             name_input.value = menu.categories[category_index].items[item_index].name;
 
@@ -219,6 +227,30 @@
                 field.value = JSON.stringify(menu).replaceAll("null,", "").replaceAll("null", "");
                 document.body.append(form);
                 form.submit();
+            }
+        }
+
+        function back_to_category() {
+            if (!document.getElementById("items_ul").classList.contains("hidden_elements")) {
+                document.getElementById("items_ul").classList.toggle("hidden_elements");
+            }
+            if (!document.getElementById("entry_ul").classList.contains("hidden_elements")) {
+                document.getElementById("entry_ul").classList.toggle("hidden_elements");
+            }
+            if (document.getElementById("category_ul").classList.contains("hidden_elements")) {
+                document.getElementById("category_ul").classList.toggle("hidden_elements");
+                feedback_p.textContent = "Choose a category (case sensitive)";
+                document.getElementById("values_list").textContent = ""
+                menu.categories.forEach((val) => {
+                    document.getElementById("values_list").textContent += val.name + " | ";
+                })
+            }
+
+            if (adding_item) {
+                adding_item = false;
+                item_index = item_index - 1;
+                menu.categories[category_index].items.pop();
+                menu.categories[category_index].items.length = menu.categories[category_index].items.length - 1; 
             }
         }
 
