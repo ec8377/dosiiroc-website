@@ -704,7 +704,7 @@
                     }
                 }
 
-                if (!item.description.endsWith(".")) {
+                if (!item.description.endsWith(".") && item.description !== "") {
                     item.description += ".";
                 }
                 p2.textContent = item.description;
