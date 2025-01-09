@@ -683,8 +683,8 @@
                 let h3 = document.createElement("h3");
                 let p1 = document.createElement("p");
                 let p2 = document.createElement("p");
-                h3.textContent = item.name;
-                p1.textContent = item.cost;
+                h3.textContent = item.name.trim();
+                p1.textContent = item.cost.trim();
 
                 if (parseInt(item.cost) !== NaN && !item.cost.startsWith("$") && !item.cost.includes("S") && !item.cost.includes("L")) {
                     while(item.cost.length < 4) {
@@ -707,7 +707,7 @@
                 if (!item.description.endsWith(".") && item.description !== "") {
                     item.description += ".";
                 }
-                p2.textContent = item.description;
+                p2.textContent = item.description.trim();
 
                 if (category.name === "Korean Ade") {
                     li.append(h3);
