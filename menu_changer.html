@@ -23,50 +23,77 @@
 
     <center>
     <label id="values_list"></label>
+    <p id="feedback_p">Choose a category (case sensitive)</p>
     <ul id="category_ul">
-        <li>
-            <p id="category_feedback">Choose a category (case sensitive)</p>
-        </li>
-        <li>
-            <input type=text id="category_input" name="category"/>
-        </li>
-        <button onclick="find_category()">Enter category</button>
+        <form method="dialog">
+            <li>
+                <input type="text" id="category_input" name="category"/>
+            </li>
+            <button onclick="find_category()">Enter category</button>
+        </form>
     </ul>
     <ul id="items_ul" class="hidden_elements">
-        <li>
-            <p id="item_feedback">Choose/add an item (case sensitive)</p>
+        <form method="dialog">
+            <li>
+                <input type="text" id="item_input" name="item"/>
+            </li>
+            <li>
+                <button onclick="find_item()">Enter item</button>
+            </li>
+            <li>
+                <div id="yesorno" class="hidden_elements">
+                    <button onclick="add_item()">yes</button>
+                    <button onclick="reset_items()">no</button>
+                </div>
+            </li>
+        </form>
+    </ul>
+    <ul id="entry_ul" class="hidden_elements">
+            <li>
+                <input id="name_input" name="name" type="text">
+            </li>
+            <li>
+                <input id="cost_input" name="cost" type="number">
+            </li>
+        <form method="dialog">
+            <li>
+                <input id="description_input" name="description" type="text">
+            </li>
+            <li>
+                <button onclick="update_menu()">Confirm</button>
+            </li>
+        </form>
+        <li style="margin-top:25px">
+            <button onclick="remove_item()">Delete Item</button>
         </li>
-        <li>
-            <input type=text id="item_input" name="item"/>
-        </li>
-        <button onclick="find_item()">Enter item</button>
-        <div id="yesorno" class="hidden_elements">
-            <button onclick="add_item()">yes</button>
-            <button onclick="reset_items()">no</button>
-        </div>
     </ul>
     </center>
     <script>
         var menu;
         var category;
-        var category_index;
-        var item;
-        var item_index;
+        var category_index = 0;
+        var item_name;
+        var item_index = 0;
         var items_list;
+        var feedback_p = document.getElementById("feedback_p");
+        let name_input = document.getElementById("name_input");
+        let cost_input = document.getElementById("cost_input");
+        let des_input = document.getElementById("description_input");
+
         function init_data() {
             menu = JSON.parse( 'REPLACE_JSON_STRING' );
+            //menu = JSON.parse( '{"categories":[{"name":"Coffee","items":[{"name":"adding","cost":"0","description":"TESTING"},{"name":"adding","cost":"0","description":"TESTING"},{"name":"testing","cost":"0","description":"HELLO"},{"name":"whattheflip","cost":"2.50","description":"HELLO"},{"name":"bruh","cost":"0","description":"testing hello"},{"name":"jasdf","cost":"0","description":"TESTING"}]},{"name":"Tea","items":[]},{"name":"Specialties","items":[]},{"name":"Soft Drinks","items":[]},{"name":"Korean Ade","items":[]},{"name":"Fried Dishes","items":[]},{"name":"Appetizers","items":[]},{"name":"BBQ Meats","items":[]},{"name":"Noodles","items":[]},{"name":"Rice Dishes","items":[]},{"name":"Korean Pancakes","items":[]},{"name":"Stews","items":[]},{"name":"Katsu Cutlets","items":[]},{"name":"Dosiiroc Boxes","items":[]}]}' );
             menu.categories.forEach((val) => {
                 document.getElementById("values_list").textContent += val.name + " | ";
             })
         }
 
         function find_category() {
+            let is_found = false;
             for(let i = 0; i < menu.categories.length; i++) {
                 let val = menu.categories[i];
-                console.log(val.name)
-                console.log(document.getElementById("category_input").value)
                 if (val.name === document.getElementById("category_input").value) {
-                    document.getElementById("category_feedback").textContent = document.getElementById("category_input").value;
+                    feedback_p.textContent = document.getElementById("category_input").value;
                     category = document.getElementById("category_input").value;
                     category_index = i;
 
@@ -77,11 +104,14 @@
                     val.items.forEach((item) => {
                         document.getElementById("values_list").textContent += item.name + " | ";
                     });
-                    
+                    is_found = true;
                 }
-                else {
-                    document.getElementById("category_feedback").textContent = "Not Found"
-                }
+            }
+            if (!is_found) {
+                feedback_p.textContent = "Not Found";
+            }
+            else {
+                feedback_p.textContent = "Enter which item (case sensitive)"
             }
         }
 
@@ -91,29 +121,95 @@
             for (let i = 0; i < items_list.length; i++) {
                 let val = items_list[i].name;
                 if (item_input === val) {
-                    item = val;
                     item_index = i;
-                    document.getElementById("item_feedback").textContent = "Item found";
-                    edit_item();
+                    item_name = val;
+                    feedback_p.textContent = "Item found";
+                    break;
                 }
-                else {
-                    document.getElementById("item_feedback").textContent = "Would you like to add '" + item_input + "' to the menu?";
-                    document.getElementById("yesorno").classList.toggle("hidden_elements");
-                }
+            }
+            if (feedback_p.textContent !== "Item found") {
+                item_index = items_list.length
+                feedback_p.textContent = "Would you like to add '" + item_input + "' to the menu?";
+                item_name = item_input
+                document.getElementById("yesorno").classList.toggle("hidden_elements");
+            }
+            else {
+                edit_item();
             }
         }
 
         function reset_items() {
             document.getElementById("yesorno").classList.toggle("hidden_elements");
-            document.getElementById("item_feedback").textContent = 'Choose/add an item (case sensitive)';
+            feedback_p.textContent = 'Choose/add an item (case sensitive)';
         }
 
         function add_item() {
+            document.getElementById("yesorno").classList.toggle("hidden_elements");
+            item_index = item_index + 1;
+            menu.categories[category_index].items.length = menu.categories[category_index].items.length + 1;
+            
+            let temp_item = JSON.parse(JSON.stringify(menu.categories[0].items[0]));
+            temp_item.name = item_name;
+            temp_item.cost = 0;
+            temp_item.description = ""
 
+            menu.categories[category_index].items[item_index] = temp_item;
+            name_input.value = menu.categories[category_index].items[item_index].name;
+
+            edit_item();
         }
 
         function edit_item() {
-            items_list[item_index]
+            let item_object = items_list[item_index];
+            feedback_p.textContent = "Edit details below";
+            
+            document.getElementById("items_ul").classList.toggle("hidden_elements")
+            document.getElementById("entry_ul").classList.toggle("hidden_elements")
+
+            name_input.value = item_object.name;
+            cost_input.value = item_object.cost;
+            des_input.value = item_object.description;
+        }
+
+        function update_menu() {
+            menu.categories[category_index].items[item_index].name = name_input.value.replaceAll("\"", "");
+            menu.categories[category_index].items[item_index].cost = cost_input.value;
+            menu.categories[category_index].items[item_index].description = des_input.value.replaceAll("\"", "");
+            feedback_p.textContent = JSON.stringify(menu);
+
+            const form = document.createElement("form");
+            const field = document.createElement("input");
+
+            form.method = "POST";
+            form.action = "/JSON_UPLOAD/";
+
+            field.classList.toggle("hidden_elements");
+            field.name = "JSON_UPLOAD"
+            form.append(field);
+
+            field.value = JSON.stringify(menu);
+            document.body.append(form);
+            form.submit();
+        }
+
+        function remove_item() {
+            let temp = menu.categories[category_index].items.splice(item_index, 1)
+            
+            feedback_p.textContent = JSON.stringify(menu) + " " + item_index;
+
+            const form = document.createElement("form");
+            const field = document.createElement("input");
+
+            form.method = "POST";
+            form.action = "/JSON_UPLOAD/";
+
+            field.classList.toggle("hidden_elements");
+            field.name = "JSON_UPLOAD"
+            form.append(field);
+
+            field.value = JSON.stringify(menu);
+            document.body.append(form);
+            form.submit();
         }
 
         init_data();
