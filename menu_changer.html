@@ -50,14 +50,14 @@
     </ul>
     <ul id="entry_ul" class="hidden_elements">
             <li>
-                <input id="name_input" name="name" type="text">
+                <input placeholder="Name" id="name_input" name="name" type="text">
             </li>
             <li>
-                <input id="cost_input" name="cost" type="number">
+                <input placeholder="Cose" id="cost_input" name="cost" type="text">
             </li>
         <form method="dialog">
             <li>
-                <input id="description_input" name="description" type="text">
+                <input style="width:95vw;" placeholder="Description" id="description_input" name="description" type="text">
             </li>
             <li>
                 <button onclick="update_menu()">Confirm</button>
@@ -129,8 +129,8 @@
             }
             if (feedback_p.textContent !== "Item found") {
                 item_index = items_list.length
-                feedback_p.textContent = "Would you like to add '" + item_input + "' to the menu?";
-                item_name = item_input
+                feedback_p.textContent = "Would you like to add '" + item_input.trim() + "' to the menu?";
+                item_name = item_input.trim()
                 if (document.getElementById("yesorno").classList.contains("hidden_elements")) {
                     document.getElementById("yesorno").classList.toggle("hidden_elements");
                 }
