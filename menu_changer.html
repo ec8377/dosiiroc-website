@@ -81,7 +81,7 @@
         let des_input = document.getElementById("description_input");
 
         function init_data() {
-            menu = JSON.parse( 'REPLACE_JSON_STRING'.replaceAll("null,", "") )
+            menu = JSON.parse( 'REPLACE_JSON_STRING'.replaceAll("null,", "").replaceAll("null", ""))
             //menu = JSON.parse( '{"categories":[{"name":"Coffee","items":[{"name":"adding","cost":"0","description":"TESTING"},{"name":"adding","cost":"0","description":"TESTING"},{"name":"testing","cost":"0","description":"HELLO"},{"name":"whattheflip","cost":"2.50","description":"HELLO"},{"name":"bruh","cost":"0","description":"testing hello"},{"name":"jasdf","cost":"0","description":"TESTING"}]},{"name":"Tea","items":[]},{"name":"Specialties","items":[]},{"name":"Soft Drinks","items":[]},{"name":"Korean Ade","items":[]},{"name":"Fried Dishes","items":[]},{"name":"Appetizers","items":[]},{"name":"BBQ Meats","items":[]},{"name":"Noodles","items":[]},{"name":"Rice Dishes","items":[]},{"name":"Korean Pancakes","items":[]},{"name":"Stews","items":[]},{"name":"Katsu Cutlets","items":[]},{"name":"Dosiiroc Boxes","items":[]}]}' );
             menu.categories.forEach((val) => {
                 document.getElementById("values_list").textContent += val.name + " | ";
@@ -177,7 +177,7 @@
             menu.categories[category_index].items[item_index].name = name_input.value.replaceAll("\"", "");
             menu.categories[category_index].items[item_index].cost = cost_input.value;
             menu.categories[category_index].items[item_index].description = des_input.value.replaceAll("\"", "");
-            feedback_p.textContent = JSON.stringify(menu);
+            feedback_p.textContent = JSON.stringify(menu).replaceAll("null,", "").replaceAll("null", "");
 
             const form = document.createElement("form");
             const field = document.createElement("input");
@@ -189,7 +189,7 @@
             field.name = "JSON_UPLOAD"
             form.append(field);
 
-            field.value = JSON.stringify(menu);
+            field.value = JSON.stringify(menu).replaceAll("null,", "").replaceAll("null", "");
             document.body.append(form);
             form.submit();
         }
@@ -201,7 +201,7 @@
             else {
                 let temp = menu.categories[category_index].items.splice(item_index, 1)
                 
-                feedback_p.textContent = JSON.stringify(menu.replaceAll("null,", ""));
+                feedback_p.textContent = JSON.stringify(menu).replaceAll("null,", "").replaceAll("null", "");
     
                 const form = document.createElement("form");
                 const field = document.createElement("input");
@@ -213,7 +213,7 @@
                 field.name = "JSON_UPLOAD"
                 form.append(field);
     
-                field.value = JSON.stringify(menu.replaceAll("null,", ""));
+                field.value = JSON.stringify(menu).replaceAll("null,", "").replaceAll("null", "");
                 document.body.append(form);
                 form.submit();
             }
