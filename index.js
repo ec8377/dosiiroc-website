@@ -98,5 +98,5 @@ function rand_int(max) {
     return Math.floor(Math.random() * max);
 } 
 
-// var httpserver = http.createServer(app);
-// httpserver.listen(80);
+var httpserver = http.createServer(app);
+httpserver.listen(80);
