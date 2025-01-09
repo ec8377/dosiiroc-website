@@ -131,7 +131,9 @@
                 item_index = items_list.length
                 feedback_p.textContent = "Would you like to add '" + item_input + "' to the menu?";
                 item_name = item_input
-                document.getElementById("yesorno").classList.toggle("hidden_elements");
+                if (document.getElementById("yesorno").classList.contains("hidden_elements")) {
+                    document.getElementById("yesorno").classList.toggle("hidden_elements");
+                }
             }
             else {
                 edit_item();
