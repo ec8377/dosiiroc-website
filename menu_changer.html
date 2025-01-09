@@ -193,23 +193,28 @@
         }
 
         function remove_item() {
-            let temp = menu.categories[category_index].items.splice(item_index, 1)
-            
-            feedback_p.textContent = JSON.stringify(menu) + " " + item_index;
-
-            const form = document.createElement("form");
-            const field = document.createElement("input");
-
-            form.method = "POST";
-            form.action = "/JSON_UPLOAD/";
-
-            field.classList.toggle("hidden_elements");
-            field.name = "JSON_UPLOAD"
-            form.append(field);
-
-            field.value = JSON.stringify(menu);
-            document.body.append(form);
-            form.submit();
+            if (category_index === 0 && item_index === 0 && menu.categories[category_index].items.length === 1) {
+                feedback_p.textContent = "Cannot delete final item.";
+            }
+            else {
+                let temp = menu.categories[category_index].items.splice(item_index, 1)
+                
+                feedback_p.textContent = JSON.stringify(menu) + " " + item_index;
+    
+                const form = document.createElement("form");
+                const field = document.createElement("input");
+    
+                form.method = "POST";
+                form.action = "/JSON_UPLOAD/";
+    
+                field.classList.toggle("hidden_elements");
+                field.name = "JSON_UPLOAD"
+                form.append(field);
+    
+                field.value = JSON.stringify(menu);
+                document.body.append(form);
+                form.submit();
+            }
         }
 
         init_data();
