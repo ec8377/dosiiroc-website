@@ -151,7 +151,7 @@
     <table style="margin:0;margin-left:25%; width:75%; padding-bottom:0;" class="button_hover">
         <tr>
             <center>
-                <h3 style="font-size:min(38px, 2.75vw)">order in person or call ahead for pick up!</h3>
+                <h3 style="font-size:min(38px, 2.75vw)" id="error_h3">order in person or call ahead for pick up!</h3>
             </center>
         </tr>
         <tr style="padding-bottom:0">
@@ -692,6 +692,7 @@
         }
         catch {
             menu = JSON.parse( 'REPLACE_BACKUP_MENU'.replaceAll("null,", "").replaceAll("null", ""));
+            document.getElementById("error_h3").textContent = "We're currently under going changes to our menu. Items and prices may not be as listed here. The site will be updated soon."
         }
         menu.categories.forEach((category) => {
             let ul = document.createElement("ul");

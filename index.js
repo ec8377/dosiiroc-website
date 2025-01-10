@@ -13,17 +13,14 @@ const path = require("path");
 const { json } = require("stream/consumers");
 
 const PROCESS_DIR = process.cwd();  
-let menu_counter = 30;
-let json_data = await fspromise.readFile(PROCESS_DIR + "/resources/menu/menu.json", "utf-8");
-let json_backup_data = await fspromise.readFile(PROCESS_DIR + "/resources/menu/menu_BACKUP.json", "utf-8");
-let menu_html = await fspromise.readFile(PROCESS_DIR + "/menu_page.html", "utf-8");
-menu_html = menu_html.replaceAll("REPLACE_JSON_STRING", json_data.replaceAll("\n","").replaceAll("'", "\\'")).replaceAll("REPLACE_BACKUP_MENU", json_backup_data.replaceAll("\n","").replaceAll("'", "\\'"))
+let menu_counter = 40;
+const json_backup_data = await fspromise.readFile(PROCESS_DIR + "/resources/menu/menu_BACKUP.json", "utf-8");
 
 app.use(express.static("."));
 app.use(favicon(path.join(PROCESS_DIR, "resources", "images", "favicon.png")));
 app.use(express.urlencoded({
     extended:true
-}))
+}));
 
 app.get("/", (request, response) => {
     fs.readFile(PROCESS_DIR + "/main_page.html", "utf-8", (err, html) => {
@@ -36,7 +33,12 @@ app.get("/", (request, response) => {
 });
 
 app.get("/menu_page", async (request, response) => {
-    console.log(++menu_counter + " menu requests")
+    console.log(++menu_counter + " menu requests");
+
+    let json_data = await fspromise.readFile(PROCESS_DIR + "/resources/menu/menu.json", "utf-8");
+    let menu_html = await fspromise.readFile(PROCESS_DIR + "/menu_page.html", "utf-8");
+    menu_html = menu_html.replaceAll("REPLACE_JSON_STRING", json_data.replaceAll("\n","").replaceAll("'", "\\'")).replaceAll("REPLACE_BACKUP_MENU", json_backup_data.replaceAll("\n","").replaceAll("'", "\\'"));
+
     response.send(menu_html);
 });
 
@@ -105,7 +107,7 @@ app.get("*", (req, res) => {
 
 function rand_int(max) {
     return Math.floor(Math.random() * max);
-} 
+}
 
 var httpserver = http.createServer(app);
 httpserver.listen(80);
