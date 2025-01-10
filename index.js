@@ -13,7 +13,7 @@ const path = require("path");
 const { json } = require("stream/consumers");
 
 const PROCESS_DIR = process.cwd();  
-let menu_counter = 0;
+let menu_counter = 30;
 let json_data = await fspromise.readFile(PROCESS_DIR + "/resources/menu/menu.json", "utf-8");
 let json_backup_data = await fspromise.readFile(PROCESS_DIR + "/resources/menu/menu_BACKUP.json", "utf-8");
 let menu_html = await fspromise.readFile(PROCESS_DIR + "/menu_page.html", "utf-8");
@@ -36,6 +36,7 @@ app.get("/", (request, response) => {
 });
 
 app.get("/menu_page", async (request, response) => {
+    console.log(++menu_counter + " menu requests")
     response.send(menu_html);
 });
 
