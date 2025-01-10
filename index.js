@@ -1,14 +1,15 @@
 import { createRequire } from "module";
 
-const favicon = require("server_favicon");
 const require = createRequire(import.meta.url);
 require("dotenv").config();
+const favicon = require("serve-favicon");
 const express = require("express");
 const app = express();
 const fs = require("fs");
 const fspromise = require("fs").promises
 const http = require("http");
 const hash = require("bcryptjs");
+const path = require("path");
 const { json } = require("stream/consumers");
 
 const PROCESS_DIR = process.cwd();  
