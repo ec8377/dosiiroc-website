@@ -207,7 +207,7 @@
             if (category_index === 0 && item_index === 0 && menu.categories[category_index].items.length === 1) {
                 feedback_p.textContent = "Cannot delete final item.";
             }
-            else if (item_index ===  menu.categories[category_index].items.length - 1) {
+            else if (item_index ===  menu.categories[category_index].items.length - 1 && adding_item) {
                 feedback_p.textContent = "Error, cannot delete while adding a new item.";
             }
             else {
