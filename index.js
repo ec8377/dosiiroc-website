@@ -13,14 +13,31 @@ const path = require("path");
 const { json } = require("stream/consumers");
 
 const PROCESS_DIR = process.cwd();  
-let menu_counter = 40;
+let menu_counter = 50;
 const json_backup_data = await fspromise.readFile(PROCESS_DIR + "/resources/menu/menu_BACKUP.json", "utf-8");
 
+async function check_path(req) {
+    if ((req.path.indexOf(".html") >= 0) || (req.path.indexOf(".js") >= 0) || (req.path.indexOf(".json") >= 0)) {
+        return true;
+    }
+    return false;
+}
+
+app.use(async function (req, res, next) {
+    let check = await check_path(req);
+    if (check) {
+        res.redirect("/");
+    }
+    else {
+        next();
+    }
+})
 app.use(express.static("."));
 app.use(favicon(path.join(PROCESS_DIR, "resources", "images", "favicon.png")));
 app.use(express.urlencoded({
     extended:true
 }));
+
 
 app.get("/", (request, response) => {
     fs.readFile(PROCESS_DIR + "/main_page.html", "utf-8", (err, html) => {
