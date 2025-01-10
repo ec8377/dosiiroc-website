@@ -27,7 +27,12 @@ app.get("/menu_page", async (request, response) => {
         if (err) {
             return;
         }
-        var json_data = await fspromise.readFile(process.cwd() + "/resources/menu/menu.json", "utf-8")
+        try {
+            var json_data = await fspromise.readFile(process.cwd() + "/resources/menu/menu.json", "utf-8")
+        }
+        catch {
+            var json_data = await fspromise.readFile(process.cwd() + "/resources/menu/menu_BACKUP.json", "utf-8")
+        }
         response.send(html.replaceAll("REPLACE_JSON_STRING", json_data.replaceAll("\n","").replaceAll("'", "\\'")));
     });
 });
