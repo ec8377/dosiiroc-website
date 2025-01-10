@@ -7,6 +7,8 @@ const http = require("http");
 const hash = require("bcryptjs");
 const { json } = require("stream/consumers");
 
+let menu_counter = 0;
+
 app.use(express.static("."));
 app.use(express.urlencoded({
     extended:true
@@ -27,13 +29,12 @@ app.get("/menu_page", async (request, response) => {
         if (err) {
             return;
         }
-        try {
-            var json_data = await fspromise.readFile(process.cwd() + "/resources/menu/menu.json", "utf-8")
-        }
-        catch {
-            var json_data = await fspromise.readFile(process.cwd() + "/resources/menu/menu_BACKUP.json", "utf-8")
-        }
-        response.send(html.replaceAll("REPLACE_JSON_STRING", json_data.replaceAll("\n","").replaceAll("'", "\\'")));
+        let json_data = await fspromise.readFile(process.cwd() + "/resources/menu/menu.json", "utf-8");
+        let json_backup_data = await fspromise.readFile(process.cwd() + "/resources/menu/menu_BACKUP.json", "utf-8");
+
+        console.log(++menu_counter);
+
+        response.send(html.replaceAll("REPLACE_JSON_STRING", json_data.replaceAll("\n","").replaceAll("'", "\\'")).replaceAll("REPLACE_BACKUP_MENU", json_backup_data.replaceAll("\n","").replaceAll("'", "\\'")));
     });
 });
 

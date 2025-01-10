@@ -675,11 +675,12 @@
         }
     </script>
     <script>
+        let menu = ""
         try {
-            let menu = JSON.parse( 'REPLACE_JSON_STRING'.replaceAll("null,", "").replaceAll("null", ""));
+            menu = JSON.parse( 'REPLACE_JSON_STRING'.replaceAll("null,", "").replaceAll("null", ""));
         }
         catch {
-            let menu = JSON.parse('REPLACE_BACKUP_MENU'.replaceAll("null,", "").replaceAll("null", ""));
+            menu = JSON.parse( 'REPLACE_BACKUP_MENU'.replaceAll("null,", "").replaceAll("null", ""));
         }
         menu.categories.forEach((category) => {
             let ul = document.createElement("ul");
