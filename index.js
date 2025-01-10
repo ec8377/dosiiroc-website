@@ -1,3 +1,6 @@
+import { createRequire } from "module";
+
+const require = createRequire(import.meta.url);
 require("dotenv").config();
 const express = require("express");
 const app = express();
@@ -8,6 +11,10 @@ const hash = require("bcryptjs");
 const { json } = require("stream/consumers");
 
 let menu_counter = 0;
+let json_data = await fspromise.readFile(process.cwd() + "/resources/menu/menu.json", "utf-8");
+let json_backup_data = await fspromise.readFile(process.cwd() + "/resources/menu/menu_BACKUP.json", "utf-8");
+let menu_html = await fspromise.readFile(process.cwd() + "/menu_page.html", "utf-8");
+menu_html = menu_html.replaceAll("REPLACE_JSON_STRING", json_data.replaceAll("\n","").replaceAll("'", "\\'")).replaceAll("REPLACE_BACKUP_MENU", json_backup_data.replaceAll("\n","").replaceAll("'", "\\'"))
 
 app.use(express.static("."));
 app.use(express.urlencoded({
@@ -25,17 +32,7 @@ app.get("/", (request, response) => {
 });
 
 app.get("/menu_page", async (request, response) => {
-    fs.readFile(process.cwd() + "/menu_page.html", "utf-8", async (err, html) => {
-        if (err) {
-            return;
-        }
-        let json_data = await fspromise.readFile(process.cwd() + "/resources/menu/menu.json", "utf-8");
-        let json_backup_data = await fspromise.readFile(process.cwd() + "/resources/menu/menu_BACKUP.json", "utf-8");
-
-        console.log(++menu_counter);
-
-        response.send(html.replaceAll("REPLACE_JSON_STRING", json_data.replaceAll("\n","").replaceAll("'", "\\'")).replaceAll("REPLACE_BACKUP_MENU", json_backup_data.replaceAll("\n","").replaceAll("'", "\\'")));
-    });
+    response.send(menu_html);
 });
 
 app.get("/about_page", (request, response) => {
