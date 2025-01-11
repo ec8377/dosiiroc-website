@@ -19,6 +19,7 @@ const json_backup_data = await fspromise.readFile(PROCESS_DIR + "/resources/menu
 
 async function check_path(req) {
     if ((req.path.indexOf(".html") >= 0) || (req.path.indexOf(".js") >= 0) || (req.path.indexOf(".json") >= 0) || (req.path.indexOf(".txt") >= 0)) {
+        console.log("attempted get of prohibited files.");
         return true;
     }
     return false;
@@ -43,6 +44,7 @@ app.use(express.urlencoded({
 app.get("/", (request, response) => {
     fs.readFile(PROCESS_DIR + "/main_page.html", "utf-8", (err, html) => {
         if (err) {
+            console.log(err);
             return;
         }
  
@@ -63,6 +65,7 @@ app.get("/menu_page", async (request, response) => {
 app.get("/about_page", (request, response) => {
     fs.readFile(PROCESS_DIR + "/about_page.html", "utf-8", (err, html) => {
         if (err) {
+            console.log(err);
             return;
         }
 
@@ -73,6 +76,7 @@ app.get("/about_page", (request, response) => {
 app.get("/admin_login", (request, response) => {
     fs.readFile(PROCESS_DIR + "/login.html", "utf-8", (err, html) => {
         if (err) {
+            console.log(err);
             return;
         }
 
@@ -116,6 +120,7 @@ app.post("/JSON_UPLOAD", async (req, res) => {
 app.get("*", (req, res) => {
     fs.readFile(PROCESS_DIR + "/404.html", "utf-8", (err, html) => {
         if (err) {
+            console.log(err);
             return;
         }
 
