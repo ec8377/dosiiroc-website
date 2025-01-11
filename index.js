@@ -10,14 +10,15 @@ const fspromise = require("fs").promises
 const http = require("http");
 const hash = require("bcryptjs");
 const path = require("path");
+const process = require('node:process');
 const { json } = require("stream/consumers");
 
 const PROCESS_DIR = process.cwd();  
-let menu_counter = 50;
+let menu_counter = parseInt(await fspromise.readFile(path.join(PROCESS_DIR, "resources", "menu", "menu_counter.txt")));
 const json_backup_data = await fspromise.readFile(PROCESS_DIR + "/resources/menu/menu_BACKUP.json", "utf-8");
 
 async function check_path(req) {
-    if ((req.path.indexOf(".html") >= 0) || (req.path.indexOf(".js") >= 0) || (req.path.indexOf(".json") >= 0)) {
+    if ((req.path.indexOf(".html") >= 0) || (req.path.indexOf(".js") >= 0) || (req.path.indexOf(".json") >= 0) || (req.path.indexOf(".txt") >= 0)) {
         return true;
     }
     return false;
@@ -26,7 +27,7 @@ async function check_path(req) {
 app.use(async function (req, res, next) {
     let check = await check_path(req);
     if (check) {
-        res.redirect("/");
+        res.redirect("*");
     }
     else {
         next();
@@ -96,8 +97,8 @@ app.listen(process.env.PORT, () =>{
 
 app.post("/admin_login", async (req, res) => {
     if (req.body.user === process.env.USERNAME && req.body.pass === process.env.PASSWORD) {
-        var html =  await fspromise.readFile(PROCESS_DIR + "/menu_changer.html","utf-8");
-        var json_data = await fspromise.readFile(PROCESS_DIR + "/resources/menu/menu.json", "utf-8");
+        let html =  await fspromise.readFile(PROCESS_DIR + "/menu_changer.html","utf-8");
+        let json_data = await fspromise.readFile(PROCESS_DIR + "/resources/menu/menu.json", "utf-8");
         res.send(html.replaceAll("REPLACE_JSON_STRING", json_data.replaceAll("\n","").replaceAll("'", "\\'")));
     }
     else {
