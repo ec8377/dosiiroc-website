@@ -713,7 +713,7 @@
         else if (isMonday && (date.getHours >= 16 && date.getHours < 20)) {
             isClosed = false;
         }
-        else if ((date.getHours() >= 11 && date.getHours() < 14) || (date.getHours() >= 16 && date.getHours() < 20)) {
+        else if (!isMonday && (date.getHours() >= 11 && date.getHours() < 14) || (date.getHours() >= 16 && date.getHours() < 20)) {
             isClosed = false;
         }
         if(date.getHours() >= 14 && date.getHours() < 16) {
