@@ -85,7 +85,7 @@ app.get("/admin_login", (request, response) => {
 })
 
 app.get("/resources/stylesheet.css", (request, response) => {
-    fs.send(PROCESS_DIR + "/resources/stylesheet.css");
+    response.send(PROCESS_DIR + "/resources/stylesheet.css");
 });
 
 app.get("/" + process.env.RANDOM_ID, async (req, res) => {
@@ -112,7 +112,10 @@ app.post("/admin_login", async (req, res) => {
 
 app.post("/JSON_UPLOAD", async (req, res) => {
     await fspromise.writeFile(PROCESS_DIR + "/resources/menu/menu.json", req.body.JSON_UPLOAD);
-    res.redirect("/" + process.env.RANDOM_ID)
+    let html =  await fspromise.readFile(PROCESS_DIR + "/menu_changer.html","utf-8");
+    let json_data = await fspromise.readFile(PROCESS_DIR + "/resources/menu/menu.json", "utf-8");
+    res.writeHead(200, "")
+    res.send(html.replaceAll("REPLACE_JSON_STRING", json_data.replaceAll("\n","").replaceAll("'", "\\'")));
 });
 
 // don't touch beyond this bruh
