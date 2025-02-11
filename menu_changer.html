@@ -73,6 +73,11 @@
             <button onclick="back_to_category()">Back to category</button>
         </li>
     </ul>
+    <ul style="margin-top:15vw;">
+        <li>
+            <button onclick="square_update()">SQUARE UPDATE</button>
+        </li>
+    </ul>
     </center>
     <script>
         var menu;
@@ -199,6 +204,14 @@
             form.append(field);
 
             field.value = JSON.stringify(menu).replaceAll("null,", "").replaceAll("null", "");
+            document.body.append(form);
+            form.submit();
+        }
+
+        function square_update() {
+            const form = document.createElement("form");
+            form.method = "POST";
+            form.action = "/SQUARE_UPDATE/";
             document.body.append(form);
             form.submit();
         }
