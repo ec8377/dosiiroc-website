@@ -43,10 +43,21 @@ json_object.categories.forEach((category) => {
     category.items.forEach((item) => {
         if (item_cost[item.name] != undefined) {
             let temp = new Number(item_cost[item.name]).toString();
-            let cost_string = temp.toString().substring(0,temp.length-2) + "." + temp.toString().substring(temp.length-2);
+            let cost_string = temp.substring(0,temp.length-2) + "." + temp.toString().substring(temp.length-2);
             item.cost = cost_string;
         }
     })
+
+    if (category.name == "Dosiiroc Boxes") {
+        let temp = new Number(item_cost["Fried Egg"]).toString();
+        let cost_string = temp.substring(0,temp.length-2) + "." + temp.toString().substring(temp.length-2);
+        category.egg_price = cost_string;
+    }
+    else if (category.name == "Korean Ade") {
+        let temp = new Number(item_cost["Korean Ade"]).toString();
+        let cost_string = temp.substring(0,temp.length-2) + "." + temp.toString().substring(temp.length-2);
+        category.ade_price = cost_string;
+    }
 })
 
 console.log(item_cost)
@@ -182,6 +193,17 @@ app.post("/SQUARE_UPDATE", async (req, res) => {
                 item.cost = cost_string;
             }
         })
+
+        if (category.name == "Dosiiroc Boxes") {
+            let temp = new Number(item_cost["Fried Egg"]).toString();
+            let cost_string = temp.substring(0,temp.length-2) + "." + temp.toString().substring(temp.length-2);
+            category.egg_price = cost_string;
+        }
+        else if (category.name == "Korean Ade") {
+            let temp = new Number(item_cost["Korean Ade"]).toString();
+            let cost_string = temp.substring(0,temp.length-2) + "." + temp.toString().substring(temp.length-2);
+            category.ade_price = cost_string;
+        }
     })
 
     await fspromise.writeFile(PROCESS_DIR + "/resources/menu/menu.json", JSON.stringify(json_object));
@@ -201,10 +223,6 @@ app.get("*", (req, res) => {
         res.send(html);
     });
 });
-
-function rand_int(max) {
-    return Math.floor(Math.random() * max);
-}
 
 // var httpserver = http.createServer(app);
 // httpserver.listen(80);

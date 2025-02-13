@@ -310,7 +310,7 @@
                  <ul style="text-align: center; display:inline-block">
                     <li>
                         <h3>Korean Ade</h3>
-                        <p>$5.50</p>
+                        <p id="ADE_PRICE_P">$5.50</p>
                         <p>Homemade fruit cheong (korean style fruit preserves) with sparkling water. The flavor(s) rotate regularly.</p>
                     </li>
                 </ul>
@@ -561,7 +561,7 @@
                     </li>
                     <li>
                         <h3 style="font-size:3.5vw">Add a fried egg</h3>
-                        <p>+$2.49</p>
+                        <p id="EGG_PRICE_P">+$2.49</p>
                     </li>
                     <!-- <li>
                         <h3>Beef Bulgogi Box</h3>
@@ -678,9 +678,11 @@
                 p2.textContent = item.description.trim();
 
                 if (category.name === "Korean Ade") {
+                    document.getElementById("ADE_PRICE_P").textContent = "$" + category.ade_price;
                     li.append(h3);
                 }
                 else if (category.name === "Dosiiroc Boxes") {
+                    document.getElementById("EGG_PRICE_P").textContent = "+$" + category.egg_price;
                     if (p2 === "") {
                         li.append(h3,p1);
                     }
