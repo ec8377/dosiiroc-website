@@ -16,6 +16,7 @@
 <body style="background-color: #FFFDF9;">
     <script>
         var isFood = true;
+        const RATE_OF_CHANGE = 1.15;
         function sleep(ms) {
             return new Promise(resolve => setTimeout(resolve, ms));
         }
@@ -29,7 +30,7 @@
                 drink_button.style.color = "#F7941D";
                 switchTo("Coffee");
                 while (window.getComputedStyle(food_div).getPropertyValue("opacity") > .1) {
-                    food_div.style.opacity = String(window.getComputedStyle(food_div).getPropertyValue("opacity")/1.1);
+                    food_div.style.opacity = String(window.getComputedStyle(food_div).getPropertyValue("opacity")/RATE_OF_CHANGE);
                     await sleep(10);
                 }
                 food_div.className = "hidden_elements";
@@ -52,7 +53,7 @@
                 drink_button.style.color = "black";
                 switchTo("Appetizers");
                 while (window.getComputedStyle(drinks_div).getPropertyValue("opacity") > .1) {
-                    drinks_div.style.opacity = String(window.getComputedStyle(drinks_div).getPropertyValue("opacity")/1.1);
+                    drinks_div.style.opacity = String(window.getComputedStyle(drinks_div).getPropertyValue("opacity")/RATE_OF_CHANGE);
                     await sleep(10);
                 }
                 food_div.className = "food_items";
@@ -72,7 +73,7 @@
             if (oldMenu[0] != newMenu && window.getComputedStyle(oldMenu[0]).getPropertyValue("opacity") == 1) {
                 for(let i = 0; i < oldMenu.length; i++) {
                     while (window.getComputedStyle(oldMenu[0]).getPropertyValue("opacity") > .1) {
-                        oldMenu[0].style.opacity = String(window.getComputedStyle(oldMenu[0]).getPropertyValue("opacity")/1.1);
+                        oldMenu[0].style.opacity = String(window.getComputedStyle(oldMenu[0]).getPropertyValue("opacity")/RATE_OF_CHANGE);
                         await sleep(10);
                     }
                     oldMenu[0].style.display = "none";
@@ -84,7 +85,7 @@
                 newMenu.style.opacity = ".1";
                 document.getElementById(text + "_button").style.color = "#F7941D";
                 while (window.getComputedStyle(newMenu).getPropertyValue("opacity") < .9) {
-                    newMenu.style.opacity = String(window.getComputedStyle(newMenu).getPropertyValue("opacity")*1.1);
+                    newMenu.style.opacity = String(window.getComputedStyle(newMenu).getPropertyValue("opacity")*RATE_OF_CHANGE);
                     await sleep(10);
                 }
                 newMenu.style.opacity = "1";  
