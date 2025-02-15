@@ -60,7 +60,7 @@ json_object.categories.forEach((category) => {
     }
 })
 
-console.log(item_cost)
+// console.log(item_cost)
 
 await fspromise.writeFile(PROCESS_DIR + "/resources/menu/menu.json", JSON.stringify(json_object));
 
@@ -100,7 +100,7 @@ app.get("/", (request, response) => {
 });
 
 app.get("/menu_page", async (request, response) => {
-    console.log(++menu_counter + " menu requests");
+    console.log(++menu_counter + " menu request at " + new Date().toString().substring(0, 25));
 
     let json_data = await fspromise.readFile(PROCESS_DIR + "/resources/menu/menu.json", "utf-8");
     let menu_html = await fspromise.readFile(PROCESS_DIR + "/menu_page.html", "utf-8");

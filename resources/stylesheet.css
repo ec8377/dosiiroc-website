@@ -460,9 +460,6 @@ ul {
 
 .mySlides {
 	display: none;
-	.img {
-		/* clip-path: inset(100px 100px 100px 100px); */
-	}
 }
 
 .active {
