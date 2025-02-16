@@ -458,32 +458,4 @@ ul {
 	transform: rotate(60deg) translateY(-60px) translateX(8px);
 }
 
-.mySlides {
-	display: none;
-}
-
-.active {
-	background-color: #3f3e3e;
-  }
-  
-/* Fading animation */
-.fade {
-animation-name: fade;
-animation-duration: 4s;
-}
-
-@keyframes fade {
-0% {
-	opacity: .6; 
-}
-15% {
-	opacity: 1;
-}
-85% {
-	opacity: 1;
-}
-100% {
-	opacity: .6;
-}
-}
   
