@@ -265,7 +265,7 @@ app.post("/UPLOAD_IMAGE", async (req, res) => {
     try {
         await image_input.mv(tempdir);
         await sharp(tempdir).resize(2000, 1280, {fit: "cover"}).webp().toFile(address);
-        rmSync(path.join(tempdir));
+        // rmSync(path.join(tempdir));
     }
     catch {
         console.log("ERROR UPLOADING IMAGE");
