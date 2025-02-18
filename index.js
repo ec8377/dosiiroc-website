@@ -1,10 +1,13 @@
 import { createRequire } from "module";
+import { rm, rmSync } from "node:fs";
+import { readdir } from "node:fs/promises";
 import { SquareClient } from "square";
 
 const require = createRequire(import.meta.url);
 require("dotenv").config();
 const favicon = require("serve-favicon");
 const express = require("express");
+const fileUpload = require("express-fileupload");
 const app = express();
 const fs = require("fs");
 const fspromise = require("fs").promises
@@ -13,6 +16,8 @@ const hash = require("bcryptjs");
 const path = require("path");
 const process = require('node:process');
 const { json } = require("stream/consumers");
+const sharp  = require("sharp");
+const cookieParser = require('cookie-parser');
 
 const client = new SquareClient({ token: process.env.TOKEN });
 const id_name_dict = {};
@@ -23,6 +28,15 @@ let menu_counter = parseInt(await fspromise.readFile(path.join(PROCESS_DIR, "res
 const json_backup_data = await fspromise.readFile(PROCESS_DIR + "/resources/menu/menu_BACKUP.json", "utf-8");
 let json_data = await fspromise.readFile(PROCESS_DIR + "/resources/menu/menu.json", "utf-8");
 let json_object = JSON.parse(json_data);
+
+let files_object = [];
+let temp_dirs = await readdir(PROCESS_DIR + "/resources/images/ss_images/");
+
+temp_dirs.forEach((file) => {
+    files_object.push("'" + file + "'");
+});
+
+let images_addr_string = "[" + files_object.toString() + "]";
 
 let response = await client.catalog.list({types:["ITEM"]});
 for await (const item of response) {
@@ -86,6 +100,8 @@ app.use(favicon(path.join(PROCESS_DIR, "resources", "images", "favicon.png")));
 app.use(express.urlencoded({
     extended:true
 }));
+app.use(fileUpload());
+app.use(cookieParser());
 
 
 app.get("/", (request, response) => {
@@ -94,8 +110,8 @@ app.get("/", (request, response) => {
             console.log(err);
             return;
         }
- 
-        response.send(html);
+        
+        response.send(html.replaceAll("'REPLACE_IMAGE_ADDR_STRING'", images_addr_string));
     });
 });
 
@@ -150,6 +166,7 @@ app.post("/admin_login", async (req, res) => {
     if (req.body.user === process.env.USERNAME && req.body.pass === process.env.PASSWORD) {
         let html =  await fspromise.readFile(PROCESS_DIR + "/menu_changer.html","utf-8");
         let json_data = await fspromise.readFile(PROCESS_DIR + "/resources/menu/menu.json", "utf-8");
+        res.cookie("dosiiroc_userData", {"id":req.body.pass}, {expire: 40000 + Date.now()});
         res.send(html.replaceAll("REPLACE_JSON_STRING", json_data.replaceAll("\n","").replaceAll("'", "\\'")));
     }
     else {
@@ -209,6 +226,80 @@ app.post("/SQUARE_UPDATE", async (req, res) => {
     await fspromise.writeFile(PROCESS_DIR + "/resources/menu/menu.json", JSON.stringify(json_object));
 
     res.send(html.replaceAll("REPLACE_JSON_STRING", JSON.stringify(json_object).replaceAll("\n","").replaceAll("'", "\\'")));
+});
+
+app.get("/update_image_page", async (req, res) => {
+    let html =  await fspromise.readFile(PROCESS_DIR + "/update_image_page.html","utf-8");
+    if (req.cookies.dosiiroc_userData === undefined || (process.env.PASSWORD !== req.cookies.dosiiroc_userData.id)) {
+        fs.readFile(PROCESS_DIR + "/404.html", "utf-8", (err, html) => {
+            if (err) {
+                console.log(err);
+                return;
+            }
+    
+            res.send(html);
+        });
+    }
+    else {
+        res.send(html.replaceAll("'REPLACE_IMAGE_ADDR_STRING'", images_addr_string));
+    }
+});
+
+app.post("/UPLOAD_IMAGE", async (req, res) => {
+    let html =  await fspromise.readFile(PROCESS_DIR + "/update_image_page.html","utf-8");
+    
+    if (req.files === null) {
+        res.send(html.replaceAll("'REPLACE_IMAGE_ADDR_STRING'", images_addr_string));
+        return;
+    }
+    
+    const { image_input } = req.files;
+    let file_name = image_input.name;
+
+    while(file_name.indexOf(".") != -1) {
+        file_name = file_name.substring(0, file_name.length-1);
+    }
+
+    let address = PROCESS_DIR + "/resources/images/ss_images/ss_" + file_name + ".webp";
+    let tempdir = PROCESS_DIR + "/resources/images/tempdir/" + image_input.name;
+    try {
+        await image_input.mv(tempdir);
+        await sharp(tempdir).resize(2000, 1280, {fit: "cover"}).webp().toFile(address);
+        rmSync(path.join(tempdir));
+    }
+    catch {
+        console.log("ERROR UPLOADING IMAGE");
+    }
+
+    let files_object = [];
+    let temp_dirs = await readdir(PROCESS_DIR + "/resources/images/ss_images/");
+    
+    temp_dirs.forEach((file) => {
+        files_object.push("'" + file + "'");
+    });
+
+    images_addr_string = "[" + files_object.toString() + "]";
+    res.send(html.replaceAll("'REPLACE_IMAGE_ADDR_STRING'", images_addr_string));
+});
+
+app.post("/REMOVE_IMAGE", async (req, res) => {
+    let html =  await fspromise.readFile(PROCESS_DIR + "/update_image_page.html","utf-8");
+    let address = PROCESS_DIR + "/resources/images/ss_images/" + Object.keys(req.body)[0].slice(0, -2);
+    try {
+        await rmSync(path.join(address))
+    }
+    catch {
+        console.log("ERROR REMOVING IMAGE")
+    }
+    let files_object = [];
+    let temp_dirs = await readdir(PROCESS_DIR + "/resources/images/ss_images/");
+        
+    temp_dirs.forEach((file) => {
+        files_object.push("'" + file + "'");
+    });
+
+    images_addr_string = "[" + files_object.toString() + "]";
+    res.send(html.replaceAll("'REPLACE_IMAGE_ADDR_STRING'", images_addr_string));
 });
 
 // don't touch beyond this bruh

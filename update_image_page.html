@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Dosiiroc Cafe Admin Login">
+    <link rel="preload" href="/resources/stylesheet.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="icon" href="/resources/images/favicon_small.ico">
+    <title>Dosiiroc Cafe Admin Login</title>
+    <style>
+        li {float:none; display:list-item}
+        input {width:100%}
+    </style>
+</head>
+<body style="background-color: #FFFDF9; margin:0px; padding:0px">
+    <center>
+        <div class="top_bar">
+            <table style="width:100%">
+                <tr>
+                    <td style="width:100%" align="center"><a href="https://dosiiroccafe.com"><img src="/resources/images/logo FINAL-colored.png"></a></td>
+                </tr> 
+            </table>
+        </div>
+    <hr>
+    <ul align="center" style="text-align: center;">
+        <li>
+            <label for="image_input">Enter a png or jpeg here</label>
+        </li>
+        <form method="POST" action="/UPLOAD_IMAGE/" enctype="multipart/form-data" align="center" style="text-align:center">
+            <li align="center" style="text-align: center;">
+                <input type="file" name="image_input" accept="image/png, image/jpeg" align="center" style="text-align: center;">
+            </li>    
+            <button>SEND</button>
+        </form>
+    </ul>
+    <h3>click below to remove an image</h3>
+    <form id="image_container" method="POST" action="/REMOVE_IMAGE/">
+
+    </form>
+    </center>
+    <script>
+        let slides_image_list = 'REPLACE_IMAGE_ADDR_STRING';
+
+        slides_image_list.forEach((dir) => {
+            container = document.getElementById("image_container");
+            let input = document.createElement("input");
+            input.type = "image";
+            input.src = "/resources/images/ss_images/" + dir;
+            input.name = dir;
+            container.appendChild(input);
+        });
+    </script>  
+</body>
