@@ -66,7 +66,7 @@ await fspromise.writeFile(PROCESS_DIR + "/resources/menu/menu.json", JSON.string
 
 async function check_path(req) {
     if ((req.path.indexOf(".html") >= 0) || (req.path.indexOf(".js") >= 0) || (req.path.indexOf(".json") >= 0) || (req.path.indexOf(".txt") >= 0)) {
-        console.log("attempted get of prohibited files.");
+        console.log("attempted get of prohibited files:" + req.path);
         return true;
     }
     return false;
