@@ -8,7 +8,7 @@
     <link rel="icon" href="/resources/images/favicon_small.ico">
     <title>Dosiiroc Cafe Admin Login</title>
     <style>
-        li {float:none; display:list-item}
+        li {float:none; display:list-item; padding:0}
         input {width:35%}
     </style>
 </head>
@@ -24,11 +24,22 @@
     <hr>
     <ul align="center" style="text-align: center; width:100%">
         <li>
-            <label for="image_input">Enter a png or jpeg here</label>
+            <p for="image_input">Enter a png/jpeg/jpg/webp here.</p>
+        </li>
+        <li>
+            <p>Some details:</p>
+            <ol>
+                <li>
+                    <p>All photos will be converted to .webp format</p>
+                </li>
+                <li>
+                    <p>Photos will be resized to 2000x1280.</p>
+                </li>
+            </ol>
         </li>
         <form method="POST" action="/UPLOAD_IMAGE/" enctype="multipart/form-data" align="center" style="text-align:center;">
             <li style="width:100%;">
-                <input type="file" name="image_input" accept="image/png, image/jpeg" style="margin-left:37.5%; margin-right:37.5%;width:25%">
+                <input type="file" name="image_input" accept="image/png, image/jpeg, image/webp" style="margin-left:37.5%; margin-right:37.5%;width:25%">
             </li>    
             <button>SEND</button>
         </form>
