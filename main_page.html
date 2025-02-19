@@ -19,7 +19,7 @@
         .mySlides {
             display: none;
             img {
-                width: 100%; margin-top:0; clip-path: xywh(0px 0px 100% 900px);
+                width: min(100%, 1500px); margin-top:0; clip-path: xywh(0px 0px 100% 1280px);
             }
         }
         
@@ -111,7 +111,7 @@
     <center>
     <div id="slides_container" style="position:relative; text-align:center; width:100%;">
         <!-- <img src="resources/images/cafe_pic_just_logo.png" style="width: 70%; margin-top:0; position: absolute; left:50%; top:50%; transform:translate(-50%, -50%)"> -->
-        <h2 style="text-wrap: wrap; background-color:black; font-size:3.1vw;width:100%; position: absolute; left:50%; top:50%; transform:translate(-50%, -850%); z-index:1;">Authentic Korean cooking from our home, to your table!</h2>
+        <h2 style="text-wrap: wrap; background-color:black; font-size:3.1vw;width:100%; position: absolute; left:50%; top:50%; transform:translate(-50%, min(-850%, -500px)); z-index:1;">Authentic Korean cooking from our home, to your table!</h2>
     </div>
     <script>
         let slides_image_list = 'REPLACE_IMAGE_ADDR_STRING';
