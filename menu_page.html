@@ -34,7 +34,7 @@
                     await sleep(10);
                 }
                 food_div.className = "hidden_elements";
-                food_div.style.opacity = "0.1"
+                food_div.style.opacity = "0.1";
                 drinks_div.className = "drink_items";
                 drinks_div.style.opacity = "1";
                 isFood = false;
@@ -55,7 +55,7 @@
                 while (window.getComputedStyle(drinks_div).getPropertyValue("opacity") > .1) {
                     drinks_div.style.opacity = String(window.getComputedStyle(drinks_div).getPropertyValue("opacity")/RATE_OF_CHANGE);
                     await sleep(10);
-                }
+                }   
                 food_div.className = "food_items";
                 food_div.style.opacity = "1";
                 drinks_div.className = "hidden_elements";
@@ -153,6 +153,11 @@
         <tr>
             <center>
                 <h3 style="font-size:min(38px, 2.75vw)" id="error_h3">order in person or call ahead for pick up!</h3>
+            </center>
+        </tr>
+        <tr>
+            <center>
+                <h3 style="font-size:min(38px, 2.75vw); margin-right:10%; margin-left:10%" id="error_h3">due to limited seating, if you have a table of 6 or more, <u>please</u> call ahead. We may not be able to serve you otherwise!</h3>
             </center>
         </tr>
         <tr style="padding-bottom:0">
