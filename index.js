@@ -166,10 +166,9 @@ app.listen(process.env.PORT, () =>{
 });
 
 app.post("/admin_login", async (req, res) => {
-    let pass_match = false;
-    pass_match = bcrypt.compareSync(req.body.pass, process.env.PASSWORD)
+    let password = bcrypt.hashSync(req.body.pass, process.env.SALT);
 
-    if (req.body.user === process.env.USERNAME && pass_match) {
+    if (req.body.user === process.env.USER_NAME && password === process.env.PASSWORD) {
         let html =  await fspromise.readFile(PROCESS_DIR + "/menu_changer.html","utf-8");
         let json_data = await fspromise.readFile(PROCESS_DIR + "/resources/menu/menu.json", "utf-8");
         res.cookie("dosiiroc_userData", {"id":req.body.pass}, {expire: 40000 + Date.now()});
