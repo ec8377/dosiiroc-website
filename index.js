@@ -12,7 +12,7 @@ const app = express();
 const fs = require("fs");
 const fspromise = require("fs").promises
 const http = require("http");
-const hash = require("bcryptjs");
+const bcrypt = require("bcryptjs");
 const path = require("path");
 const process = require('node:process');
 const { json } = require("stream/consumers");
@@ -22,6 +22,7 @@ const cookieParser = require('cookie-parser');
 const client = new SquareClient({ token: process.env.TOKEN });
 const id_name_dict = {};
 const item_cost = {};
+const saltRounds = 10;
 
 const PROCESS_DIR = process.cwd();  
 let menu_counter = parseInt(await fspromise.readFile(path.join(PROCESS_DIR, "resources", "menu", "menu_counter.txt")));
@@ -35,6 +36,8 @@ let temp_dirs = await readdir(PROCESS_DIR + "/resources/images/ss_images/");
 temp_dirs.forEach((file) => {
     files_object.push("'" + file + "'");
 });
+
+
 
 let images_addr_string = "[" + files_object.toString() + "]";
 
@@ -163,7 +166,10 @@ app.listen(process.env.PORT, () =>{
 });
 
 app.post("/admin_login", async (req, res) => {
-    if (req.body.user === process.env.USERNAME && req.body.pass === process.env.PASSWORD) {
+    let pass_match = false;
+    pass_match = bcrypt.compareSync(req.body.pass, process.env.PASSWORD)
+
+    if (req.body.user === process.env.USERNAME && pass_match) {
         let html =  await fspromise.readFile(PROCESS_DIR + "/menu_changer.html","utf-8");
         let json_data = await fspromise.readFile(PROCESS_DIR + "/resources/menu/menu.json", "utf-8");
         res.cookie("dosiiroc_userData", {"id":req.body.pass}, {expire: 40000 + Date.now()});
