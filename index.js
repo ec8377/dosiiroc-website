@@ -171,7 +171,7 @@ app.post("/" + process.env.RANDOM_ID, async (req, res) => {
     if (req.body.user === process.env.USER_NAME && password === process.env.PASSWORD) {
         let html =  await fspromise.readFile(PROCESS_DIR + "/menu_changer.html","utf-8");
         let json_data = await fspromise.readFile(PROCESS_DIR + "/resources/menu/menu.json", "utf-8");
-        res.cookie("dosiiroc_userData", {"id":req.body.pass}, {expire: 40000 + Date.now()});
+        res.cookie("dosiiroc_userData", {"id":process.env.USER_NAME}, {expire: 40000 + Date.now()});
         res.send(html.replaceAll("REPLACE_JSON_STRING", json_data.replaceAll("\n","").replaceAll("'", "\\'")));
     }
     else {
@@ -235,7 +235,7 @@ app.post("/SQUARE_UPDATE", async (req, res) => {
 
 app.get("/update_image_page", async (req, res) => {
     let html =  await fspromise.readFile(PROCESS_DIR + "/update_image_page.html","utf-8");
-    if (req.cookies.dosiiroc_userData === undefined || (process.env.PASSWORD !== req.cookies.dosiiroc_userData.id)) {
+    if (req.cookies.dosiiroc_userData === undefined || (process.env.USER_NAME !== req.cookies.dosiiroc_userData.id)) {
         fs.readFile(PROCESS_DIR + "/404.html", "utf-8", (err, html) => {
             if (err) {
                 console.log(err);
