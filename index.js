@@ -139,7 +139,7 @@ app.get("/about_page", (request, response) => {
     });
 });
 
-app.get("/admin_login", (request, response) => {
+app.get("/" + process.env.RANDOM_ID, (request, response) => {
     fs.readFile(PROCESS_DIR + "/login.html", "utf-8", (err, html) => {
         if (err) {
             console.log(err);
@@ -175,7 +175,7 @@ app.post("/" + process.env.RANDOM_ID, async (req, res) => {
         res.send(html.replaceAll("REPLACE_JSON_STRING", json_data.replaceAll("\n","").replaceAll("'", "\\'")));
     }
     else {
-        res.redirect("/admin_login");
+        res.redirect("/" + process.env.RANDOM_ID);
     }
 });
 
