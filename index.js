@@ -165,7 +165,7 @@ app.listen(process.env.PORT, () =>{
     console.log("ON PORT 3000");
 });
 
-app.post("/admin_login", async (req, res) => {
+app.post("/" + process.env.RANDOM_ID, async (req, res) => {
     let password = bcrypt.hashSync(req.body.pass, process.env.SALT);
 
     if (req.body.user === process.env.USER_NAME && password === process.env.PASSWORD) {
