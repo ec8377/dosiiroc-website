@@ -77,7 +77,6 @@
                 <p>Sunday: Closed</p>
                 <p>Monday: 4pm - 8:30pm</p>
                 <p>Tuesday through Saturday: 11am - 2pm, 4pm - 8:30pm</p>
-                <p>*Kitchen closes at 8pm</p>       
             </li>
             <li align="left">
                 <h2>Location</h2>
@@ -130,9 +129,6 @@
         }
         else if (isClosed) {
             document.getElementById("open_sign").textContent = "Sorry, we're currently closed";
-        }
-        else if (!isClosed && date.getHours() == 19 && date.getMinutes() > 30) {
-            document.getElementById("open_sign").textContent = "The kitchen is closing soon!";
         }
         else {
             document.getElementById("open_sign").textContent = "We're open!"
