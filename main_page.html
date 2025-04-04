@@ -193,6 +193,8 @@
         let isMonday = false;
         let isLunchtime = false;
 
+        date.setHours(19);
+        date.setMinutes(31);
 
         if (date.getDay() == 1) {
             isMonday = true;
@@ -201,10 +203,10 @@
         if (date.getDay() == 0) {
             isClosed = true;
         }
-        else if (isMonday && (date.getHours >= 16 && date.getHours < 20)) {
+        else if (isMonday && ((date.getHours() >= 16 && date.getHours() < 20) || date.getHours() === 20 && date.getMinutes() < 30)) {
             isClosed = false;
         }
-        else if (!isMonday && (date.getHours() >= 11 && date.getHours() < 14) || (date.getHours() >= 16 && date.getHours() < 20)) {
+        else if (!isMonday && (date.getHours() >= 11 && date.getHours() < 14) || ((date.getHours() >= 16 && date.getHours() < 20) || date.getHours() === 20 && date.getMinutes() < 30)) {
             isClosed = false;
         }
         if(date.getHours() >= 14 && date.getHours() < 16) {
