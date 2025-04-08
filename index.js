@@ -18,6 +18,8 @@ const process = require('node:process');
 const { json } = require("stream/consumers");
 const sharp  = require("sharp");
 const cookieParser = require('cookie-parser');
+const util = require("util");
+const exec = util.promisify(require("child_process").exec);
 
 const client = new SquareClient({ token: process.env.TOKEN });
 const id_name_dict = {};
@@ -229,7 +231,7 @@ app.post("/SQUARE_UPDATE", async (req, res) => {
     })
 
     await fspromise.writeFile(PROCESS_DIR + "/resources/menu/menu.json", JSON.stringify(json_object));
-    await fspromise.writeFile(PROCESS_DIR + "/resources/private/menu.json", JSON.stringify(json_object));
+    await fspromise.writeFile(PROCESS_DIR + "/resources/private/MenuGenerator/menu.json", JSON.stringify(json_object));
 
     res.send(html.replaceAll("REPLACE_JSON_STRING", JSON.stringify(json_object).replaceAll("\n","").replaceAll("'", "\\'")));
 });
@@ -306,6 +308,21 @@ app.post("/REMOVE_IMAGE", async (req, res) => {
 
     images_addr_string = "[" + files_object.toString() + "]";
     res.send(html.replaceAll("'REPLACE_IMAGE_ADDR_STRING'", images_addr_string));
+});
+
+app.get("/generate_menu", async (req, res) => {
+    try {
+        await exec("cd '" + path.join(PROCESS_DIR, "/resources/private/MenuGenerator/") + "' && '" + path.join(PROCESS_DIR, "/resources/private/MenuGenerator/MenuGenerator") + "'");
+        var image = fs.createReadStream(path.join(PROCESS_DIR, "/resources/private/MenuGenerator/menu.png"));
+    
+        image.on('open', function () {
+            res.set("Content-Type", "image/png");
+            image.pipe(res);
+        })
+    }
+    catch {
+        console.log("error generating menu");
+    }
 });
 
 // don't touch beyond this bruh
