@@ -82,7 +82,7 @@ json_object.categories.forEach((category) => {
 await fspromise.writeFile(PROCESS_DIR + "/resources/menu/menu.json", JSON.stringify(json_object));
 
 async function check_path(req) {
-    if ((req.path.indexOf(".html") >= 0) || (req.path.indexOf(".js") >= 0) || (req.path.indexOf(".json") >= 0) || (req.path.indexOf(".txt") >= 0)) {
+    if ((req.path.indexOf(".html") >= 0) || (req.path.indexOf(".js") >= 0) || (req.path.indexOf(".json") >= 0) || (req.path.indexOf(".txt") >= 0) || req.path.indexOf("/resources/fonts") >= 0 || req.path.indexOf("/resources/private") >= 0) {
         console.log("attempted get of prohibited files:" + req.path);
         return true;
     }
@@ -92,7 +92,7 @@ async function check_path(req) {
 app.use(async function (req, res, next) {
     let check = await check_path(req);
     if (check) {
-        res.redirect("*");
+        res.redirect("/*");
     }
     else {
         next();
@@ -229,6 +229,7 @@ app.post("/SQUARE_UPDATE", async (req, res) => {
     })
 
     await fspromise.writeFile(PROCESS_DIR + "/resources/menu/menu.json", JSON.stringify(json_object));
+    await fspromise.writeFile(PROCESS_DIR + "/resources/private/menu.json", JSON.stringify(json_object));
 
     res.send(html.replaceAll("REPLACE_JSON_STRING", JSON.stringify(json_object).replaceAll("\n","").replaceAll("'", "\\'")));
 });
