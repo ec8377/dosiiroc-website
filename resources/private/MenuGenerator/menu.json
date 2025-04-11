@@ -7,27 +7,32 @@
                 {
                     "name": "Espresso Shot",
                     "cost": "2.50",
-                    "description": "Double shot of espresso"
+                    "description": "Double shot of espresso",
+                    "korean": "에스프레소"
                 },
                 {
                     "name": "Americano",
                     "cost": "3.50",
-                    "description": "Espresso + water (hot/iced)"
+                    "description": "Espresso + water (hot/iced)",
+                    "korean": "아메리카노"
                 },
                 {
                     "name": "Cafe Latte",
                     "cost": "4.25",
-                    "description": "Espresso + water (hot/iced)"
+                    "description": "Espresso + water (hot/iced)",
+                    "korean": "카페 라떼"
                 },
                 {
                     "name": "Vanilla Latte",
                     "cost": "4.75",
-                    "description": "Espresso + milk + vanilla syrup (hot/iced)"
+                    "description": "Espresso + milk + vanilla syrup (hot/iced)",
+                    "korean": "바닐라 라떼"
                 },
                 {
                     "name": "Mint Choco Latte",
                     "cost": "4.75",
-                    "description": "Espresso + sweet, rich chocolate + refreshing mint (hot/iced)"
+                    "description": "Espresso + sweet, rich chocolate + refreshing mint (hot/iced)",
+                    "korean": "민초 라떼"
                 }
             ]
         },
@@ -38,22 +43,26 @@
                 {
                     "name": "Orange Rooibos",
                     "cost": "3.00",
-                    "description": "Standard Orange rooibos tea (hot/iced)"
+                    "description": "Standard Orange rooibos tea (hot/iced)",
+                    "korean": "오렌지 루이보스"
                 },
                 {
                     "name": "Earl Grey Milk Tea",
                     "cost": "4.75",
-                    "description": "Earl grey + milk + simple syrup (hot/iced)"
+                    "description": "Earl grey + milk + simple syrup (hot/iced)",
+                    "korean": "얼그레이 밀크티"
                 },
                 {
                     "name": "Matcha Latte",
                     "cost": "5.50",
-                    "description": "Ceremonial grade matcha + milk + simple syrup (hot/iced)Ceremonial grade matcha + milk + simple syrup (hot/iced)"
+                    "description": "Ceremonial grade matcha + milk + simple syrup (hot/iced)",
+                    "korean": "말차 라떼"
                 },
                 {
                     "name": "Yuzu Hibiscus Tea",
                     "cost": "4.75",
-                    "description": "Hibiscus tea sweetened with yuzu preserves (hot/iced)"
+                    "description": "Hibiscus tea sweetened with yuzu preserves (hot/iced)",
+                    "korean": "유자 허비스커스 티"
                 }
             ]
         },
@@ -64,27 +73,38 @@
                 {
                     "name": "Jollypong Frappe",
                     "cost": "5.75",
-                    "description": "Sweet jollypong cereal + milk (frozen)"
+                    "description": "Sweet jollypong cereal + milk (frozen)",
+                    "korean": "죠리퐁 프라페"
                 },
                 {
                     "name": "Yogurt Smoothie",
                     "cost": "5.75",
-                    "description": "Tart and sweet yakult flavor + milk (frozen)"
+                    "description": "Tart and sweet yakult flavor + milk (frozen)",
+                    "korean": "요거트 스무디"
                 },
                 {
                     "name": "Matcha Chip Frappe",
                     "cost": "6.00",
-                    "description": "  Ceremonial grade matcha + dark chocolate chips + chocolate drizzle (frozen)"
+                    "description": "  Ceremonial grade matcha + dark chocolate chips + chocolate drizzle (frozen)",
+                    "korean": "말차칩 프라페"
                 },
                 {
                     "name": "Banana Milk Latte",
                     "cost": "5.50",
-                    "description": "Espresso + house made banana milk (iced)"
+                    "description": "Espresso + house made banana milk (iced)",
+                    "korean": "바나나우유 라떼"
+                },
+                {
+                    "name": "Dolce Latte",
+                    "cost": "5.25",
+                    "description": "Espresso + milk  + sweet and rich condensed milk.",
+                    "korean": "돌체 라떼"
                 },
                 {
                     "name": "White Chocolate Latte",
                     "cost": "5.25",
-                    "description": "Ghirardelli white chocolate powder + espresso + milk (hot/iced)"
+                    "description": "Ghirardelli white chocolate powder + espresso + milk (hot/iced)",
+                    "korean": "화이트 초코 라떼"
                 }
             ]
         },
@@ -100,7 +120,7 @@
                 {
                     "name": "Korean Caned Drinks",
                     "cost": "2.50",
-                    "description": "  Includes Milkis, Watermelon soda, Calamansi soda, 2%, Yogurt jelly, Sikhye sweet rice punch, Hallabong soda"
+                    "description": "Includes Milkis, Watermelon soda, Calamansi soda, 2%, Yogurt jelly, Sikhye sweet rice punch, Hallabong soda"
                 }
             ]
         },
@@ -123,13 +143,13 @@
                 {
                     "name": "Korean Boneless Fried Chicken",
                     "cost": "9.95",
-                    "description": "Deep fried bites of bonesless chicken breast tossed in your choice of sauce. Upgrade to a large for +$9.",
+                    "description": "Deep fried bites of bonesless chicken breast tossed in your choice of sauce. Upgrade to a large for +$9",
                     "korean": "순살치킨"
                 },
                 {
                     "name": "Sweet and Sour Pork",
                     "cost": "9.95",
-                    "description": "Deep fried strips of pork coated in a sticky, sweet and sour sauce. Upgrade to a large for +$9.",
+                    "description": "Deep fried strips of pork coated in a sticky, sweet and sour sauce. Upgrade to a large for +$9",
                     "korean": "탕수육"
                 }
             ]
@@ -141,8 +161,8 @@
                 {
                     "name": "Tteokbokki",
                     "cost": "9.95",
-                    "description": "Chewy rice cakes, fish cakes, and veggies simmered in a spicy sauce",
-                    "korean": "떡볶이"
+                    "description": "Chewy rice cakes, fish cakes, and veggies simmered in a spicy sauce 🌶",
+                    "korean": "떡볶이"                
                 },
                 {
                     "name": "Fried Mandu (5 pc)",
@@ -183,7 +203,7 @@
                 {
                     "name": "Spicy Pork Bulgogi",
                     "cost": "19.95",
-                    "description": "Thinly sliced pork grilled in a spicy gochujang marinade",
+                    "description": "Thinly sliced pork grilled in a spicy gochujang marinade 🌶",
                     "korean": "돼지 불고기"
                 },
                 {
@@ -201,13 +221,13 @@
                 {
                     "name": "Bibim Naengmyun",
                     "cost": "17.95",
-                    "description": "Chewy buckwheat noddles served cold with a spicy sauce, garnished with sliced brisket cucumber and egg",
+                    "description": "Chewy buckwheat noddles served cold with a spicy sauce, garnished with sliced brisket cucumber and egg 🌶",
                     "korean": "비빔냉면"
                 },
                 {
                     "name": "Kimchi Carbonara Udon",
                     "cost": "18.95",
-                    "description": "Udon noddles and bacon in a creamy and spicy sauce infused with kimchi, topped with fried shrimp",
+                    "description": "Udon noddles and bacon in a creamy and spicy sauce infused with kimchi, topped with fried shrimp 🌶",
                     "korean": "김치 까르보 우동"
                 }
             ]
@@ -225,7 +245,7 @@
                 {
                     "name": "Kimchi Fried Rice",
                     "cost": "14.95",
-                    "description": "White rice stir fried with kimchi and pork belly, topped with a fried egg (runny yolk)",
+                    "description": "White rice stir fried with kimchi and pork belly, topped with a fried egg (runny yolk) 🌶",
                     "korean": "김치 볶음밥"
                 },
                 {
@@ -255,7 +275,7 @@
                 {
                     "name": "Kimchi Jeon",
                     "cost": "13.95",
-                    "description": "Pan fried pancake with house made kimchi",
+                    "description": "Pan fried pancake with house made kimchi 🌶",
                     "korean": "김치전"
                 },
                 {
@@ -268,58 +288,67 @@
         },
         {
             "name": "Stews",
-            "type": "Food",
+            "type": "Drink",
             "items": [
                 {
                     "name": "Kimchi Jjigae",
                     "cost": "16.95",
-                    "description": "Kimchi and tofu simmered into a spicy stew, served in a stone pot with your choice of pork or tuna"
+                    "description": "Kimchi and tofu simmered into a spicy stew, served in a stone pot with your choice of pork or tuna 🌶",
+                    "korean": "김치 찌개"
                 },
                 {
                     "name": "Dwenjang Jjigae",
                     "cost": "15.95",
-                    "description": "Umami flavor of korean fermented bean paste with veggies and tofu, served in a stone pot with your choice of veggie or beef"
+                    "description": "Umami flavor of korean fermented bean paste with veggies and tofu, served in a stone pot with your choice of veggie or beef",
+                    "korean": "된장찌개"
                 },
                 {
                     "name": "Soondubu Jjigae",
                     "cost": "15.95",
-                    "description": "Spicy stew using korean chili flakes and silken tofu, served in a stone pot with your choice of veggie, pork (+$1.50), or seafood (+$2)"
+                    "description": "Spicy stew using korean chili flakes and silken tofu, served in a stone pot with your choice of veggie, pork (+$1.50), or seafood (+$2) 🌶",
+                    "korean": "순두부 찌개"
                 },
                 {
                     "name": "Yukgaejang",
                     "cost": "18.95",
-                    "description": "Spicy stew with shredded beef"
+                    "description": "Spicy stew with shredded beef, glass noodles, egg and a variety of korean vegetables",
+                    "korean": "육개장"
                 },
                 {
                     "name": "Tteok Guk",
                     "cost": "15.95",
-                    "description": "Sliced rice cakes in hearty mild broth, garnished with egg, dried seaweed, and beef"
+                    "description": "Sliced rice cakes in hearty mild broth, garnished with egg, dried seaweed, and beef",
+                    "korean": "떡국"
                 },
                 {
                     "name": "Mandu Guk",
                     "cost": "18.95",
-                    "description": "Pork and beef dumplings in a hearty mild broth, garnished with egg, dried seaweed, and beef"
+                    "description": "Pork and beef dumplings in a hearty mild broth, garnished with egg, dried seaweed, and beef",
+                    "korean": "만둣국"
                 },
                 {
                     "name": "Tteok Mandu Guk",
                     "cost": "18.95",
-                    "description": "Sliced rice cakes with pork and beef dumplings in a heart mild broth, garnished with egg, dried seaweed, and beef"
+                    "description": "Sliced rice cakes with pork and beef dumplings in a heart mild broth, garnished with egg, dried seaweed, and beef",
+                    "korean": "떡만둣국"
                 }
             ]
         },
         {
             "name": "Katsu Cutlets",
-            "type": "Food",
+            "type": "Drink",
             "items": [
                 {
                     "name": "Donkatsu (Pork Cutlet)",
                     "cost": "18.95",
-                    "description": "Deep fried pork cutlet topped with home made roux sauce and served with a side of cabbage slaw and mac salad"
+                    "description": "Deep fried pork cutlet topped with home made roux sauce and served with a side of cabbage slaw and mac salad",
+                    "korean": "돈까스"
                 },
                 {
                     "name": "Chicken Katsu",
                     "cost": "18.95",
-                    "description": "Deep fried chicken cutlet topped with home made roux sauce and served with a side of cabbage slaw and mac salad"
+                    "description": "Deep fried chicken cutlet topped with home made roux sauce and served with a side of cabbage slaw and mac salad",
+                    "korean": "치킨까스"
                 }
             ]
         },
