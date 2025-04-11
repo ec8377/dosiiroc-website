@@ -200,10 +200,10 @@
         if (date.getDay() == 0) {
             isClosed = true;
         }
-        else if (isMonday && ((date.getHours() >= 16 && date.getHours() < 20) || date.getHours() === 20 && date.getMinutes() < 30)) {
+        else if (isMonday && ((date.getHours() >= 16 && date.getHours() < 20) || (date.getHours() === 20 && date.getMinutes() < 30))) {
             isClosed = false;
         }
-        else if (!isMonday && (date.getHours() >= 11 && date.getHours() < 14) || ((date.getHours() >= 16 && date.getHours() < 20) || date.getHours() === 20 && date.getMinutes() < 30)) {
+        else if (!isMonday && (date.getHours() >= 11 && date.getHours() < 14) || ((date.getHours() >= 16 && date.getHours() < 20) || (date.getHours() === 20 && date.getMinutes() < 30))) {
             isClosed = false;
         }
         if(date.getHours() >= 14 && date.getHours() < 16) {
