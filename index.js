@@ -341,6 +341,21 @@ app.get("/generate_drinks_menu", async (req, res) => {
     }
 });
 
+app.get("/generate_flipped_drinks_menu", async (req, res) => {
+    try {
+        await exec("cd '" + path.join(PROCESS_DIR, "/resources/private/MenuGenerator/") + "' && '" + path.join(PROCESS_DIR, "/resources/private/MenuGenerator/MenuGenerator") + "' drinks 0");
+        var image = fs.createReadStream(path.join(PROCESS_DIR, "/resources/private/MenuGenerator/menu.png"));
+    
+        image.on('open', function () {
+            res.set("Content-Type", "image/png");
+            image.pipe(res);
+        })
+    }
+    catch {
+        console.log("error generating menu");
+    }
+});
+
 // don't touch beyond this bruh
 
 app.get("*", (req, res) => {
