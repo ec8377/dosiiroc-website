@@ -54,6 +54,9 @@
                 <input placeholder="Name" id="name_input" name="name" type="text">
             </li>
             <li>
+                <input placeholder="Korean Name" id="korean_name_input" name="korean_name" type="text">
+            </li>
+            <li>
                 <input placeholder="Cost" id="cost_input" name="cost" type="text">
             </li>
         <form method="dialog">
@@ -94,6 +97,7 @@
         var items_list;
         var feedback_p = document.getElementById("feedback_p");
         let name_input = document.getElementById("name_input");
+        let korean_name_input = document.getElementById("korean_name_input");
         let cost_input = document.getElementById("cost_input");
         let des_input = document.getElementById("description_input");
 
@@ -170,7 +174,8 @@
             let temp_item = JSON.parse(JSON.stringify(menu.categories[0].items[0]));
             temp_item.name = item_name;
             temp_item.cost = "";
-            temp_item.description = ""
+            temp_item.description = "";
+            temp_item.korean = "";
 
             item_index = item_index + 1;
             menu.categories[category_index].items.length = menu.categories[category_index].items.length + 1;
@@ -189,6 +194,7 @@
 
             name_input.value = item_object.name;
             cost_input.value = item_object.cost;
+            korean_name_input.value = item_object.korean;
             des_input.value = item_object.description;
         }
 
@@ -196,6 +202,7 @@
             menu.categories[category_index].items[item_index].name = name_input.value.replaceAll("\"", "");
             menu.categories[category_index].items[item_index].cost = cost_input.value;
             menu.categories[category_index].items[item_index].description = des_input.value.replaceAll("\"", "");
+            menu.categories[category_index].items[item_index].korean = korean_name_input.value.replaceAll("\"", "");
             feedback_p.textContent = "Updating...";
 
             const form = document.createElement("form");

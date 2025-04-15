@@ -183,6 +183,7 @@ app.post("/" + process.env.RANDOM_ID, async (req, res) => {
 
 app.post("/JSON_UPLOAD", async (req, res) => {
     await fspromise.writeFile(PROCESS_DIR + "/resources/menu/menu.json", req.body.JSON_UPLOAD);
+    await fspromise.writeFile(PROCESS_DIR + "/resources/private/MenuGenerator/menu.json", req.body.JSON_UPLOAD);
     let html =  await fspromise.readFile(PROCESS_DIR + "/menu_changer.html","utf-8");
     let json_data = await fspromise.readFile(PROCESS_DIR + "/resources/menu/menu.json", "utf-8");
     res.send(html.replaceAll("REPLACE_JSON_STRING", json_data.replaceAll("\n","").replaceAll("'", "\\'")));
@@ -313,6 +314,21 @@ app.post("/REMOVE_IMAGE", async (req, res) => {
 app.get("/generate_menu", async (req, res) => {
     try {
         await exec("cd '" + path.join(PROCESS_DIR, "/resources/private/MenuGenerator/") + "' && '" + path.join(PROCESS_DIR, "/resources/private/MenuGenerator/MenuGenerator") + "'");
+        var image = fs.createReadStream(path.join(PROCESS_DIR, "/resources/private/MenuGenerator/menu.png"));
+    
+        image.on('open', function () {
+            res.set("Content-Type", "image/png");
+            image.pipe(res);
+        })
+    }
+    catch {
+        console.log("error generating menu");
+    }
+});
+
+app.get("/generate_drinks_menu", async (req, res) => {
+    try {
+        await exec("cd '" + path.join(PROCESS_DIR, "/resources/private/MenuGenerator/") + "' && '" + path.join(PROCESS_DIR, "/resources/private/MenuGenerator/MenuGenerator") + "' drinks");
         var image = fs.createReadStream(path.join(PROCESS_DIR, "/resources/private/MenuGenerator/menu.png"));
     
         image.on('open', function () {
