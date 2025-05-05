@@ -40,18 +40,19 @@ temp_dirs.forEach((file) => {
 });
 
 
-
 let images_addr_string = "[" + files_object.toString() + "]";
 
 let response = await client.catalog.list({types:["ITEM"]});
+
 for await (const item of response) {
     id_name_dict[item.id] = item.itemData.name;
 }
 
 response = await client.catalog.list({types: "ITEM_VARIATION"});
 for await (const item of response) {
-    if (item_cost[id_name_dict[item.itemVariationData.itemId]] != undefined && item_cost[id_name_dict[item.itemVariationData.itemId]] > item.itemVariationData.priceMoney.amount) {
-        item_cost[id_name_dict[item.itemVariationData.itemId]] = item.itemVariationData.priceMoney.amount
+    if (item_cost[id_name_dict[item.itemVariationData.itemId]] != undefined && item_cost[id_name_dict[item.itemVariationData.itemId]] != item.itemVariationData.priceMoney.amount) {
+        if (item.itemVariationData.name.indexOf("Large") < 0)
+            item_cost[id_name_dict[item.itemVariationData.itemId]] = item.itemVariationData.priceMoney.amount
     }
     else if (item_cost[id_name_dict[item.itemVariationData.itemId]] == undefined) {
         item_cost[id_name_dict[item.itemVariationData.itemId]] = item.itemVariationData.priceMoney.amount
