@@ -51,8 +51,9 @@ for await (const item of response) {
 response = await client.catalog.list({types: "ITEM_VARIATION"});
 for await (const item of response) {
     if (item_cost[id_name_dict[item.itemVariationData.itemId]] != undefined && item_cost[id_name_dict[item.itemVariationData.itemId]] != item.itemVariationData.priceMoney.amount) {
-        if (item.itemVariationData.name.indexOf("Large") < 0)
-            item_cost[id_name_dict[item.itemVariationData.itemId]] = item.itemVariationData.priceMoney.amount
+        if ((item.itemVariationData.name.toLowerCase().indexOf("large") < 0) && (item.itemVariationData.name.toLowerCase().indexOf("beef") < 0) && (item.itemVariationData.name.toLowerCase().indexOf("pork") < 0) && (item.itemVariationData.name.toLowerCase().indexOf("seafood") < 0)) {
+            item_cost[id_name_dict[item.itemVariationData.itemId]] = item.itemVariationData.priceMoney.amount;
+        }
     }
     else if (item_cost[id_name_dict[item.itemVariationData.itemId]] == undefined) {
         item_cost[id_name_dict[item.itemVariationData.itemId]] = item.itemVariationData.priceMoney.amount
