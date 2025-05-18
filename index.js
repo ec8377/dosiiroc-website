@@ -1,6 +1,7 @@
 import { createRequire } from "module";
 import { rm, rmSync } from "node:fs";
 import { readdir } from "node:fs/promises";
+import { stringify } from "node:querystring";
 import { SquareClient } from "square";
 
 const require = createRequire(import.meta.url);
@@ -20,6 +21,7 @@ const sharp  = require("sharp");
 const cookieParser = require('cookie-parser');
 const util = require("util");
 const exec = util.promisify(require("child_process").exec);
+const nodemailer = require('nodemailer');
 
 const client = new SquareClient({ token: process.env.TOKEN });
 const id_name_dict = {};
@@ -142,6 +144,61 @@ app.get("/about_page", (request, response) => {
         response.send(html);
     });
 });
+
+// STUFF FOR CATERING 
+
+app.get("/catering", (request, response) => {
+    fs.readFile(PROCESS_DIR + "/catering.html", "utf-8", (err, html) => {
+        if (err) {
+            console.log(err);
+            return;
+        }
+
+        response.send(html);
+    });
+});
+
+app.post("/CATERING_SUBMIT", async (request, response) => {
+    console.log(request);
+    var transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: 'whatagod235@gmail.com',
+            pass: 'mqsc wigr jcpw xdfb'
+        }
+    });
+
+    let reply = await fspromise.readFile(PROCESS_DIR + '/resources/catering_reply.txt', "utf-8");
+    reply = String(reply);
+    reply = reply.replaceAll('FULL_NAME', request.body.fullname);
+    reply = reply.replaceAll('PHONE_NUMBER', request.body.phone);
+    reply = reply.replaceAll('EMAIL', request.body.email);
+    reply = reply.replaceAll('NUM_PPL', request.body.guests);
+    reply = reply.replaceAll('DATE', request.body.event_date);
+    reply = reply.replaceAll('TIME', request.body.event_time);
+    reply = reply.replaceAll('OCC', (request.body.other_occasion == '') ? request.body.occasion : request.body.other_occasion);
+    reply = reply.replaceAll('BUDGET', request.body.budget);
+    reply = reply.replaceAll('NOTES', request.body.notes);
+    
+    var mailOptions = {
+        from: 'whatagod235@gmail.com',
+        to: request.body.email,
+        subject: 'Dosiiroc Cafe Catering Order',
+        text: reply
+    };
+    transporter.sendMail(mailOptions, (err, info) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            console.log('Email send: ' + info.response);
+        }
+    });
+
+    response.redirect("/catering");
+});
+
+// CATERING END
 
 app.get("/" + process.env.RANDOM_ID, (request, response) => {
     fs.readFile(PROCESS_DIR + "/login.html", "utf-8", (err, html) => {

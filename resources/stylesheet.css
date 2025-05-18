@@ -458,4 +458,6 @@ ul {
 	transform: rotate(60deg) translateY(-60px) translateX(8px);
 }
 
-  
+.catering-container {
+	font-family: 'Kollektif';
+}

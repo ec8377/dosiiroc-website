@@ -1,0 +1,15 @@
+Thank you for choosing us!
+
+This is an automated response from our Dosiiroc Cafe to confirm the form went through properly. We'll get in touch soon. 
+
+Full Name: FULL_NAME
+Phone Number: PHONE_NUMBER
+Email Address: EMAIL
+Number of People: NUM_PPL
+Event Date: DATE
+Event Time: TIME
+Occasion: OCC
+Budget per Person: BUDGET
+Additional Notes: NOTES
+
+Dosiiroc Cafe
