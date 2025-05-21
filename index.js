@@ -159,12 +159,8 @@ app.get("/catering", (request, response) => {
 });
 
 app.post("/CATERING_SUBMIT", async (request, response) => {
-    console.log(request);
     const token = request.body['cf-turnstile-response'];
     const ip = request.headers['CF-Connecting-IP'];
-
-    console.log(token);
-    console.log(ip);
 
     const url = 'https://challenges.cloudflare.com/turnstile/v0/siteverify';
     const result = await fetch(url, {
