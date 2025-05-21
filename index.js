@@ -254,16 +254,45 @@ app.listen(process.env.PORT, () =>{
 });
 
 app.post("/" + process.env.RANDOM_ID, async (req, res) => {
-    let password = bcrypt.hashSync(req.body.pass, process.env.SALT);
+    const token = req.body['cf-turnstile-response'];
+    const ip = req.headers['CF-Connecting-IP'];
 
-    if (req.body.user === process.env.USER_NAME && password === process.env.PASSWORD) {
-        let html =  await fspromise.readFile(PROCESS_DIR + "/menu_changer.html","utf-8");
-        let json_data = await fspromise.readFile(PROCESS_DIR + "/resources/menu/menu.json", "utf-8");
-        res.cookie("dosiiroc_userData", {"id":process.env.USER_NAME}, {expire: 40000 + Date.now()});
-        res.send(html.replaceAll("REPLACE_JSON_STRING", json_data.replaceAll("\n","").replaceAll("'", "\\'")));
+    const url = 'https://challenges.cloudflare.com/turnstile/v0/siteverify';
+    try {
+        const result = await fetch(url, {
+            body: JSON.stringify({
+                secret: process.env.CF_HIDDEN,
+                response: token,
+                remoteip: ip
+            }),
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+
+        const outcome = await result.json();
+
+        if (outcome.success) {
+            let password = bcrypt.hashSync(req.body.pass, process.env.SALT);
+
+            if (req.body.user === process.env.USER_NAME && password === process.env.PASSWORD) {
+                let html =  await fspromise.readFile(PROCESS_DIR + "/menu_changer.html","utf-8");
+                let json_data = await fspromise.readFile(PROCESS_DIR + "/resources/menu/menu.json", "utf-8");
+                res.cookie("dosiiroc_userData", {"id":process.env.USER_NAME}, {expire: 40000 + Date.now()});
+                res.send(html.replaceAll("REPLACE_JSON_STRING", json_data.replaceAll("\n","").replaceAll("'", "\\'")));
+            }
+            else {
+                res.redirect("/" + process.env.RANDOM_ID);
+            }
+        }
+        else {
+            console.error('Turnstile verification failed:', outcome['error-codes']);
+            res.redirect("/" + process.env.RANDOM_ID);
+        }
     }
-    else {
-        res.redirect("/" + process.env.RANDOM_ID);
+    catch {
+        console.error("error checking admin login turnstile.");
     }
 });
 
