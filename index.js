@@ -160,40 +160,63 @@ app.get("/catering", (request, response) => {
 
 app.post("/CATERING_SUBMIT", async (request, response) => {
     console.log(request);
-    var transporter = nodemailer.createTransport({
-        service: 'gmail',
-        auth: {
-            user: 'whatagod235@gmail.com',
-            pass: 'mqsc wigr jcpw xdfb'
-        }
-    });
+    const token = request.body['cf-turnstile-response'];
+    const ip = request.headers['CF-Connecting-IP'];
 
-    let reply = await fspromise.readFile(PROCESS_DIR + '/resources/catering_reply.txt', "utf-8");
-    reply = String(reply);
-    reply = reply.replaceAll('FULL_NAME', request.body.fullname);
-    reply = reply.replaceAll('PHONE_NUMBER', request.body.phone);
-    reply = reply.replaceAll('EMAIL', request.body.email);
-    reply = reply.replaceAll('NUM_PPL', request.body.guests);
-    reply = reply.replaceAll('DATE', request.body.event_date);
-    reply = reply.replaceAll('TIME', request.body.event_time);
-    reply = reply.replaceAll('OCC', (request.body.other_occasion == '') ? request.body.occasion : request.body.other_occasion);
-    reply = reply.replaceAll('BUDGET', request.body.budget);
-    reply = reply.replaceAll('NOTES', request.body.notes);
-    
-    var mailOptions = {
-        from: 'whatagod235@gmail.com',
-        to: request.body.email,
-        subject: 'Dosiiroc Cafe Catering Order',
-        text: reply
-    };
-    transporter.sendMail(mailOptions, (err, info) => {
-        if (err) {
-            console.log(err);
-        }
-        else {
-            console.log('Email send: ' + info.response);
+    console.log(token);
+    console.log(ip);
+
+    const url = 'https://challenges.cloudflare.com/turnstile/v0/siteverify';
+    const result = await fetch(url, {
+        body: JSON.stringify({
+        secret: SECRET_KEY,
+        response: token,
+        remoteip: ip
+        }),
+        method: 'POST',
+        headers: {
+        'Content-Type': 'application/json'
         }
     });
+    ​
+    const outcome = await result.json();
+
+    if (outcome.success) {
+        var transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+                user: 'whatagod235@gmail.com',
+                pass: 'mqsc wigr jcpw xdfb'
+            }
+        });
+
+        let reply = await fspromise.readFile(PROCESS_DIR + '/resources/catering_reply.txt', "utf-8");
+        reply = String(reply);
+        reply = reply.replaceAll('FULL_NAME', request.body.fullname);
+        reply = reply.replaceAll('PHONE_NUMBER', request.body.phone);
+        reply = reply.replaceAll('EMAIL', request.body.email);
+        reply = reply.replaceAll('NUM_PPL', request.body.guests);
+        reply = reply.replaceAll('DATE', request.body.event_date);
+        reply = reply.replaceAll('TIME', request.body.event_time);
+        reply = reply.replaceAll('OCC', (request.body.other_occasion == '') ? request.body.occasion : request.body.other_occasion);
+        reply = reply.replaceAll('BUDGET', request.body.budget);
+        reply = reply.replaceAll('NOTES', request.body.notes);
+        
+        var mailOptions = {
+            from: 'whatagod235@gmail.com',
+            to: request.body.email,
+            subject: 'Dosiiroc Cafe Catering Order',
+            text: reply
+        };
+        transporter.sendMail(mailOptions, (err, info) => {
+            if (err) {
+                console.log(err);
+            }
+            else {
+                console.log('Email send: ' + info.response);
+            }
+        });
+    }
 
     response.redirect("/catering");
 });
