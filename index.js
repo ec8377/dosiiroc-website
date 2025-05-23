@@ -182,8 +182,8 @@ app.post("/CATERING_SUBMIT", async (request, response) => {
             var transporter = nodemailer.createTransport({
                 service: 'gmail',
                 auth: {
-                    user: 'whatagod235@gmail.com',
-                    pass: 'mqsc wigr jcpw xdfb'
+                    user: 'dosiiroccafe@gmail.com',
+                    pass: process.env.EMAIL_PASSWORD
                 }
             });
 
@@ -200,7 +200,7 @@ app.post("/CATERING_SUBMIT", async (request, response) => {
             reply = reply.replaceAll('NOTES', request.body.notes);
             
             var mailOptions = {
-                from: 'whatagod235@gmail.com',
+                from: 'dosiiroccafe@gmail.com',
                 to: request.body.email,
                 subject: 'Dosiiroc Cafe Catering Order',
                 text: reply
@@ -210,7 +210,22 @@ app.post("/CATERING_SUBMIT", async (request, response) => {
                     console.log(err);
                 }
                 else {
-                    console.log('Email send: ' + info.response);
+                    console.log('Email sent: ' + info.response);
+                }
+            });
+
+            mailOptions = {
+                from: 'dosiiroccafe@gmail.com',
+                to: 'dosiiroccafe@gmail.com',
+                subject: 'Dosiiroc Cafe Catering Order',
+                text: reply
+            };
+            transporter.sendMail(mailOptions, (err, info) => {
+                if (err) {
+                    console.log(err);
+                }
+                else {
+                    console.log('Record sent: ' + info.response);
                 }
             });
         }
