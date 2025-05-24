@@ -125,6 +125,7 @@ app.use(express.urlencoded({
 }));
 app.use(fileUpload());
 app.use(cookieParser());
+app.set("trust proxy", "loopback");
 
 
 app.get("/", (request, response) => {
