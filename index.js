@@ -23,6 +23,15 @@ const util = require("util");
 const exec = util.promisify(require("child_process").exec);
 const nodemailer = require('nodemailer');
 
+const { rateLimit } = require("express-rate-limit");
+
+const limiter = rateLimit({ 
+    windowMs: ((60 * 60) * 1000) * 24,
+    limit: 1,
+    standardHeaders: true,
+    legacyHeaders: false
+});
+
 const client = new SquareClient({ token: process.env.TOKEN });
 const id_name_dict = {};
 const item_cost = {};
@@ -145,6 +154,17 @@ app.get("/about_page", (request, response) => {
     });
 });
 
+app.get("/bot", (request, response) => {
+    fs.readFile(PROCESS_DIR + "/bot.html", "utf-8", (err, html) => {
+        if (err) {
+            console.log(err);
+            return;
+        }
+
+        response.send(html);
+    });
+});
+
 // STUFF FOR CATERING 
 
 app.get("/catering", (request, response) => {
@@ -178,7 +198,7 @@ app.post("/CATERING_SUBMIT", async (request, response) => {
 
         const outcome = await result.json();
 
-        if (outcome.success) {
+        if (outcome.success && request.body.link === '' && request.body.checkbox === undefined) {
             var transporter = nodemailer.createTransport({
                 service: 'gmail',
                 auth: {
@@ -228,16 +248,24 @@ app.post("/CATERING_SUBMIT", async (request, response) => {
                     console.log('Record sent: ' + info.response);
                 }
             });
+
+            fs.readFile(PROCESS_DIR + "/catering.html", "utf-8", (err, html) => {
+                if (err) {
+                    console.log(err);
+                    return;
+                }
+                response.send(html.replace("Please fill out the form below!", "Success! You should receive an email shortly."));
+            });
         }
         else {
-            console.error('Turnstile verification failed:', outcome['error-codes']);
+            console.error('Turnstile verification failed:', outcome['error-codes'], request.body.checkbox, request.body.link);
+            response.redirect("/bot");
         }
     }
     catch {
-        console.error('error in verifying turnstile.')
+        console.error('error in verifying turnstile.');
+        response.redirect("/bot");
     }
-    
-    response.redirect("/catering");
 });
 
 // CATERING END
@@ -303,11 +331,12 @@ app.post("/" + process.env.RANDOM_ID, async (req, res) => {
         }
         else {
             console.error('Turnstile verification failed:', outcome['error-codes']);
-            res.redirect("/" + process.env.RANDOM_ID);
+            res.redirect("/bot");
         }
     }
     catch {
         console.error("error checking admin login turnstile.");
+        res.redirect("/bot");
     }
 });
 
@@ -338,7 +367,6 @@ app.post("/SQUARE_UPDATE", async (req, res) => {
             item_cost[id_name_dict[item.itemVariationData.itemId]] = item.itemVariationData.priceMoney.amount
         }
     }
-
 
     json_object.categories.forEach((category) => {
         category.items.forEach((item) => {
@@ -464,7 +492,7 @@ app.get("/generate_drinks_menu", async (req, res) => {
         image.on('open', function () {
             res.set("Content-Type", "image/png");
             image.pipe(res);
-        })
+        });
     }
     catch {
         console.log("error generating menu");

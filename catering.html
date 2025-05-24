@@ -109,7 +109,8 @@
     </center>
     <div class="catering-container">
         <h2>- Catering Request -</h2>
-        <p>Please fill out the form below!</p>
+        <p id="check_p">Please fill out the form below!</p>
+        <p>To protect from bots, you can only submit one form per day.</p>
 
         <form id="catering_form" action="CATERING_SUBMIT" method="POST">
             <div class="form-group">
@@ -172,11 +173,18 @@
                 <textarea id="notes" name="notes" rows="4"></textarea>
             </div>
 
+            <div class="form-group form_links">
+                <input type="text" id="link" name="link">
+                <label for="checkbox" align="center">free food?</label>
+                <input type="checkbox" id="checkbox" name="checkbox" value="free?">
+            </div>
+
             <p>You'll receive an email confirming your request and we'll follow up through another email as soon as we can.</p>
 
             <div class="form-group">
                 <button type="submit" class="submit-btn">Submit Catering Request</button>
             </div>
+            
             <div class="cf-turnstile" data-sitekey="0x4AAAAAABeLbprx5bBMQrng"></div>
         </form>
     </div>
@@ -263,6 +271,10 @@
     </style>
 
     <script>
+        if (document.getElementById("check_p").textContent === "Success! You should receive an email shortly.") {
+            document.getElementById("catering_form").hidden = true;
+        }
+
         document.addEventListener('DOMContentLoaded', function() {
             // Show/hide the "other" occasion field
             const occasionSelect = document.getElementById('occasion');

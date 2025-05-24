@@ -34,6 +34,7 @@ h1 {
 	color: #F7941D;
 	font-size: 65;
 	font-size: 4vw;
+	font-family: "BaronNeue";
 }
 h2{
 	color: #F7941D;
@@ -460,4 +461,14 @@ ul {
 
 .catering-container {
 	font-family: 'Kollektif';
+}
+
+.form_links {
+	opacity: 0;
+   	position: absolute;
+   	top: 0;
+   	left: 0;
+   	height: 0;
+   	width: 0;
+   	z-index: -1;
 }

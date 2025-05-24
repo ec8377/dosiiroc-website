@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="About Dosiiroc Cafe">
+    <meta name="keywords" content="Dosiiroc Cafe, Korean Food">
+    <meta property="og:image" content="https://www.dosiiroccafe.com/resources/images/logo_thumb.png">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Dosiiroc Cafe">
+    <meta property="og:url" content="https://www.dosiiroccafe.com/about_page">
+    <link rel="preload" href="/resources/stylesheet.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="icon" href="/resources/images/favicon_small.ico">
+    <title>About Dosiiroc Cafe</title>
+</head>
+<body style="background-color: #FFFDF9; margin:0px; padding:0px">
+    <script>
+        /* When the user clicks on the button,
+        toggle between hiding and showing the dropdown content */
+        function dropdown_func() {
+            document.getElementById("myDropdown").classList.toggle("show");
+            //var dropbutton = document.getElementsByClassName("dropbtn");
+            var dropbutton = document.getElementsByClassName("dropbtn");
+            var arrow = document.getElementsByClassName("arrow_down");
+        
+            dropbutton[0].classList.toggle("rotate_chopsticks");
+            //arrow[0].classList.toggle("rotate_arrow");
+        }
+        
+        // Close the dropdown menu if the user clicks outside of it
+        window.onclick = function(event) {
+            if (!event.target.matches('.dropbtn') && !event.target.matches('.rice_bowl') && !event.target.matches(".arrow_down")) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                var i;
+                for (i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+                var dropbutton = document.getElementsByClassName("dropbtn");
+                if (dropbutton[0].classList.contains("rotate_chopsticks")) {
+                    dropbutton[0].classList.toggle("rotate_chopsticks");    
+                }
+            }
+        }
+    </script>
+    <center>
+        <div class="top_bar">
+            <table>
+                <tr>
+                    <td><a href="https://dosiiroccafe.com"><img src="/resources/images/logo FINAL-colored.png"></a></td>
+                    <td align="right" style="max-width:110px; padding-left: 0px; padding-bottom:40px; padding-right: 20px; padding-top:15px;">
+                        <div class="dropdown">
+                            <button onclick="dropdown_func()" style="background-image: url(/resources/images/rice_bowl.png); position:absolute;" class="rice_bowl">
+                                <p style="margin-top:37px; font-weight: 900; color:black; font-size: 19px" class="arrow_down">Menu</p>
+                            </button> 
+                            <button onclick="dropdown_func()" class="dropbtn" style="background-image: url(/resources/images/rice_chopstick.png); margin-left: 10px; margin-top: 6px;"></button>
+                            <div id="myDropdown" class="dropdown-content">
+                                <a href="menu_page">Our Menu</a>
+                                <a href="about_page">About Us</a>
+                                <a href="https://maps.app.goo.gl/CjyDhjXLf2g43XrD7">Review Us!</a>
+                                <a href="https://app.squareup.com/gift/MLQQENGXPAHSC/order">Gift Cards</a>
+                            </div>
+                        </div> 
+                    </td>   
+                </tr> 
+            </table>
+        </div>
+    </center>
+    <hr>
+    <div style="width:100%;" align="center">
+        <h1 style="width:100%; font-size:3vw; padding-top:100px">Something went wrong, or you've been detected as a bot. Please try again.</h1>
+        <p style="width:100%; font-size:3vw; padding-top:100px">If this is a mistake, please let us know!</p>
+    </div>
+
+    <div class="bottom_nav_bar">
+        <ul>
+            <div class="about_button">
+                <center>
+                <li align="center">
+                    <h2>Links</h2>
+                    <a href=https://www.instagram.com/dosiiroccafe/?utm_source=ig_embed&ig_rid=676fea6d-ba69-4fad-ab10-ae74d11c5842"><img src="/resources/images/dosiiroc_insta.png" style="width:min(50px,5vw);"></a>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfr4gpbMgaLDBHJM5OTaYs5i7J9dlGKjitaEpNJX3mmCRty1A/viewform"><p>Job Application</p></a>
+                </li>
+                </center>
+            </div>
+            <li align="left">
+                <h2>Hours</h2>
+                <p id="open_sign"></p>
+                <p>Sunday: Closed</p>
+                <p>Monday: 4pm - 8:30pm</p>
+                <p>Tuesday through Saturday: 11am - 2pm, 4pm - 8:30pm</p>
+            </li>
+            <li align="left">
+                <h2>Location</h2>
+                <p>1225 Jefferson Road Suite A11, Rochester, New York 14623</p>
+                <h2>Contact Info</h2>
+                <p>(585) 319-4635</p>
+                <p>dosiiroccafe@gmail.com</p>
+            </li>
+        </ul>
+    </div>
+    <script>
+        var date = new Date();
+        var isClosed = true;
+        var isMonday = false;
+        var isLunchtime = false;
+
+        if (date.getDay() == 1) {
+            isMonday = true;
+        }
+
+        if (date.getDay() == 0) {
+            isClosed = true;
+        }
+        else if (isMonday && ((date.getHours() >= 16 && date.getHours() < 20) || date.getHours() === 20 && date.getMinutes() < 30)) {
+            isClosed = false;
+        }
+        else if (!isMonday && (date.getHours() >= 11 && date.getHours() < 14) || ((date.getHours() >= 16 && date.getHours() < 20) || date.getHours() === 20 && date.getMinutes() < 30)) {
+            isClosed = false;
+        }
+        if(date.getHours() >= 14 && date.getHours() < 16) {
+            isLunchtime = true;
+        }
+
+        if (isMonday && isClosed) {
+            if (date.getHours() < 15) {
+                document.getElementById("open_sign").textContent = "We'll be open in " + (16 - date.getHours()-1) + " hour(s) and " + (60 - date.getMinutes()) + " minutes."
+            }
+            else {
+                document.getElementById("open_sign").textContent = "We'll be open in " + (60 - date.getMinutes()) + " minutes."
+            }
+        }
+        else if (isClosed && isLunchtime) {
+            document.getElementById("open_sign").textContent = "We're closed for lunch, come at 4 pm!"
+        }
+        else if (isClosed && date.getHours() > 0 && date.getHours() < 10) {
+            document.getElementById("open_sign").textContent = "We'll be open in " + (11 - date.getHours()-1) + " hour(s) and " + (60 - date.getMinutes()) + " minutes."
+        }
+        else if (isClosed && date.getHours() > 0 && date.getHours() == 10) {
+            document.getElementById("open_sign").textContent = "We'll be open in " + (60 - date.getMinutes()) + " minutes."
+        }
+        else if (isClosed) {
+            document.getElementById("open_sign").textContent = "Sorry, we're currently closed";
+        }
+        else {
+            document.getElementById("open_sign").textContent = "We're open!"
+        }
+    </script>
+</body>
