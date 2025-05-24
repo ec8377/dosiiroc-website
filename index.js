@@ -28,15 +28,15 @@ const { rateLimit } = require("express-rate-limit");
 const limiter = rateLimit({ 
     windowMs: ((60 * 60) * 1000),
     limit: 1,
-    standardHeaders: 'draft-8',
-    legacyHeaders: false
+    standardHeaders: false,
+    legacyHeaders: true
 });
 
 const admin_limiter = rateLimit({ 
     windowMs: ((60 * 60) * 1000),
     limit: 10,
-    standardHeaders: 'draft-8',
-    legacyHeaders: false
+    standardHeaders: false,
+    legacyHeaders: true
 });
 
 const client = new SquareClient({ token: process.env.TOKEN });
