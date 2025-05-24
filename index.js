@@ -26,8 +26,15 @@ const nodemailer = require('nodemailer');
 const { rateLimit } = require("express-rate-limit");
 
 const limiter = rateLimit({ 
-    windowMs: ((60 * 60) * 1000) * 24,
+    windowMs: ((60 * 60) * 1000),
     limit: 1,
+    standardHeaders: true,
+    legacyHeaders: false
+});
+
+const admin_limiter = rateLimit({ 
+    windowMs: ((60 * 60) * 1000),
+    limit: 10,
     standardHeaders: true,
     legacyHeaders: false
 });
@@ -91,8 +98,6 @@ json_object.categories.forEach((category) => {
         category.ade_price = cost_string;
     }
 })
-
-// console.log(item_cost)
 
 await fspromise.writeFile(PROCESS_DIR + "/resources/menu/menu.json", JSON.stringify(json_object));
 
@@ -178,7 +183,7 @@ app.get("/catering", (request, response) => {
     });
 });
 
-app.post("/CATERING_SUBMIT", async (request, response) => {
+app.post("/CATERING_SUBMIT", limiter, async (request, response) => {
     const token = request.body['cf-turnstile-response'];
     const ip = request.headers['CF-Connecting-IP'];
 
@@ -296,7 +301,7 @@ app.listen(process.env.PORT, () =>{
     console.log("ON PORT 3000");
 });
 
-app.post("/" + process.env.RANDOM_ID, async (req, res) => {
+app.post("/" + process.env.RANDOM_ID, admin_limiter, async (req, res) => {
     const token = req.body['cf-turnstile-response'];
     const ip = req.headers['CF-Connecting-IP'];
 
