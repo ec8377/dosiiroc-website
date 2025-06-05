@@ -291,13 +291,6 @@ app.get("/resources/stylesheet.css", (request, response) => {
     response.send(PROCESS_DIR + "/resources/stylesheet.css");
 });
 
-app.get("/" + process.env.RANDOM_ID, async (req, res) => {
-    var html =  await fspromise.readFile(PROCESS_DIR + "/menu_changer.html","utf-8");
-    var json_data = await fspromise.readFile(PROCESS_DIR + "/resources/menu/menu.json", "utf-8");
-    
-    res.send(html.replaceAll("REPLACE_JSON_STRING", json_data.replaceAll("\n","").replaceAll("'", "\\'")));
-});
-
 app.listen(process.env.PORT, () =>{
     console.log("ON PORT 3000");
 });
@@ -347,24 +340,44 @@ app.post("/" + process.env.RANDOM_ID, admin_limiter, async (req, res) => {
 });
 
 app.post("/JSON_UPLOAD", async (req, res) => {
-    await fspromise.writeFile(PROCESS_DIR + "/resources/menu/menu.json", req.body.JSON_UPLOAD);
-    await fspromise.writeFile(PROCESS_DIR + "/resources/private/MenuGenerator/menu.json", req.body.JSON_UPLOAD);
-    let html =  await fspromise.readFile(PROCESS_DIR + "/menu_changer.html","utf-8");
-    let json_data = await fspromise.readFile(PROCESS_DIR + "/resources/menu/menu.json", "utf-8");
-    res.send(html.replaceAll("REPLACE_JSON_STRING", json_data.replaceAll("\n","").replaceAll("'", "\\'")));
+    try {
+        await fspromise.writeFile(PROCESS_DIR + "/resources/menu/menu.json", req.body.JSON_UPLOAD);
+        await fspromise.writeFile(PROCESS_DIR + "/resources/private/MenuGenerator/menu.json", req.body.JSON_UPLOAD);
+        let html =  await fspromise.readFile(PROCESS_DIR + "/menu_changer.html","utf-8");
+        let json_data = await fspromise.readFile(PROCESS_DIR + "/resources/menu/menu.json", "utf-8");
+        res.send(html.replaceAll("REPLACE_JSON_STRING", json_data.replaceAll("\n","").replaceAll("'", "\\'")));
+    }
+    catch {
+        res.send(html.replaceAll("REPLACE_JSON_STRING", json_data.replaceAll("\n","").replaceAll("'", "\\'")));
+    }
 });
 
 app.post("/SQUARE_UPDATE", async (req, res) => {
-    let html =  await fspromise.readFile(PROCESS_DIR + "/menu_changer.html","utf-8");
-    let json_data = await fspromise.readFile(PROCESS_DIR + "/resources/menu/menu.json", "utf-8");
-    let json_object = JSON.parse(json_data);
+    let html, json_date, json_object, response
+    try {
+        html =  await fspromise.readFile(PROCESS_DIR + "/menu_changer.html","utf-8");
+        json_data = await fspromise.readFile(PROCESS_DIR + "/resources/menu/menu.json", "utf-8");
+        json_object = JSON.parse(json_data);
+    
+        response = await client.catalog.list({types:["ITEM"]});
+    }
+    catch {
+        res.send("error reading square data.")
+        return
+    }
 
-    let response = await client.catalog.list({types:["ITEM"]});
     for await (const item of response) {
         id_name_dict[item.id] = item.itemData.name;
     }
 
-    response = await client.catalog.list({types: "ITEM_VARIATION"});
+    try {
+        response = await client.catalog.list({types: "ITEM_VARIATION"});
+    }
+    catch {
+        res.send("error reading square data.")
+        return
+    }
+
     for await (const item of response) {
         if (item_cost[id_name_dict[item.itemVariationData.itemId]] != undefined && item_cost[id_name_dict[item.itemVariationData.itemId]] > item.itemVariationData.priceMoney.amount) {
             item_cost[id_name_dict[item.itemVariationData.itemId]] = item.itemVariationData.priceMoney.amount
@@ -395,10 +408,17 @@ app.post("/SQUARE_UPDATE", async (req, res) => {
         }
     })
 
-    await fspromise.writeFile(PROCESS_DIR + "/resources/menu/menu.json", JSON.stringify(json_object));
-    await fspromise.writeFile(PROCESS_DIR + "/resources/private/MenuGenerator/menu.json", JSON.stringify(json_object));
 
-    res.send(html.replaceAll("REPLACE_JSON_STRING", JSON.stringify(json_object).replaceAll("\n","").replaceAll("'", "\\'")));
+    try {
+        await fspromise.writeFile(PROCESS_DIR + "/resources/menu/menu.json", JSON.stringify(json_object));
+        await fspromise.writeFile(PROCESS_DIR + "/resources/private/MenuGenerator/menu.json", JSON.stringify(json_object));
+    
+        res.send(html.replaceAll("REPLACE_JSON_STRING", JSON.stringify(json_object).replaceAll("\n","").replaceAll("'", "\\'")));
+    
+    }
+    catch {
+        res.send("error writing menu to file")
+    }
 });
 
 app.get("/update_image_page", async (req, res) => {

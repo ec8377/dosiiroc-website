@@ -472,3 +472,38 @@ ul {
    	width: 0;
    	z-index: -1;
 }
+
+.submit-btn {
+	font-family: 'Kollektif';
+	background-color: #F7941D;
+	color: white;
+	border: none;
+	padding: 12px 20px;
+	font-size: 1rem;
+	font-weight: bold;
+	border-radius: 4px;
+	cursor: pointer;
+	width: 100%;
+	transition: background-color 0.3s;
+}
+
+.submit-btn:hover {
+	background-color: #c04b22;
+}
+
+.outline-btn {
+  background-color: white;
+  color: #F7941D;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: 2px solid #F7941D;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.outline-btn:hover {
+  background-color: #c04b22;
+  border: 2px solid #c04b22;
+  color: white;
+}

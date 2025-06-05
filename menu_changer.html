@@ -30,7 +30,7 @@
             <li>
                 <input type="text" id="category_input" name="category"/>
             </li>
-            <button onclick="find_category()">Enter category</button>
+            <button onclick="find_category()" class="submit-btn" style="width:20%">Enter category</button>
         </form>
     </ul>
     <ul id="items_ul" class="hidden_elements">
@@ -39,12 +39,12 @@
                 <input type="text" id="item_input" name="item"/>
             </li>
             <li>
-                <button onclick="find_item()">Enter item</button>
+                <button onclick="find_item()" class="submit-btn" style="width:20%">Enter item</button>
             </li>
             <li>
                 <div id="yesorno" class="hidden_elements">
-                    <button onclick="add_item()">yes</button>
-                    <button onclick="reset_items()">no</button>
+                    <button onclick="add_item()" class="submit-btn" style="width:20%">yes</button>
+                    <button onclick="reset_items()" class="submit-btn" style="width:20%">no</button>
                 </div>
             </li>
         </form>
@@ -64,26 +64,32 @@
                 <input style="width:95vw;" placeholder="Description" id="description_input" name="description" type="text">
             </li>
             <li>
-                <button onclick="update_menu()">Confirm</button>
+                <button onclick="update_menu()" class="submit-btn" style="width:20%">Confirm</button>
             </li>
         </form>
         <li style="margin-top:25px">
-            <button onclick="remove_item()">Delete Item</button>
+            <button onclick="remove_item()" class="submit-btn" style="width:20%">Delete Item</button>
         </li>
     </ul>
     <ul style="margin-top:5vw;">
         <li>
-            <button onclick="back_to_category()">Back to category</button>
+            <button onclick="back_to_category()" class="submit-btn" style="width:20%">Back to category</button>
         </li>
     </ul>
     <ul style="margin-top:5vw;">
         <li>
-            <button onclick="square_update()">SQUARE UPDATE</button>
+            <button id="square_btn" onclick="square_update()" class="submit-btn" style="width:20%">SQUARE UPDATE</button>
+        </li>
+        <li style="padding:0; margin:0">
+            <p style="font-family: 'BaronNeue';">updates menu prices from square.</label>
+        </li>
+        <li style="padding:0">
+            <p style="font-family: 'BaronNeue';">depends on naming items the same between website menu and square menu.</label>
         </li>
     </ul>
     <ul>
         <li>
-            <a href="/update_image_page">go to update slideshow images.</a>
+            <a href="/update_image_page" style="font-family: 'BaronNeue';">go to update slideshow images.</a>
         </li>
     </ul>
     </center>
