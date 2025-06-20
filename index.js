@@ -34,7 +34,7 @@ const limiter = rateLimit({
 
 const admin_limiter = rateLimit({ 
     windowMs: ((60 * 60) * 1000),
-    limit: 10,
+    limit: 25,
     standardHeaders: false,
     legacyHeaders: true
 });
@@ -68,7 +68,6 @@ for await (const item of response) {
 
 response = await client.catalog.list({types: "ITEM_VARIATION"});
 for await (const item of response) {
-    console.log(item)
     if (item_cost[id_name_dict[item.itemVariationData.itemId]] != undefined && item_cost[id_name_dict[item.itemVariationData.itemId]] != item.itemVariationData.priceMoney.amount) {
         if ((item.itemVariationData.name.toLowerCase().indexOf("large") < 0) && (item.itemVariationData.name.toLowerCase().indexOf("beef") < 0) && (item.itemVariationData.name.toLowerCase().indexOf("pork") < 0) && (item.itemVariationData.name.toLowerCase().indexOf("seafood") < 0)) {
             item_cost[id_name_dict[item.itemVariationData.itemId]] = item.itemVariationData.priceMoney.amount;
