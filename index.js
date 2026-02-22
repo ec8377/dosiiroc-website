@@ -74,7 +74,7 @@ for await (const item of response) {
         }
     }
     else if (item_cost[id_name_dict[item.itemVariationData.itemId]] == undefined) {
-        item_cost[id_name_dict[item.itemVariationData.itemId]] = item.itemVariationData.priceMoney.amount
+        item_cost[id_name_dict[item.itemVariationData.itemId]] = item.itemVariationData.priceMoney?.amount
     }
 }
 
@@ -384,7 +384,7 @@ app.post("/SQUARE_UPDATE", async (req, res) => {
             item_cost[id_name_dict[item.itemVariationData.itemId]] = item.itemVariationData.priceMoney.amount
         }
         else if (item_cost[id_name_dict[item.itemVariationData.itemId]] == undefined) {
-            item_cost[id_name_dict[item.itemVariationData.itemId]] = item.itemVariationData.priceMoney.amount
+            item_cost[id_name_dict[item.itemVariationData.itemId]] = item.itemVariationData.priceMoney?.amount
         }
     }
 
@@ -554,5 +554,5 @@ app.get("*", (req, res) => {
     });
 });
 
-// var httpserver = http.createServer(app);
-// httpserver.listen(80);
+var httpserver = http.createServer(app);
+httpserver.listen(80);
