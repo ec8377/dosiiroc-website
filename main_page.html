@@ -176,8 +176,8 @@
                 <h2>Hours</h2>
                 <p id="open_sign"></p>
                 <p>Sunday: Closed</p>
-                <p>Monday: 4pm - 8:30pm</p>
-                <p>Tuesday through Saturday: 11am - 2pm, 4pm - 8:30pm</p>
+                <p>Monday through Thursday: 4pm - 8:30pm</p>
+                <p>Friday & Saturday: 11am - 2pm, 4pm - 8:30pm</p>
             </li>
             <li align="left">
                 <h2>Location</h2>
@@ -189,50 +189,55 @@
         </ul>
     </div>
     <script>
-        let date = new Date();
-        let isClosed = true;
-        let isMonday = false;
-        let isLunchtime = false;
+        const date = new Date();
+        const currentDay = date.getDay();
+        const currentHour = date.getHours();
+        const currentMinute = date.getMinutes();
 
-        if (date.getDay() == 1) {
-            isMonday = true;
-        }
+        const openingTimeMorning = 11;
+        const closingTimeMorning = 14;
+        const openingTimeAfternoon = 16;
+        const closingTimeAfternoon = 20;
 
-        if (date.getDay() == 0) {
-            isClosed = true;
-        }
-        else if (isMonday && ((date.getHours() >= 16 && date.getHours() < 20) || (date.getHours() === 20 && date.getMinutes() < 30))) {
-            isClosed = false;
-        }
-        else if (!isMonday && (date.getHours() >= 11 && date.getHours() < 14) || ((date.getHours() >= 16 && date.getHours() < 20) || (date.getHours() === 20 && date.getMinutes() < 30))) {
-            isClosed = false;
-        }
-        if(date.getHours() >= 14 && date.getHours() < 16) {
-            isLunchtime = true;
-        }
+                                // sun,  mon,  tues,  wed,   thurs, fri,  sat
+        const hasMorningShift = [false, false, false, false, false, true, true];
+        const openSign = document.getElementById("open_sign");
 
-        if (isMonday && isClosed) {
-            if (date.getHours() < 15) {
-                document.getElementById("open_sign").textContent = "We'll be open in " + (16 - date.getHours()-1) + " hour(s) and " + (60 - date.getMinutes()) + " minutes."
+        function getTimeUntilString(targetHour, currentHour, currentMinute) {
+            const totalMinutesUntil = (targetHour * 60) - (currentHour * 60 + currentMinute);
+            const hours = Math.floor(totalMinutesUntil / 60);
+            const mins = totalMinutesUntil % 60;
+
+            let text = "";
+            if (hours > 0) {
+                text += `${hours} hour${hours === 1 ? '' : 's'} and `;
             }
-            else {
-                document.getElementById("open_sign").textContent = "We'll be open in " + (60 - date.getMinutes()) + " minutes."
+            text += `${mins} minute${mins === 1 ? '' : 's'}.`;
+
+            return text;
+        }
+
+        if (currentDay === 0) {
+            openSign.textContent = "Sorry, we're currently closed";
+        } else {
+            const morningOpen = hasMorningShift[currentDay];
+
+            if (morningOpen && currentHour < openingTimeMorning) {
+                openSign.textContent = `We'll be open in ${getTimeUntilString(openingTimeMorning, currentHour, currentMinute)}`;
+
+            } else if (morningOpen && currentHour < closingTimeMorning) {
+                openSign.textContent = "We're open!";
+
+            } else if (currentHour < openingTimeAfternoon) {
+                const prefix = (morningOpen && currentHour >= closingTimeMorning) ? "We'll re-open in " : "We'll be open in ";
+                openSign.textContent = `${prefix}${getTimeUntilString(openingTimeAfternoon, currentHour, currentMinute)}`;
+
+            } else if (currentHour < closingTimeAfternoon) {
+                openSign.textContent = "We're open!";
+
+            } else {
+                openSign.textContent = "We're closed, come back soon!";
             }
-        }
-        else if (isClosed && isLunchtime) {
-            document.getElementById("open_sign").textContent = "We're closed for lunch, come at 4 pm!"
-        }
-        else if (isClosed && date.getHours() > 0 && date.getHours() < 10) {
-            document.getElementById("open_sign").textContent = "We'll be open in " + (11 - date.getHours()-1) + " hour(s) and " + (60 - date.getMinutes()) + " minutes."
-        }
-        else if (isClosed && date.getHours() > 0 && date.getHours() == 10) {
-            document.getElementById("open_sign").textContent = "We'll be open in " + (60 - date.getMinutes()) + " minutes."
-        }
-        else if (isClosed) {
-            document.getElementById("open_sign").textContent = "Sorry, we're currently closed";
-        }
-        else {
-            document.getElementById("open_sign").textContent = "We're open!"
         }
     </script>
 </body>
