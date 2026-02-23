@@ -189,50 +189,119 @@
         </ul>
     </div>
     <script>
-        let date = new Date();
-        let isClosed = true;
-        let isMonday = false;
-        let isLunchtime = false;
+        const date = new Date();
+        const currentDay = date.getDay();
+        const currentHour = date.getHours();
+        const currentMinute = date.getMinutes();
+        // 11 AM
+        const openingTimeMorning = 11;
+        // 2 PM
+        const closingTimeMorning = 14;
+        // 4 PM
+        const openingTimeAfternoon = 16;
+        // 8 PM
+        const closingTimeAfternoon = 20;
+        // just for my future readability
+        const openMorningDays = {
+            sunday: false,
+            monday: false,
+            tuesday: false,
+            wednesday: false,
+            thursday: false,
+            friday: true,
+            saturday: true
+        }
+        const openMorningDaysMapping = Object.values(openMorningDays);
+        const openSign = document.getElementById("open_sign");
 
-        if (date.getDay() == 1) {
-            isMonday = true;
-        }
-
-        if (date.getDay() == 0) {
-            isClosed = true;
-        }
-        else if (isMonday && ((date.getHours() >= 16 && date.getHours() < 20) || (date.getHours() === 20 && date.getMinutes() < 30))) {
-            isClosed = false;
-        }
-        else if (!isMonday && (date.getHours() >= 11 && date.getHours() < 14) || ((date.getHours() >= 16 && date.getHours() < 20) || (date.getHours() === 20 && date.getMinutes() < 30))) {
-            isClosed = false;
-        }
-        if(date.getHours() >= 14 && date.getHours() < 16) {
-            isLunchtime = true;
-        }
-
-        if (isMonday && isClosed) {
-            if (date.getHours() < 15) {
-                document.getElementById("open_sign").textContent = "We'll be open in " + (16 - date.getHours()-1) + " hour(s) and " + (60 - date.getMinutes()) + " minutes."
+        if (currentDay === 0) openSign.textContent = "Sorry, we're currently closed";
+        else {
+            if (openMorningDaysMapping[currentDay]) {
+                if (currentHour < openingTimeMorning) {
+                    openSign.textContent = "We'll be open in "
+                    if (currentHour !== openingTimeMorning - 1) {
+                        openSign.textContent += `${openingTimeMorning - currentHour} hour${openingTimeMorning - currentHour === 1 ? 's' : ''} and `
+                    }
+                    openSign.textContent += `${60 - currentMinute} minute${60 - currentMinute !== 1 ? 's' : ''}.`
+                }
+                else if (currentHour < closingTimeMorning) {
+                    openSign.textContent = "We're open!"
+                }
+                else if (currentHour < openingTimeAfternoon) {
+                    openSign.textContent = "We'll re-open in "
+                    if (currentHour !== openingTimeAfternoon - 1) {
+                        openSign.textContent += `${openingTimeAfternoon - currentHour} hour${openingTimeAfternoon - currentHour === 1 ? 's' : ''} and `
+                    }
+                    openSign.textContent += `${60 - currentMinute} minute${60 - currentMinute !== 1 ? 's' : ''}.`
+                }
+                else if (currentHour < closingTimeAfternoon) {
+                    openSign.textContent = "We're open!"
+                }
+                else {
+                    openSign.textContent = "We're closed, come back tomorrow!"
+                }
             }
             else {
-                document.getElementById("open_sign").textContent = "We'll be open in " + (60 - date.getMinutes()) + " minutes."
+                if (currentHour < openingTimeAfternoon) {
+                    openSign.textContent = "We'll be open in "
+                    if (currentHour !== openingTimeAfternoon - 1) {
+                        openSign.textContent += `${openingTimeAfternoon - currentHour} hour${openingTimeAfternoon - currentHour === 1 ? 's' : ''} and `
+                    }
+                    openSign.textContent += `${60 - currentMinute} minute${60 - currentMinute !== 1 ? 's' : ''}.`
+                }
+                else if (currentHour < closingTimeAfternoon) {
+                    openSign.textContent = "We're open!"
+                }
+                else {
+                    openSign.textContent = "We're closed, come back tomorrow!"
+                }
             }
         }
-        else if (isClosed && isLunchtime) {
-            document.getElementById("open_sign").textContent = "We're closed for lunch, come at 4 pm!"
-        }
-        else if (isClosed && date.getHours() > 0 && date.getHours() < 10) {
-            document.getElementById("open_sign").textContent = "We'll be open in " + (11 - date.getHours()-1) + " hour(s) and " + (60 - date.getMinutes()) + " minutes."
-        }
-        else if (isClosed && date.getHours() > 0 && date.getHours() == 10) {
-            document.getElementById("open_sign").textContent = "We'll be open in " + (60 - date.getMinutes()) + " minutes."
-        }
-        else if (isClosed) {
-            document.getElementById("open_sign").textContent = "Sorry, we're currently closed";
-        }
-        else {
-            document.getElementById("open_sign").textContent = "We're open!"
-        }
+
+
+        // let isClosed = true;
+        // let isMonday = false;
+        // let isLunchtime = false;
+        //
+        // if (date.getDay() === 1) {
+        //     isMonday = true;
+        // }
+        //
+        // if (date.getDay() === 0) {
+        //     isClosed = true;
+        // }
+        // else if (isMonday && ((date.getHours() >= 16 && date.getHours() < 20) || (date.getHours() === 20 && date.getMinutes() < 30))) {
+        //     isClosed = false;
+        // }
+        // else if (!isMonday && (date.getHours() >= 11 && date.getHours() < 14) || ((date.getHours() >= 16 && date.getHours() < 20) || (date.getHours() === 20 && date.getMinutes() < 30))) {
+        //     isClosed = false;
+        // }
+        // if(date.getHours() >= 14 && date.getHours() < 16) {
+        //     isLunchtime = true;
+        // }
+        //
+        // if (isMonday && isClosed) {
+        //     if (date.getHours() < 15) {
+        //         document.getElementById("open_sign").textContent = "We'll be open in " + (16 - date.getHours()-1) + " hour(s) and " + (60 - date.getMinutes()) + " minutes."
+        //     }
+        //     else {
+        //         document.getElementById("open_sign").textContent = "We'll be open in " + (60 - date.getMinutes()) + " minutes."
+        //     }
+        // }
+        // else if (isClosed && isLunchtime) {
+        //     document.getElementById("open_sign").textContent = "We're closed for lunch, come at 4 pm!"
+        // }
+        // else if (isClosed && date.getHours() > 0 && date.getHours() < 10) {
+        //     document.getElementById("open_sign").textContent = "We'll be open in " + (11 - date.getHours()-1) + " hour(s) and " + (60 - date.getMinutes()) + " minutes."
+        // }
+        // else if (isClosed && date.getHours() > 0 && date.getHours() === 10) {
+        //     document.getElementById("open_sign").textContent = "We'll be open in " + (60 - date.getMinutes()) + " minutes."
+        // }
+        // else if (isClosed) {
+        //     document.getElementById("open_sign").textContent = "Sorry, we're currently closed";
+        // }
+        // else {
+        //     document.getElementById("open_sign").textContent = "We're open!"
+        // }
     </script>
 </body>
