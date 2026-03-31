@@ -104,8 +104,8 @@
                 <h2>Hours</h2>
                 <p id="open_sign"></p>
                 <p>Sunday: Closed</p>
-                <p>Monday through Thursday: 4pm - 8:30pm</p>
-                <p>Friday & Saturday: 11am - 2pm, 4pm - 8:30pm</p>
+                <p>Monday: 4pm - 8:30pm</p>
+                <p>Tuesday to Saturday: 11am - 2pm, 4pm - 8:30pm</p>
             </li>
             <li align="left">
                 <h2>Location</h2>
@@ -128,7 +128,7 @@
         const closingTimeAfternoon = 20;
 
         // sun,  mon,  tues,  wed,   thurs, fri,  sat
-        const hasMorningShift = [false, false, false, false, false, true, true];
+        const hasMorningShift = [false, false, true, true, true, true, true];
         const openSign = document.getElementById("open_sign");
 
         function getTimeUntilString(targetHour, currentHour, currentMinute) {
