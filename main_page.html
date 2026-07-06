@@ -111,43 +111,88 @@
         </div>
     </center>
     <center>
-    <div id="slides_container" style="position:relative; text-align:center; width:100%; background-image:url('/resources/images/background_slideshow.webp'); background-repeat:repeat;background-color:black;">
-        <!-- <img src="resources/images/cafe_pic_just_logo.png" style="width: 70%; margin-top:0; position: absolute; left:50%; top:50%; transform:translate(-50%, -50%)"> -->
-        <h2 style="text-wrap: wrap; background-color:black; font-size:3.1vw;width:100%; position: absolute; left:50%; top:50%; transform:translate(-50%, max(-850%, -500px)); z-index:1;">Authentic Korean cooking from our home, to your table!</h2>
-    </div>
-    <script>
-        let slides_image_list = 'REPLACE_IMAGE_ADDR_STRING';
+        <style>
+            .slides-container {
+                position: relative;
+                text-align: center;
+                width: 100%;
+                background-image: url('/resources/images/background_slideshow.webp');
+                background-repeat: repeat;
+                background-color: black;
+                overflow: hidden; /* Prevents overflow issues */
+            }
 
-        slides_image_list.forEach((dir) => {
-            container = document.getElementById("slides_container");
-            let div = document.createElement("div");
-            let img = document.createElement("img");
-            div.classList.toggle("mySlides");
-            div.classList.toggle("fade");
-            img.src = "resources/images/ss_images/" + dir;
-            div.appendChild(img);
-            container.appendChild(div);
-        });
+            .slides-announcement {
+                text-wrap: wrap;
+                background-color: black;
+                color: #F7941D;
+                font-size: 3.1vw;
+                width: 100%;
+                position: absolute;
+                left: 50%;
+                top: 10%; /* Adjust this percentage to push it further up or down */
+                transform: translateX(-50%); /* Only centers it horizontally */
+                z-index: 10;
+                margin: 0;
+            }
 
-        let slideIndex = 0;
-        let i = 0;
-        let slides = document.getElementsByClassName("mySlides");
-        for (i = 0; i < slides.length; i++) {
-            slides[i].style.display = "block";
-        }
-        setTimeout(showSlides, 50);
-        
-        function showSlides() {
-          i;
-          for (i = 0; i < slides.length; i++) {
-            slides[i].style.display = "none";  
-          }
-          slideIndex++; 
-          if (slideIndex > slides.length) {slideIndex = 1}
-          slides[slideIndex-1].style.display = "block";  
-          setTimeout(showSlides, 3700);
-        }
-    </script>
+            .mySlides {
+                display: none;
+            }
+        </style>
+
+        <div id="slides_container" class="slides-container">
+            <h2 class="slides-announcement">We will be closed July 7th and 8th. Apologies for any inconvenience!</h2>
+        </div>
+
+        <script>
+            // Wrap everything in an IIFE to protect the global scope
+            (function initSlideshow() {
+                // Assume this is injected properly as a JSON array string by your backend
+                const imagesList = 'REPLACE_IMAGE_ADDR_STRING';
+
+                const container = document.getElementById("slides_container");
+                if (!container) return;
+
+                // Build DOM elements in a DocumentFragment for better performance
+                const fragment = document.createDocumentFragment();
+                const slideElements = [];
+
+                imagesList.forEach((filename, index) => {
+                    const div = document.createElement("div");
+                    div.classList.add("mySlides", "fade");
+                    // Only show the first slide initially
+                    if (index === 0) div.style.display = "block";
+
+                    const img = document.createElement("img");
+                    img.src = "resources/images/ss_images/" + filename;
+
+                    div.appendChild(img);
+                    fragment.appendChild(div);
+                    slideElements.push(div);
+                });
+
+                // Append all slides at once
+                container.appendChild(fragment);
+
+                let currentSlideIndex = 0;
+
+                // Use setInterval instead of recursive setTimeout for cleaner interval logic
+                const slideshowInterval = setInterval(() => {
+                    // Hide current
+                    slideElements[currentSlideIndex].style.display = "none";
+
+                    // Advance and wrap around
+                    currentSlideIndex = (currentSlideIndex + 1) % slideElements.length;
+
+                    // Show next
+                    slideElements[currentSlideIndex].style.display = "block";
+                }, 3700);
+
+                // Optional: Save interval ID to container if you ever need to stop it (e.g., clearInterval)
+                container.dataset.intervalId = slideshowInterval;
+            })();
+        </script>
     <table>
         <div class="main_insta">
             <tr>
